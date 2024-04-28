@@ -1,0 +1,13 @@
+.lidiaEditorIframe {
+    width: 100%;
+    max-width: 720px;
+    aspect-ratio: 16/9;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 15px 0;
+
+    iframe {
+        width: 100%;
+        height: 100%;
+    }
+}

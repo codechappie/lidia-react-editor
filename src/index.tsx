@@ -1,15 +1,28 @@
-import React, { useState } from 'react';
+import BulletList from '@tiptap/extension-bullet-list';
+import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import Highlight from "@tiptap/extension-highlight";
-import BulletList from '@tiptap/extension-bullet-list'
-import OrderedList from '@tiptap/extension-ordered-list'
-import ListItem from '@tiptap/extension-list-item'
-import Underline from '@tiptap/extension-underline'
+import ListItem from '@tiptap/extension-list-item';
+import OrderedList from '@tiptap/extension-ordered-list';
 import TextAlign from "@tiptap/extension-text-align";
-import { EditorContent, useEditor } from "@tiptap/react";
+import Underline from '@tiptap/extension-underline';
+import { EditorContent, ReactNodeViewRenderer, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import React, { useState } from 'react';
+import { common, createLowlight } from 'lowlight';
+
 import { Iframe } from "./extensions/Iframe";
 
+import 'highlight.js/styles/tokyo-night-dark.min.css';
+
+
+
+import { NodeViewContent, NodeViewWrapper } from '@tiptap/react';
+
 import s from './styles.module.scss';
+
+
+
+const lowlight = createLowlight(common)
 
 
 const alignOptions = [
@@ -272,6 +285,24 @@ const MenuBar = ({ editor }: any) => {
         </button>
 
         <button
+          onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+          className={`${s.onlyIcon} ${editor.isActive('codeBlock') ? s.isActive : ''}`}
+        >
+          <svg
+            width={25}
+            height={25}
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M31 16L24 23L22.59 21.59L28.17 16L22.59 10.41L24 9L31 16ZM1 16L8 9L9.41 10.41L3.83 16L9.41 21.59L8 23L1 16Z"
+              fill="#212529"
+            />
+          </svg>
+        </button>
+
+        <button
           onClick={() => openModal(editor)}
           className={s.onlyIcon}
         >
@@ -331,6 +362,13 @@ export const LidiaEditor = ({ className, html, setHtml }: EditorProps) => {
       }),
       Underline, Highlight,
       BulletList, ListItem, OrderedList,
+      CodeBlockLowlight
+        .extend({
+          addNodeView() {
+            return ReactNodeViewRenderer(CodeBlockComponent)
+          },
+        })
+        .configure({ lowlight }),
       Iframe
     ],
     content: html
@@ -538,3 +576,25 @@ const AlignIcon = ({ id }: any) => {
   }
 
 }
+
+
+export const CodeBlockComponent = ({ node: { attrs: { language: defaultLanguage } }, updateAttributes, extension }: any) => (
+  <NodeViewWrapper className="code-block">
+    <select contentEditable={false} defaultValue={defaultLanguage} onChange={event => updateAttributes({ language: event.target.value })}>
+      <option value="null">
+        auto
+      </option>
+      <option disabled>
+        —
+      </option>
+      {extension.options.lowlight.listLanguages().map((lang: any, index: any) => (
+        <option key={index} value={lang}>
+          {lang}
+        </option>
+      ))}
+    </select>
+    <pre>
+      <NodeViewContent as="code" />
+    </pre>
+  </NodeViewWrapper>
+)

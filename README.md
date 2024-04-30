@@ -1,4 +1,4 @@
-# Lidia Editor
+# Lidia React Editor
 
 An intuitive and minimal WYSIWYG react editor. Ideal for everyone: developers, designers, and general users.
 

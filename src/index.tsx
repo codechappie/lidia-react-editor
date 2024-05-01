@@ -5,18 +5,15 @@ import ListItem from '@tiptap/extension-list-item';
 import OrderedList from '@tiptap/extension-ordered-list';
 import TextAlign from "@tiptap/extension-text-align";
 import Underline from '@tiptap/extension-underline';
-import { EditorContent, ReactNodeViewRenderer, useEditor } from "@tiptap/react";
+import Link from '@tiptap/extension-link'
+import { EditorContent, ReactNodeViewRenderer, NodeViewContent, NodeViewWrapper, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import React, { useState } from 'react';
-import { common, createLowlight } from 'lowlight';
+import React, { useCallback, useState } from 'react';
 
 import { Iframe } from "./extensions/Iframe";
+import { common, createLowlight } from 'lowlight';
 
 import 'highlight.js/styles/tokyo-night-dark.min.css';
-
-
-
-import { NodeViewContent, NodeViewWrapper } from '@tiptap/react';
 
 import s from './styles.module.scss';
 
@@ -303,6 +300,25 @@ const MenuBar = ({ editor }: any) => {
         </button>
 
         <button
+          onClick={() => setALink(editor)}
+          className={`${s.onlyIcon} ${editor.isActive('link') ? s.isActive : ''}`}
+        >
+          <svg
+            width={25}
+            height={25}
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M31 16L24 23L22.59 21.59L28.17 16L22.59 10.41L24 9L31 16ZM1 16L8 9L9.41 10.41L3.83 16L9.41 21.59L8 23L1 16Z"
+              fill="red"
+            />
+          </svg>
+        </button>
+
+
+        <button
           onClick={() => openModal(editor)}
           className={s.onlyIcon}
         >
@@ -337,6 +353,30 @@ const openModal = (editor: any) => {
     .run()
 }
 
+
+const setALink = (editor: any) => {
+  const previousUrl = editor.getAttributes('link').href
+  const url = window.prompt('URL', previousUrl)
+
+  // cancelled
+  if (url === null) {
+    return
+  }
+
+  // empty
+  if (url === '') {
+    editor.chain().focus().extendMarkRange('link').unsetLink()
+      .run()
+
+    return
+  }
+
+  // update link
+  editor.chain().focus().extendMarkRange('link').setLink({ href: url })
+    .run()
+}
+
+
 type EditorProps = {
   className?: string;
   html: string;
@@ -349,7 +389,6 @@ type EditorProps = {
 * @param onClick Function to call when the button is clicked
 * @returns Button component
 */
-
 export const LidiaEditor = ({ className, html, setHtml }: EditorProps) => {
   const editor = useEditor({
     onUpdate({ editor }: any) {
@@ -369,6 +408,10 @@ export const LidiaEditor = ({ className, html, setHtml }: EditorProps) => {
           },
         })
         .configure({ lowlight }),
+      Link.configure({
+        openOnClick: false,
+        autolink: true,
+      }),
       Iframe
     ],
     content: html
@@ -579,8 +622,11 @@ const AlignIcon = ({ id }: any) => {
 
 
 export const CodeBlockComponent = ({ node: { attrs: { language: defaultLanguage } }, updateAttributes, extension }: any) => (
-  <NodeViewWrapper className="code-block">
-    <select contentEditable={false} defaultValue={defaultLanguage} onChange={event => updateAttributes({ language: event.target.value })}>
+  <NodeViewWrapper className={s.codeBlock}>
+    <select
+      contentEditable={false}
+      defaultValue={defaultLanguage}
+      onChange={event => updateAttributes({ language: event.target.value })}>
       <option value="null">
         auto
       </option>

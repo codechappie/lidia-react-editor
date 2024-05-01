@@ -204,8 +204,6 @@
         padding: 0;
         transition: all 0.02s ease-in-out;
 
-
-
         button {
           border: 1px solid transparent;
           border-radius: 8px;
@@ -244,14 +242,13 @@
         }
       }
 
-      &.show.inRow .options{
+      &.show.inRow .options {
         // flex-direction: row;
 
         button {
           display: flex;
         }
       }
-
     }
 
     .onlyIcon {
@@ -348,17 +345,6 @@
     }
   }
 
-
-  .code-block {
-    position: relative;
-  
-    select {
-      position: absolute;
-      right: 0.5rem;
-      top: 0.5rem;
-    }
-  }
-
   pre {
     background: #0d0d0d;
     border-radius: 0.5rem;
@@ -425,5 +411,25 @@
       font-weight: 700;
     }
   }
-  
+
+  .codeBlock {
+    position: relative;
+    padding-top: 1.2rem;
+    
+    pre {
+      overflow: hidden;
+      overflow-y: auto;
+      max-height: 300px;
+    }
+
+    select {
+      position: absolute;
+      right: 0.5rem;
+      top: 0rem;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  }
 }

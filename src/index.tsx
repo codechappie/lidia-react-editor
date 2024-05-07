@@ -5,7 +5,9 @@ import ListItem from '@tiptap/extension-list-item';
 import OrderedList from '@tiptap/extension-ordered-list';
 import TextAlign from "@tiptap/extension-text-align";
 import Underline from '@tiptap/extension-underline';
-import Link from '@tiptap/extension-link'
+import Link from '@tiptap/extension-link';
+import FontFamily from '@tiptap/extension-font-family';
+import TextStyle from '@tiptap/extension-text-style';
 import { EditorContent, ReactNodeViewRenderer, NodeViewContent, NodeViewWrapper, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import React, { useCallback, useState } from 'react';
@@ -40,6 +42,20 @@ const MenuBar = ({ editor }: any) => {
     return null;
   }
 
+  const getFontValue = () => {
+    if (editor.isActive('textStyle', { fontFamily: 'Poppins' })) {
+      return "Poppins"
+    } else if (editor.isActive('textStyle', { fontFamily: 'Inter' })) {
+      return "Inter"
+    } else if (editor.isActive('textStyle', { fontFamily: 'Comic Sans MS, Comic Sans' })) {
+      return "Comic Sans"
+    } else if (editor.isActive('textStyle', { fontFamily: 'monospace' })) {
+      return "Monospace"
+    } else {
+      return "Poppins"
+    }
+
+  }
 
 
   const getHeadingValue = () => {
@@ -129,6 +145,12 @@ const MenuBar = ({ editor }: any) => {
           </svg>
 
         </button>
+
+        <FontSelector
+          editor={editor}
+          getFontValue={getFontValue}
+
+        />
 
         <HeadingSelector
           editor={editor}
@@ -304,17 +326,22 @@ const MenuBar = ({ editor }: any) => {
           className={`${s.onlyIcon} ${editor.isActive('link') ? s.isActive : ''}`}
         >
           <svg
-            width={25}
-            height={25}
+            width={22}
+            height={22}
             viewBox="0 0 32 32"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M31 16L24 23L22.59 21.59L28.17 16L22.59 10.41L24 9L31 16ZM1 16L8 9L9.41 10.41L3.83 16L9.41 21.59L8 23L1 16Z"
-              fill="red"
+              d="M29.25 6.75997C28.6926 6.20061 28.0302 5.75679 27.3009 5.45396C26.5716 5.15112 25.7897 4.99524 25 4.99524C24.2103 4.99524 23.4284 5.15112 22.6991 5.45396C21.9697 5.75679 21.3074 6.20061 20.75 6.75997L22.17 8.17997C22.5423 7.80767 22.9842 7.51235 23.4707 7.31086C23.9571 7.10938 24.4785 7.00567 25.005 7.00567C25.5315 7.00567 26.0528 7.10938 26.5393 7.31086C27.0257 7.51235 27.4677 7.80767 27.84 8.17997C28.2123 8.55227 28.5076 8.99425 28.7091 9.48068C28.9106 9.96711 29.0143 10.4885 29.0143 11.015C29.0143 11.5415 28.9106 12.0628 28.7091 12.5493C28.5076 13.0357 28.2123 13.4777 27.84 13.85L19.84 21.85C19.0894 22.6019 18.0709 23.0248 17.0085 23.0257C15.9461 23.0267 14.9269 22.6055 14.175 21.855C13.4231 21.1044 13.0001 20.0859 12.9992 19.0235C12.9983 17.9611 13.4194 16.9419 14.17 16.19L15.58 14.77L14.17 13.35L12.75 14.77C12.1906 15.3274 11.7468 15.9897 11.444 16.7191C11.1411 17.4484 10.9852 18.2303 10.9852 19.02C10.9852 19.8097 11.1411 20.5916 11.444 21.3209C11.7468 22.0502 12.1906 22.7125 12.75 23.27C13.8815 24.387 15.41 25.0092 17 25C17.7927 25.0032 18.5782 24.8494 19.3111 24.5473C20.044 24.2452 20.7098 23.8009 21.27 23.24L29.27 15.24C30.3909 14.1123 31.0184 12.5858 31.0147 10.9958C31.0109 9.40582 30.3762 7.88232 29.25 6.75997Z"
+              fill="#212529"
+            />
+            <path
+              d="M4.18997 24.82C3.81656 24.4483 3.52026 24.0065 3.31807 23.52C3.11589 23.0335 3.01181 22.5118 3.01181 21.985C3.01181 21.4581 3.11589 20.9365 3.31807 20.4499C3.52026 19.9634 3.81656 19.5216 4.18997 19.15L12.19 11.15C12.5616 10.7766 13.0034 10.4803 13.4899 10.2781C13.9765 10.0759 14.4981 9.97181 15.025 9.97181C15.5518 9.97181 16.0735 10.0759 16.56 10.2781C17.0465 10.4803 17.4883 10.7766 17.86 11.15C18.231 11.5246 18.5231 11.9698 18.7189 12.4594C18.9147 12.9489 19.0103 13.4728 19 14C19.003 14.5288 18.9012 15.0529 18.7004 15.5421C18.4995 16.0313 18.2037 16.4758 17.83 16.85L15.71 19L17.13 20.42L19.25 18.3C20.3785 17.1715 21.0124 15.6409 21.0124 14.045C21.0124 12.449 20.3785 10.9185 19.25 9.78997C18.1215 8.66147 16.5909 8.02749 14.995 8.02749C13.399 8.02749 11.8685 8.66147 10.74 9.78997L2.73997 17.79C2.17911 18.3476 1.73401 19.0106 1.43029 19.7408C1.12657 20.471 0.970215 21.2541 0.970215 22.045C0.970215 22.8358 1.12657 23.6189 1.43029 24.3492C1.73401 25.0794 2.17911 25.7424 2.73997 26.3C3.87879 27.4084 5.41087 28.0198 6.99997 28C8.60307 28.0015 10.1417 27.3688 11.28 26.24L9.85997 24.82C9.4883 25.1934 9.04652 25.4897 8.56 25.6919C8.07349 25.8941 7.55182 25.9981 7.02497 25.9981C6.49812 25.9981 5.97645 25.8941 5.48994 25.6919C5.00342 25.4897 4.56164 25.1934 4.18997 24.82Z"
+              fill="#212529"
             />
           </svg>
+
         </button>
 
 
@@ -409,10 +436,13 @@ export const LidiaEditor = ({ className, html, setHtml }: EditorProps) => {
         })
         .configure({ lowlight }),
       Link.configure({
+        // TODO: CHANGE TO TRUE IF IS  PREVIEW COMPONENT
         openOnClick: false,
         autolink: true,
       }),
-      Iframe
+      Iframe,
+      TextStyle,
+      FontFamily
     ],
     content: html
   });
@@ -437,6 +467,80 @@ export const LidiaEditor = ({ className, html, setHtml }: EditorProps) => {
 
 
 
+const FontSelector = ({ editor, getFontValue }: any) => {
+  const [active, setActive] = useState(false);
+  return (
+    <>
+      <div className={`${s.lidiaEditorOverlay}  ${active ? s.show : ''}`} onClick={() => setActive(!active)}></div>
+      <div className={`${s.customSelect} ${active ? s.show : ''}`}>
+        <button className={s.selector} onClick={() => setActive(!active)}>
+          <span>
+            {getFontValue() || "Poppins"}
+          </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={24}
+            height={24}
+            viewBox="0 0 24 24"
+            style={{ fill: "rgba(0, 0, 0, 1)" }}
+          >
+            <path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z" />
+          </svg>
+        </button>
+        <div className={s.options}>
+          <button
+            onClick={() => {
+              editor.chain().focus().setFontFamily('Poppins').run();
+              setActive(!active);
+            }}
+            className={editor.isActive('textStyle', { fontFamily: 'Poppins' }) ? s.isActive : ""}
+          >
+            <span className={s.text}>
+              Poppins
+            </span>
+            <span className={s.icon}>✔️</span>
+          </button>
+          <button
+            onClick={() => {
+              editor.chain().focus().setFontFamily('Inter').run()
+              setActive(!active);
+            }}
+            className={editor.isActive('textStyle', { fontFamily: 'Inter' }) ? s.isActive : ""}
+          >
+            <span className={s.text}>Inter</span>
+            <span className={s.icon}>✔️</span>
+          </button>
+          <button
+            onClick={() => {
+              editor.chain().focus().setFontFamily('Comic Sans MS, Comic Sans').run();
+              setActive(!active);
+            }}
+            className={editor.isActive('textStyle', { fontFamily: 'Comic Sans MS, Comic Sans' }) ? s.isActive : ""}
+          >
+            <span className={s.text}>
+              Comic Sans
+            </span>
+            <span className={s.icon}>✔️</span>
+          </button>
+
+          <button
+            onClick={() => {
+              editor.chain().focus().setFontFamily('monospace').run();
+              setActive(!active);
+            }}
+            className={editor.isActive('textStyle', { fontFamily: 'monospace' }) ? s.isActive : ""}
+          >
+            <span className={s.text}>
+              Monospace
+            </span>
+            <span className={s.icon}>✔️</span>
+          </button>
+        </div>
+      </div>
+    </>
+  )
+}
+
 const HeadingSelector = ({ editor, getHeadingValue }: any) => {
   const [active, setActive] = useState(false);
   return (
@@ -444,7 +548,18 @@ const HeadingSelector = ({ editor, getHeadingValue }: any) => {
       <div className={`${s.lidiaEditorOverlay}  ${active ? s.show : ''}`} onClick={() => setActive(!active)}></div>
       <div className={`${s.customSelect} ${active ? s.show : ''}`}>
         <button className={s.selector} onClick={() => setActive(!active)}>
-          {getHeadingValue() || "Normal"}
+          <span>
+            {getHeadingValue() || "Normal"}
+          </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={24}
+            height={24}
+            viewBox="0 0 24 24"
+            style={{ fill: "rgba(0, 0, 0, 1)" }}
+          >
+            <path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z" />
+          </svg>
         </button>
         <div className={s.options}>
           <button
@@ -549,18 +664,27 @@ const AlignSelector = ({ editor, getValue, type, options }: any) => {
         <div className={`${s.lidiaEditorOverlay}  ${active ? s.show : ''}`} onClick={() => setActive(!active)}></div>
         <div className={`${s.iconSelect} ${s.inRow} ${active ? s.show : ''}`}>
           <button className={s.selector} onClick={() => setActive(!active)}>
-            {getValue(type) || <AlignIcon id="left" />} ✨
+            <span>
+              {getValue(type) || <AlignIcon id="left" />}
+            </span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={24}
+              height={24}
+              viewBox="0 0 24 24"
+              style={{ fill: "rgba(0, 0, 0, 1)" }}
+            >
+              <path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z" />
+            </svg>
           </button>
           <div className={s.options}>
             {options.map((item: any) => (
               <button
                 key={item.value}
                 onClick={() => {
-                  console.log("T", item.value)
                   editor.chain().focus().setTextAlign(item.value).run();
                   setActive(!active);
                 }}
-              // className={editor.isActive("paragraph") ? s.isActive : ""}
               >
                 <AlignIcon id={item.value} />
               </button>
@@ -582,8 +706,8 @@ const AlignIcon = ({ id }: any) => {
 
   if (id === "left") {
     return <svg
-      width={25}
-      height={25}
+      width={32}
+      height={32}
       viewBox="0 0 32 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -594,17 +718,37 @@ const AlignIcon = ({ id }: any) => {
       />
     </svg>
   } else if (id === "right") {
-    return <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M6 6H20V8H6V6ZM10 12H20V14H10V12ZM6 18H20V20H6V18ZM10 24H20V26H10V24ZM24 4H26V28H24V4Z" fill="#212529" />
+    return <svg
+      width={32}
+      height={32}
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6 6H20V8H6V6ZM10 12H20V14H10V12ZM6 18H20V20H6V18ZM10 24H20V26H10V24ZM24 4H26V28H24V4Z"
+        fill="#212529"
+      />
     </svg>
+
   } else if (id === "center") {
-    return <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M6 6H26V8H6V6ZM10 12H22V14H10V12ZM6 18H26V20H6V18ZM10 24H22V26H10V24Z" fill="#212529" />
+    return <svg
+      width={32}
+      height={32}
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6 6H26V8H6V6ZM10 12H22V14H10V12ZM6 18H26V20H6V18ZM10 24H22V26H10V24Z"
+        fill="#212529"
+      />
     </svg>
+
   } else if (id === "justify") {
     return <svg
-      width={25}
-      height={25}
+      width={32}
+      height={32}
       viewBox="0 0 32 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

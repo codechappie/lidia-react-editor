@@ -88,7 +88,6 @@
 
     .customSelect {
       position: relative;
-      z-index: 10;
 
       .selector {
         padding: 10px;
@@ -101,7 +100,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-
+        position: relative;
         span {
           display: flex;
           align-items: center;
@@ -157,23 +156,27 @@
           }
         }
       }
+      &.show {
+        .selector {
+          z-index: 101;
+        }
+        .options {
+          max-height: 195px;
+          height: 195px;
+          padding: 10px;
+          transition: all 0.02s ease-in-out;
+          transform: translateX(-50%) scale(1);
+          z-index: 101;
 
-      &.show .options {
-        max-height: 195px;
-        height: 195px;
-        padding: 10px;
-        transition: all 0.02s ease-in-out;
-        transform: translateX(-50%) scale(1);
-
-        button {
-          display: grid;
+          button {
+            display: grid;
+          }
         }
       }
     }
 
     .iconSelect {
       position: relative;
-      z-index: 10;
 
       .selector {
         width: fit-content;
@@ -186,6 +189,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        position: relative;
 
         span {
           display: flex;
@@ -241,15 +245,21 @@
         }
       }
 
-      &.show .options {
-        max-height: 180px;
-        height: 180px;
-        padding: 10px;
-        transition: all 0.02s ease-in-out;
-        transform: translateX(-50%) scale(1);
-
-        button {
-          display: grid;
+      &.show {
+        .selector {
+          z-index: 101;
+        }
+        .options {
+          max-height: 180px;
+          height: 180px;
+          padding: 10px;
+          transition: all 0.02s ease-in-out;
+          transform: translateX(-50%) scale(1);
+          z-index: 101;
+          
+          button {
+            display: grid;
+          }
         }
       }
 
@@ -336,7 +346,8 @@
       }
     }
 
-    em {
+    em,
+    em * {
       font-style: italic;
     }
   }
@@ -353,6 +364,7 @@
       inset: 0;
       background: #33333357;
       transition: all 1s ease-in-out;
+      z-index: 99;
     }
   }
 

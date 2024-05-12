@@ -1,19 +1,19 @@
 import BulletList from '@tiptap/extension-bullet-list';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
+import FontFamily from '@tiptap/extension-font-family';
 import Highlight from "@tiptap/extension-highlight";
+import Link from '@tiptap/extension-link';
 import ListItem from '@tiptap/extension-list-item';
 import OrderedList from '@tiptap/extension-ordered-list';
 import TextAlign from "@tiptap/extension-text-align";
-import Underline from '@tiptap/extension-underline';
-import Link from '@tiptap/extension-link';
-import FontFamily from '@tiptap/extension-font-family';
 import TextStyle from '@tiptap/extension-text-style';
-import { EditorContent, ReactNodeViewRenderer, NodeViewContent, NodeViewWrapper, useEditor } from "@tiptap/react";
+import Underline from '@tiptap/extension-underline';
+import { EditorContent, NodeViewContent, NodeViewWrapper, ReactNodeViewRenderer, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 
-import { Iframe } from "./extensions/Iframe";
 import { common, createLowlight } from 'lowlight';
+import { Iframe } from "./extensions/Iframe";
 
 import 'highlight.js/styles/tokyo-night-dark.min.css';
 
@@ -37,7 +37,7 @@ const alignOptions = [
     value: "justify",
   }];
 
-const MenuBar = ({ editor }: any) => {
+const MenuBar = ({ editor, configAndActions }: any) => {
   if (!editor) {
     return null;
   }
@@ -149,13 +149,13 @@ const MenuBar = ({ editor }: any) => {
         <FontSelector
           editor={editor}
           getFontValue={getFontValue}
-
+          configAndActions={configAndActions}
         />
 
         <HeadingSelector
           editor={editor}
           getHeadingValue={getHeadingValue}
-
+          configAndActions={configAndActions}
         />
 
         <AlignSelector
@@ -417,6 +417,7 @@ type EditorProps = {
 * @returns Button component
 */
 export const LidiaEditor = ({ className, html, setHtml }: EditorProps) => {
+  const [overlayisActive, setOverlayIsActive] = useState(false);
   const editor = useEditor({
     onUpdate({ editor }: any) {
       setHtml && setHtml(editor.getHTML())
@@ -447,13 +448,19 @@ export const LidiaEditor = ({ className, html, setHtml }: EditorProps) => {
     content: html
   });
 
-
+  const configAndActions = {
+    overlay: {
+      overlayisActive,
+      setOverlayIsActive
+    }
+  };
 
   return (
     <div className={`${s.lidiaEditor} ${s.withBackground} ${className ? className : ''}`}>
-
       <MenuBar
-        editor={editor} />
+        editor={editor}
+        configAndActions={configAndActions}
+      />
 
 
       <div className={s.editorContainer}>
@@ -543,9 +550,13 @@ const FontSelector = ({ editor, getFontValue }: any) => {
 
 const HeadingSelector = ({ editor, getHeadingValue }: any) => {
   const [active, setActive] = useState(false);
+
   return (
     <>
-      <div className={`${s.lidiaEditorOverlay}  ${active ? s.show : ''}`} onClick={() => setActive(!active)}></div>
+
+      <div className={`${s.lidiaEditorOverlay}  ${active ? s.show : ''}`}
+        onClick={() => setActive(!active)}></div>
+
       <div className={`${s.customSelect} ${active ? s.show : ''}`}>
         <button className={s.selector} onClick={() => setActive(!active)}>
           <span>
@@ -650,10 +661,6 @@ const HeadingSelector = ({ editor, getHeadingValue }: any) => {
   )
 }
 
-
-
-
-
 const AlignSelector = ({ editor, getValue, type, options }: any) => {
   const [active, setActive] = useState(false);
 
@@ -661,7 +668,8 @@ const AlignSelector = ({ editor, getValue, type, options }: any) => {
   if (type === "align") {
     return (
       <>
-        <div className={`${s.lidiaEditorOverlay}  ${active ? s.show : ''}`} onClick={() => setActive(!active)}></div>
+        <div className={`${s.lidiaEditorOverlay}  ${active ? s.show : ''}`}
+          onClick={() => setActive(!active)}></div>
         <div className={`${s.iconSelect} ${s.inRow} ${active ? s.show : ''}`}>
           <button className={s.selector} onClick={() => setActive(!active)}>
             <span>

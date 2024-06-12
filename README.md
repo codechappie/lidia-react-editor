@@ -12,7 +12,7 @@ An intuitive and minimal WYSIWYG react editor. Ideal for everyone: developers, d
 
 ## Screenshots
 
-![Lidia Editor screenshots](https://workinprogress.no/dynamic/upload/bilder/Work-In-Progress.png)
+![Lidia Editor screenshots](https://imgur.com/sfy9480.png)
 
 ## Installation
 

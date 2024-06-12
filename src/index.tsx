@@ -55,7 +55,6 @@ const MenuBar = ({ editor, configAndActions }: any) => {
     return null;
   }
 
-  console.log(configAndActions)
 
   const getFontValue = () => {
     if (editor.isActive('textStyle', { fontFamily: 'Poppins' })) {
@@ -556,7 +555,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
 
 
         <button
-          onClick={() => openModal(editor, configAndActions, iframeTitle, setIframeTitle, setIframeSrc, setShowModal)}
+          onClick={() => openModal(editor, iframeTitle, setIframeTitle, setIframeSrc, setShowModal)}
           className={s.onlyIcon}
         >
           <svg
@@ -672,7 +671,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
 
 
 
-const openModal = (editor: any, configAndActions: any, iframeTitle: any, setIframeTitle: any, setIframeSrc: any, setShowModal: any) => {
+const openModal = (editor: any, iframeTitle: any, setIframeTitle: any, setIframeSrc: any, setShowModal: any) => {
   const src = editor.getAttributes("iframe").src
   const title = editor.getAttributes("iframe").title
   console.log("IFRAME: ", iframeTitle)

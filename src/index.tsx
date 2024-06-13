@@ -24,10 +24,6 @@ import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'
 import Dropcursor from '@tiptap/extension-dropcursor'
 
-// TODO: TABLE MANAGEMENT: DO IT
-// TODO: TASK LIST: DO IT
-// TODO: ADD MORE FONTS: 
-// TODO: SELECT IMAGE, TABLE, ETC
 import { common, createLowlight } from 'lowlight';
 import { Iframe } from "./extensions/Iframe";
 
@@ -601,7 +597,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
 
 
         <button
-          onClick={() => openModal(editor, iframeTitle, setIframeTitle, setIframeSrc, setShowModal)}
+          onClick={() => openModal(editor, setIframeTitle, setIframeSrc, setShowModal)}
           className={s.onlyIcon}
         >
           <svg
@@ -735,9 +731,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
               fill="black"
             />
           </svg>
-
         </button>
-
 
         <button
           onClick={() => editor.chain().focus().setHorizontalRule().run()}
@@ -766,8 +760,6 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           editor={editor}
 
         />
-
-
       </div>
     </div>
   );
@@ -775,11 +767,9 @@ const MenuBar = ({ editor, configAndActions }: any) => {
 
 
 
-const openModal = (editor: any, iframeTitle: any, setIframeTitle: any, setIframeSrc: any, setShowModal: any) => {
+const openModal = (editor: any, setIframeTitle: any, setIframeSrc: any, setShowModal: any) => {
   const src = editor.getAttributes("iframe").src
   const title = editor.getAttributes("iframe").title
-  console.log("IFRAME: ", iframeTitle)
-  // Modal
 
   if (title) {
     setIframeTitle(title)
@@ -793,18 +783,9 @@ const openModal = (editor: any, iframeTitle: any, setIframeTitle: any, setIframe
     setIframeSrc("")
   }
 
-  // if (src === null) {
-  //   return
-  // }
-
   setShowModal(true);
 
-  // const title = window.prompt('Title:');
-  // const src = window.prompt('URL:');
 
-  // if (iframeTitle !== "") {
-
-  // }
 }
 
 const setIframeContent = (editor: any, iframeTitle: any, iframeSrc: any) => {
@@ -818,7 +799,6 @@ const setIframeContent = (editor: any, iframeTitle: any, iframeSrc: any) => {
 const addImage = (editor: any) => {
   const url = window.prompt('URL');
   if (url) {
-    // editor.chain().focus().setImage({ src: url }).run()
     editor
       .chain()
       .focus()
@@ -930,7 +910,7 @@ const CustomTableHeader = TableHeader.extend({
 * @param onClick Function to call when the button is clicked
 * @returns Button component
 */
-export const LidiaEditor = ({ className, html, setHtml, onlyEditor = false, editorStyle = "dark" }: EditorProps) => {
+export const LidiaEditor = ({ className, html, setHtml, onlyEditor = false, editorStyle = "default" }: EditorProps) => {
   const [overlayisActive, setOverlayIsActive] = useState(false);
   const editor = useEditor({
     onUpdate({ editor }: any) {

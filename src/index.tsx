@@ -14,7 +14,10 @@ import React, { useState } from 'react';
 import Image from '@tiptap/extension-image';
 // import Code from '@tiptap/extension-code'
 import Focus from '@tiptap/extension-focus'
-
+import Table from '@tiptap/extension-table'
+import TableCell from '@tiptap/extension-table-cell'
+import TableHeader from '@tiptap/extension-table-header'
+import TableRow from '@tiptap/extension-table-row'
 
 import Dropcursor from '@tiptap/extension-dropcursor'
 
@@ -27,7 +30,7 @@ import { Iframe } from "./extensions/Iframe";
 import 'highlight.js/styles/tokyo-night-dark.min.css';
 
 import s from './styles.module.scss';
-
+import "./global.css";
 
 
 const lowlight = createLowlight(common)
@@ -112,7 +115,9 @@ const MenuBar = ({ editor, configAndActions }: any) => {
 
   return (
     <div className={`${s.menuBar} ${s.withBackground}`}>
-      <Modal showModal={showModal}>
+      <Modal
+        setShowModal={setShowModal}
+        showModal={showModal}>
         <IframeContent
           editor={editor}
           iframeTitle={iframeTitle}
@@ -309,29 +314,46 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           className={`${s.onlyIcon} ${editor.isActive('highlight') ? s.isActive : ''}`}
         >
           <svg
-            width={20}
-            height={20}
-            viewBox="0 0 24 24"
+            width={24}
+            height={24}
+            viewBox="0 0 32 32"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M3 22V12.5H6V8.5H18V12.5H21V22H3Z"
-              fill="white"
+              d="M11.5858 26.9998H6C5.73478 26.9998 5.48043 26.8945 5.29289 26.707C5.10536 26.5194 5 26.2651 5 25.9998V20.4141C5 20.2827 5.02587 20.1527 5.07612 20.0314C5.12638 19.9101 5.20004 19.7998 5.29289 19.707L20.2929 4.70695C20.4804 4.51942 20.7348 4.41406 21 4.41406C21.2652 4.41406 21.5196 4.51942 21.7071 4.70695L27.2929 10.2927C27.4804 10.4803 27.5858 10.7346 27.5858 10.9998C27.5858 11.2651 27.4804 11.5194 27.2929 11.707L12.2929 26.707C12.2 26.7998 12.0898 26.8735 11.9685 26.9237C11.8471 26.974 11.7171 26.9998 11.5858 26.9998Z"
               stroke="black"
-              strokeOpacity="0.65"
-              strokeWidth={2}
-              strokeLinejoin="round"
-            />
-            <path
-              d="M8.5 8.5V4L15.5 2V8.5"
-              stroke="black"
-              strokeOpacity="0.65"
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
+              strokeOpacity="0.65"
+            />
+            <path
+              d="M17 8L24 15"
+              stroke="black"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeOpacity="0.65"
+            />
+            <path
+              d="M20 24L25 19L24 15"
+              stroke="black"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeOpacity="0.65"
+            />
+            <path
+              d="M5.06354 20.0635L11.9365 26.9364"
+              stroke="black"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeOpacity="0.65"
             />
           </svg>
+
         </button>
 
 
@@ -664,6 +686,62 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           </svg>
 
         </button>
+
+        <button
+          onClick={() => editor.chain().focus().toggleBlockquote().run()}
+          className={`${s.onlyIcon} ${editor.isActive('blockquote') ? s.isActive : ''}`}
+        >
+          <svg
+            width={24}
+            height={24}
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M9.42665 4.55793C5.66135 6.9761 3.56957 9.79055 3.15128 13.0014C2.50011 17.9999 6.9702 20.4466 9.23515 18.2483C11.5001 16.05 10.1424 13.2597 8.50235 12.497C6.8623 11.7343 5.85935 11.9999 6.0343 10.9807C6.20925 9.9615 8.54255 7.1356 10.5925 5.81955C10.7285 5.7039 10.7802 5.4795 10.6493 5.3093C10.5631 5.1973 10.3942 4.97772 10.1424 4.65051C9.92225 4.36438 9.71135 4.37508 9.42665 4.55793Z"
+              fill="#595959"
+            />
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M19.3395 4.55793C15.5742 6.9761 13.4824 9.79055 13.0641 13.0014C12.413 17.9999 16.8831 20.4466 19.148 18.2483C21.413 16.05 20.0553 13.2597 18.4152 12.497C16.7752 11.7343 15.7722 11.9999 15.9472 10.9807C16.1221 9.9615 18.4554 7.1356 20.5053 5.81955C20.6413 5.7039 20.6931 5.4795 20.5621 5.3093C20.476 5.1973 20.307 4.97772 20.0553 4.65051C19.8351 4.36438 19.6242 4.37508 19.3395 4.55793Z"
+              fill="#595959"
+            />
+          </svg>
+
+        </button>
+
+
+        <button
+          onClick={() => editor.chain().focus().setHorizontalRule().run()}
+          className={`${s.onlyIcon} ${editor.isActive('horizontalRule') ? s.isActive : ''}`}
+        >
+          <svg
+            width={32}
+            height={32}
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+
+          >
+            <path
+              d="M5 16H27"
+              stroke="black"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+
+        </button>
+
+        <TableOptions
+          editor={editor}
+
+        />
       </div>
     </div>
   );
@@ -758,6 +836,29 @@ type EditorProps = {
   setHtml: any;
 };
 
+
+const CustomTableCell = TableCell.extend({
+  addAttributes() {
+    return {
+      // extend the existing attributes …
+      ...this.parent?.(),
+
+      // and add a new one …
+      backgroundColor: {
+        default: null,
+        parseHTML: element => element.getAttribute('data-background-color'),
+        renderHTML: attributes => {
+          return {
+            'data-background-color': attributes.backgroundColor,
+            style: `background-color: ${attributes.backgroundColor}`,
+          }
+        },
+      },
+    }
+  },
+})
+
+
 /**
 * Button component
 * @param text Text to display in the button
@@ -802,6 +903,12 @@ export const LidiaEditor = ({ className, html, setHtml }: EditorProps) => {
         className: s.focus,
         mode: 'all',
       }),
+      Table.configure({
+        resizable: true,
+      }),
+      TableRow,
+      TableHeader,
+      CustomTableCell,
     ],
     autofocus: true,
     content: html
@@ -1069,12 +1176,318 @@ const AlignSelector = ({ editor, getValue, type, options }: any) => {
 
 }
 
+const TableOptions = ({ editor }: any) => {
+  const [active, setActive] = useState(false);
+
+
+
+  const changeColorToCell = () => {
+    // TODO: REPLACE BY COLORS
+    editor.chain().focus().setCellAttribute('backgroundColor', '#FAF594').run()
+    console.log("change color")
+  }
+
+  return (
+    <>
+      <div className={`${s.lidiaEditorOverlay}  ${active ? s.show : ''}`}
+        onClick={() => setActive(!active)}></div>
+      <div className={`${s.iconSelectModal} ${s.inRow} ${active ? s.show : ''}`}>
+        <button className={`${s.selector}`} onClick={() => setActive(!active)}>
+          <svg
+            width={32}
+            height={32}
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 5H4C2.9 5 2 5.9 2 7V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17V7C22 5.9 21.1 5 20 5ZM8 17.5H4C3.7 17.5 3.5 17.3 3.5 17.1V17V15H8V17.5ZM8 13.5H3.5V10.5H8V13.5ZM14.5 17.5H9.5V15H14.5V17.5ZM14.5 13.5H9.5V10.5H14.5V13.5ZM20.5 17C20.5 17.3 20.3 17.5 20.1 17.5H16V15H20.5V17ZM20.5 13.5H16V10.5H20.5V13.5ZM20.5 9H16.1H16H14.5H9.5H8H7.9H3.5V7C3.5 6.7 3.7 6.5 3.9 6.5H7.9H16.1H20C20.3 6.5 20.5 6.7 20.5 6.9V9Z"
+              fill="black"
+              fillOpacity="0.7"
+            />
+          </svg>
+        </button>
+        <div className={s.options}>
+
+          <button
+            onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}
+            className={`${s.onlyIcon}`}
+          >
+            <svg
+              width={36}
+              height={36}
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 5H4C2.9 5 2 5.9 2 7V9V10.5V13.5V15V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17V15V13.5V10.5V9V7C22 5.9 21.1 5 20 5ZM9.5 13.5V10.5H14.5V13.5H9.5ZM14.5 15V17.5H9.5V15H14.5ZM9.5 9V6.5H14.5V9H9.5ZM3.5 7C3.5 6.7 3.7 6.5 4 6.5H8V9H3.5V7ZM3.5 10.5H8V13.5H3.5V10.5ZM3.5 17V15H8V17.5H4C3.7 17.5 3.5 17.3 3.5 17ZM20.5 17C20.5 17.3 20.3 17.5 20 17.5H16V15H20.5V17ZM20.5 13.5H16V10.5H20.5V13.5ZM16 9V6.5H20C20.3 6.5 20.5 6.7 20.5 7V9H16Z"
+                fill="black"
+                fillOpacity="0.65"
+              />
+            </svg>
+          </button>
+
+          <button
+            onClick={() => editor.chain().focus().deleteTable().run()}
+            className={`${s.onlyIcon}`}
+          >
+            <svg
+              width={26}
+              height={26}
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.5 6L8.1 2.5H15.9L16.5 6"
+                stroke="black"
+                strokeOpacity="0.65"
+                strokeWidth={2}
+                strokeLinejoin="round"
+              />
+              <path
+                d="M3 6H21"
+                stroke="black"
+                strokeOpacity="0.65"
+                strokeWidth={2}
+                strokeLinecap="round"
+              />
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M18.5 6L17.5 21.5H6.5L5.5 6H18.5Z"
+                fill="white"
+                stroke="black"
+                strokeOpacity="0.65"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M9.5 17.5H14.5"
+                stroke="black"
+                strokeOpacity="0.65"
+                strokeWidth={2}
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
+
+          <button
+            onClick={() => editor.chain().focus().addColumnAfter().run()}
+            className={`${s.onlyIcon}`}
+          >
+            <svg
+              width={40}
+              height={40}
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 5H4C2.9 5 2 5.9 2 7V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17V7C22 5.9 21.1 5 20 5ZM8 17.5H4C3.7 17.5 3.5 17.3 3.5 17.1V17V15H8V17.5ZM8 13.5H3.5V10.5H8V13.5ZM8 9H3.5V7C3.5 6.7 3.7 6.5 3.9 6.5H8V9ZM20.5 17C20.5 17.3 20.3 17.5 20.1 17.5H16V15H20.5V17ZM20.5 13.5H16V10.5H20.5V13.5ZM20.5 9H16V6.5H20C20.3 6.5 20.5 6.7 20.5 6.9V9Z"
+                fill="black"
+                fillOpacity="0.65"
+              />
+            </svg>
+          </button>
+
+          <button
+            onClick={() => editor.chain().focus().addRowAfter().run()}
+            className={`${s.onlyIcon}`}
+          >
+            <svg
+              width={35}
+              height={35}
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 5H4C2.9 5 2 5.9 2 7V9V10.5V13.5V15V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17V15V13.5V10.5V9V7C22 5.9 21.1 5 20 5ZM16 6.5H20C20.3 6.5 20.5 6.7 20.5 7V9H16V6.5ZM9.5 6.5H14.5V9H9.5V6.5ZM3.5 7C3.5 6.7 3.7 6.5 4 6.5H8V9H3.5V7ZM8 17.5H4C3.7 17.5 3.5 17.3 3.5 17V15H8V17.5ZM14.5 17.5H9.5V15H14.5V17.5ZM20.5 17C20.5 17.3 20.3 17.5 20 17.5H16V15H20.5V17Z"
+                fill="black"
+                fillOpacity="0.65"
+              />
+            </svg>
+          </button>
+
+          <button
+            onClick={() => editor.chain().focus().deleteColumn().run()}
+            className={`${s.onlyIcon}`}
+          >
+            <svg
+              width={36}
+              height={36}
+              viewBox="0 0 30 30"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M25.3999 6H4.59999C3.17 6 2 7.17 2 8.59999V21.5999C2 23.0299 3.17 24.1999 4.59999 24.1999H25.3999C26.8299 24.1999 27.9999 23.0299 27.9999 21.5999V18.3511C27.4713 18.9757 26.8059 19.4808 26.0499 19.8201V21.5999C26.0499 21.9899 25.7899 22.2499 25.5299 22.2499H20.1999V19.4742C18.639 18.5037 17.5999 16.7732 17.5999 14.7999V14.1C17.5999 12.1267 18.639 10.3962 20.1999 9.42575V7.94999H25.3999C25.7899 7.94999 26.0499 8.20999 26.0499 8.46999V9.07981C26.8059 9.41915 27.4713 9.92424 27.9999 10.5488V8.59999C27.9999 7.17 26.8299 6 25.3999 6ZM9.79997 22.2499H4.59999C4.20999 22.2499 3.94999 21.9899 3.94999 21.7299V21.5999V18.9999H9.79997V22.2499ZM9.79997 17.05H3.94999V13.15H9.79997V17.05ZM9.79997 11.2H3.94999V8.59999C3.94999 8.20999 4.20999 7.94999 4.46999 7.94999H9.79997V11.2ZM27.9999 16.725L25.725 14.45L27.9999 12.175L25.725 9.89998L23.45 12.175L21.175 9.89998L18.9 12.175L21.175 14.45L18.9 16.725L21.175 18.9999L23.45 16.725L25.725 18.9999L27.9999 16.725Z"
+                fill="black"
+                fillOpacity="0.65"
+              />
+            </svg>
+          </button>
+
+          <button
+            onClick={() => editor.chain().focus().deleteRow().run()}
+            className={`${s.onlyIcon}`}
+          >
+            <svg
+              width={35}
+              height={35}
+              viewBox="0 0 30 30"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M25.7856 6H4.64285C3.18928 6 2 7.18928 2 8.64285V11.2857V13.2678V17.2321V19.2142V21.8571C2 23.3106 3.18928 24.4999 4.64285 24.4999H25.7856C27.2392 24.4999 28.4285 23.3106 28.4285 21.8571V19.2142V17.7748C27.9839 18.8033 27.2997 19.7041 26.4463 20.4067V21.8571C26.4463 22.2535 26.182 22.5178 25.7856 22.5178H20.4999V21.8389C19.7934 21.6847 19.1268 21.4237 18.5178 21.0738V22.5178H11.9107V19.2142H16.4102C15.5249 18.0419 15 16.5822 15 15C15 13.6355 15.3904 12.3622 16.0656 11.2857H11.9107V7.98213H18.5178V8.9262C19.1268 8.57629 19.7934 8.31535 20.4999 8.1611V7.98213H25.7856C26.182 7.98213 26.4463 8.24642 26.4463 8.64285V9.59328C27.2997 10.2959 27.9839 11.1967 28.4285 12.2252V11.2857V8.64285C28.4285 7.18928 27.2392 6 25.7856 6ZM3.98213 8.64285C3.98213 8.24642 4.24642 7.98213 4.64285 7.98213H9.92854V11.2857H3.98213V8.64285ZM9.92854 22.5178H4.64285C4.24642 22.5178 3.98213 22.2535 3.98213 21.8571V19.2142H9.92854V22.5178ZM27 17.5L24.5 15L27 12.5L24.5 10L22 12.5L19.5 10L17 12.5L19.5 15L17 17.5L19.5 20L22 17.5L24.5 20L27 17.5Z"
+                fill="black"
+                fillOpacity="0.65"
+              />
+            </svg>
+          </button>
+
+          <button
+            onClick={() => editor.chain().focus().mergeCells().run()}
+            className={`${s.onlyIcon}`}
+          >
+            <svg
+              width={28}
+              height={28}
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 7V2.5C10 2.22386 9.77615 2 9.5 2H2.5C2.22386 2 2 2.22386 2 2.5V21.5C2 21.7761 2.22386 22 2.5 22H9.5C9.77615 22 10 21.7761 10 21.5V17"
+                stroke="black"
+                strokeOpacity="0.65"
+                strokeWidth={2}
+                strokeLinecap="round"
+              />
+              <path
+                d="M14 17V21.5C14 21.7761 14.2239 22 14.5 22H21.5C21.7761 22 22 21.7761 22 21.5V2.5C22 2.22386 21.7761 2 21.5 2H14.5C14.2239 2 14 2.22386 14 2.5V7"
+                stroke="black"
+                strokeOpacity="0.65"
+                strokeWidth={2}
+                strokeLinecap="round"
+              />
+              <path
+                d="M14 12H22"
+                stroke="black"
+                strokeOpacity="0.65"
+                strokeWidth={2}
+                strokeLinecap="round"
+              />
+              <path
+                d="M2.5 12H10"
+                stroke="black"
+                strokeOpacity="0.65"
+                strokeWidth={2}
+                strokeLinecap="round"
+              />
+              <path
+                d="M16.3742 14.4092L15.5787 13.6137L13.9878 12.0227L15.5787 10.4317L16.3742 9.63623"
+                stroke="black"
+                strokeOpacity="0.65"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M7.6875 14.4092L8.483 13.6137L10.074 12.0227L8.483 10.4317L7.6875 9.63623"
+                stroke="black"
+                strokeOpacity="0.65"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+
+
+          <button
+            onClick={() => editor.chain().focus().splitCell().run()}
+            className={`${s.onlyIcon}`}
+          >
+            <svg
+              width={28}
+              height={28}
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M22 7V2.5C22 2.22386 21.7761 2 21.5 2H14.5C14.2239 2 14 2.22386 14 2.5V21.5C14 21.7761 14.2239 22 14.5 22H21.5C21.7761 22 22 21.7761 22 21.5V17"
+                stroke="black"
+                strokeOpacity="0.65"
+                strokeWidth={2}
+                strokeLinecap="round"
+              />
+              <path
+                d="M2 12H10"
+                stroke="black"
+                strokeOpacity="0.65"
+                strokeWidth={2}
+                strokeLinecap="round"
+              />
+              <path
+                d="M14.5 12H22"
+                stroke="black"
+                strokeOpacity="0.65"
+                strokeWidth={2}
+                strokeLinecap="round"
+              />
+              <path
+                d="M4.37424 14.4092L3.57874 13.6137L1.98779 12.0227L3.57874 10.4317L4.37424 9.63623"
+                stroke="black"
+                strokeOpacity="0.65"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M19.6875 14.4092L20.483 13.6137L22.074 12.0227L20.483 10.4317L19.6875 9.63623"
+                stroke="black"
+                strokeOpacity="0.65"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M2 17V21.5C2 21.7761 2.22385 22 2.5 22H9.5C9.77615 22 10 21.7761 10 21.5V2.5C10 2.22386 9.77615 2 9.5 2H2.5C2.22385 2 2 2.22386 2 2.5V7"
+                stroke="black"
+                strokeOpacity="0.65"
+                strokeWidth={2}
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
+
+          <button onClick={changeColorToCell}>
+            Color
+          </button>
+        </div>
+      </div>
+    </>
+  )
+
+
+}
+
 const AlignIcon = ({ id }: any) => {
 
   if (id === "left") {
     return <svg
-      width={21}
-      height={21}
+      width={22}
+      height={22}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -1290,8 +1703,9 @@ const CheckIcon = () => {
   </svg>
 }
 
-const Modal = ({ children, width = "auto", showModal = false }: any) => {
+const Modal = ({ children, width = "auto", showModal = false, setShowModal }: any) => {
   return <div className={`${s.modal} ${showModal ? s.show : ""}`}>
+    <div className={s.overlay} onClick={() => setShowModal(false)}></div>
     <div className={`${s.content} ${width === "full" ? s.full : s.auto}`}>
       {children}
     </div>
@@ -1320,8 +1734,13 @@ const IframeContent = ({ editor, setIframeContent, iframeTitle, setIframeTitle, 
       onChange={(e) => setIframeSrc(e.target.value)}
     />
 
-    <button onClick={showData}>
-      Save
-    </button>
-  </div>
+    <div className={s.buttons}>
+      <button onClick={() => setShowModal(false)}>
+        Cancel
+      </button>
+      <button onClick={showData}>
+        Save
+      </button>
+    </div>
+  </div >
 }

@@ -1,0 +1,38 @@
+/* Basic editor styles */
+.tiptap {
+    overflow: hidden;
+    :first-child {
+        margin-top: 0;
+    }
+
+    .tableWrapper {
+        max-height: 400px;
+        overflow: auto;
+    }
+    .tableWrapper::-webkit-scrollbar-track {
+        background: red;
+        width: 10px;
+    }
+    .tableWrapper::-webkit-scrollbar-track-piece {
+        background: red;
+        width: 10px;
+    }
+}
+
+.column-resize-handle {
+    border: 2px solid rgb(22, 196, 219);
+    position: absolute;
+    right: -2px;
+    top: 0;
+
+    height: 100%;
+}
+
+.resize-cursor {
+    cursor: e-resize;
+    cursor: ew-resize;
+}
+
+.selectedCell {
+    background:  rgba(0, 0, 0, 0.486) !important;
+}

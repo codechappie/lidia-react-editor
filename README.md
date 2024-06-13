@@ -76,7 +76,7 @@ function App() {
     <div className="App">
       <LidiaEditor
         html={html}
-        onlyEditor={true};
+        onlyPreview={true};
       />
     </div>
   );

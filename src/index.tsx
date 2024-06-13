@@ -18,12 +18,16 @@ import Table from '@tiptap/extension-table'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
 import TableRow from '@tiptap/extension-table-row'
+import { Color } from '@tiptap/extension-color'
 
+import TaskItem from '@tiptap/extension-task-item'
+import TaskList from '@tiptap/extension-task-list'
 import Dropcursor from '@tiptap/extension-dropcursor'
 
-// TODO: TABLE MANAGEMENT
-// TODO: TASK LIST
-// TODO: ADD MORE FONTS
+// TODO: TABLE MANAGEMENT: DO IT
+// TODO: TASK LIST: DO IT
+// TODO: ADD MORE FONTS: 
+// TODO: SELECT IMAGE, TABLE, ETC
 import { common, createLowlight } from 'lowlight';
 import { Iframe } from "./extensions/Iframe";
 
@@ -68,9 +72,9 @@ const MenuBar = ({ editor, configAndActions }: any) => {
       return "Comic Sans"
     } else if (editor.isActive('textStyle', { fontFamily: 'monospace' })) {
       return "Monospace"
-    } else {
-      return "Poppins"
-    }
+    } else if (editor.isActive('textStyle', { fontFamily: 'Arial Black' })) {
+      return "Arial"
+    } else return "Poppins"
 
   }
 
@@ -204,7 +208,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
               clipRule="evenodd"
               d="M12.7031 12C15.4559 12 17.6875 9.7614 17.6875 7C17.6875 4.23857 15.4559 2 12.7031 2H5V12H12.7031Z"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -214,7 +218,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
               clipRule="evenodd"
               d="M14.5156 22C17.2684 22 19.5 19.7614 19.5 17C19.5 14.2386 17.2684 12 14.5156 12H5V22H14.5156Z"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -236,7 +240,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M10 3H18"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -244,7 +248,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M6 21H14"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -252,7 +256,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M14.5 2.97607L9.5 20.9999"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -275,7 +279,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M28 15H17.956C17.512 14.8806 17.0659 14.7689 16.618 14.665C13.81 14.001 12.222 13.515 12.222 11.242C12.1992 10.8496 12.2573 10.4567 12.3927 10.0877C12.5281 9.71873 12.7378 9.3815 13.009 9.09698C13.8584 8.39848 14.9223 8.01359 16.022 8.00698C18.852 7.93698 20.157 8.89698 21.224 10.357L22.839 9.17698C22.083 8.09133 21.0524 7.22583 19.8524 6.66888C18.6525 6.11194 17.3261 5.88353 16.009 6.00698C14.391 6.01731 12.8302 6.60652 11.609 7.66798C11.1461 8.13747 10.7844 8.69681 10.546 9.31149C10.3076 9.92618 10.1977 10.5832 10.223 11.242C10.1791 11.9629 10.3146 12.6834 10.6171 13.3392C10.9197 13.9949 11.3801 14.5655 11.957 15H4V17H17.652C19.619 17.57 20.795 18.312 20.825 20.358C20.8575 20.795 20.7975 21.234 20.649 21.6463C20.5005 22.0587 20.2667 22.435 19.963 22.751C18.9048 23.5851 17.5901 24.0265 16.243 24C15.2375 23.9708 14.2518 23.7134 13.3605 23.2472C12.4691 22.781 11.6955 22.1182 11.098 21.309L9.565 22.593C10.3417 23.6281 11.3439 24.4728 12.4956 25.0631C13.6472 25.6534 14.9181 25.9738 16.212 26H16.312C18.1588 26.0212 19.9512 25.3753 21.36 24.181C21.86 23.6769 22.2487 23.0735 22.501 22.4098C22.7534 21.7461 22.8637 21.0369 22.825 20.328C22.8623 19.1152 22.4531 17.931 21.675 17H28V15Z"
               fill="black"
-              fillOpacity="0.65"
+
             />
           </svg>
         </button>
@@ -294,7 +298,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M4 22H20"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -302,7 +306,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M18.5 3.04834C18.5 6.38165 18.5 7.6665 18.5 10.9998C18.5 14.5897 15.5898 17.4998 12 17.4998C8.41015 17.4998 5.5 14.5897 5.5 10.9998C5.5 7.6665 5.5 6.38165 5.5 3.04834"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
             />
@@ -326,7 +330,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeOpacity="0.65"
+
             />
             <path
               d="M17 8L24 15"
@@ -334,7 +338,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeOpacity="0.65"
+
             />
             <path
               d="M20 24L25 19L24 15"
@@ -342,7 +346,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeOpacity="0.65"
+
             />
             <path
               d="M5.06354 20.0635L11.9365 26.9364"
@@ -350,7 +354,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeOpacity="0.65"
+
             />
           </svg>
 
@@ -371,7 +375,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M10 4.5H21"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -379,7 +383,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M10 9.5H21"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -387,7 +391,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M10 14.5H21"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -395,7 +399,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M10 19.5H21"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -403,7 +407,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M3 14.5H6V16L3 19V19.5H6"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -411,7 +415,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M4.5 9.5H5.5M3.5 5.5L4.5 4.5V9.5L3.5 5.5ZM4.5 9.5H3.5H4.5Z"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -435,7 +439,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
               d="M4 21C5.10455 21 6 20.1045 6 19C6 17.8954 5.10455 17 4 17C2.89543 17 2 17.8954 2 19C2 20.1045 2.89543 21 4 21Z"
               fill="white"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinejoin="round"
             />
@@ -443,7 +447,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
               d="M4 6C4.55228 6 5 5.5523 5 5C5 4.44771 4.55228 4 4 4C3.44771 4 3 4.44771 3 5C3 5.5523 3.44771 6 4 6Z"
               fill="white"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinejoin="round"
             />
@@ -451,14 +455,14 @@ const MenuBar = ({ editor, configAndActions }: any) => {
               d="M4 13C4.55228 13 5 12.5523 5 12C5 11.4477 4.55228 11 4 11C3.44771 11 3 11.4477 3 12C3 12.5523 3.44771 13 4 13Z"
               fill="white"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinejoin="round"
             />
             <path
               d="M10 12H22"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -466,7 +470,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M10 19H22"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -474,13 +478,33 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M10 5H22"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           </svg>
 
+        </button>
+
+        <button
+          onClick={() => editor.chain().focus().toggleTaskList().run()}
+          className={`${s.onlyIcon} ${editor.isActive('taskList') ? s.isActive : ''}`}
+        >
+          <svg
+            width={22}
+            height={22}
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M5 5.5C5 5.22386 5.22386 5 5.5 5H26.5C26.7762 5 27 5.22386 27 5.5V26.5C27 26.7762 26.7762 27 26.5 27H5.5C5.22386 27 5 26.7762 5 26.5V5.5ZM5.5 2C3.567 2 2 3.567 2 5.5V26.5C2 28.433 3.567 30 5.5 30H26.5C28.433 30 30 28.433 30 26.5V5.5C30 3.567 28.433 2 26.5 2H5.5ZM23.5606 12.5607C24.1464 11.9749 24.1464 11.0251 23.5606 10.4393C22.9748 9.85356 22.0252 9.85356 21.4394 10.4393L13.5 18.3787L10.5607 15.4393C9.97488 14.8536 9.02512 14.8536 8.43934 15.4393C7.85356 16.0251 7.85356 16.9749 8.43934 17.5607L12.4393 21.5606C13.0251 22.1464 13.9749 22.1464 14.5607 21.5606L23.5606 12.5607Z"
+              fill="#24292E"
+            />
+          </svg>
         </button>
 
         <button
@@ -497,7 +521,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M8 2C7 2 5.5 2.5 5.5 4.5C5.5 6.5 5.5 7.5 5.5 9C5.5 10.5 3 11.5 3 11.5C3 11.5 5.5 12.5 5.5 14C5.5 15.5 5.5 17.5 5.5 19.5C5.5 21.5 7 22 8 22"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -505,7 +529,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M16 2C17 2 18.5 2.5 18.5 4.5C18.5 6.5 18.5 7.5 18.5 9C18.5 10.5 21 11.5 21 11.5C21 11.5 18.5 12.5 18.5 14C18.5 15.5 18.5 17.5 18.5 19.5C18.5 21.5 17 22 16 22"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -528,7 +552,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M8 6.5L2 12.7161L8 18.5"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -536,7 +560,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M16 6.5L22 12.7161L16 18.5"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -544,7 +568,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M13.3302 2.5L10.9453 21.5"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
             />
@@ -566,7 +590,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M12.3536 4.78247L4.92898 12.2071C3.17162 13.9644 3.17162 16.8137 4.92898 18.571C6.68634 20.3284 9.53559 20.3284 11.2929 18.571L20.1318 9.73224C21.3033 8.56064 21.3033 6.66114 20.1318 5.48959C18.9602 4.318 17.0607 4.318 15.8891 5.48959L7.05029 14.3284C6.46454 14.9142 6.46454 15.8639 7.05029 16.4497C7.63609 17.0355 8.58584 17.0355 9.17164 16.4497L16.5962 9.02509"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -590,7 +614,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M21.5 8V21H2.5V8"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -599,7 +623,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
               d="M2.5 2H21.5V8H2.5V2Z"
               fill="white"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinejoin="round"
             />
@@ -608,12 +632,12 @@ const MenuBar = ({ editor, configAndActions }: any) => {
               clipRule="evenodd"
               d="M5.5 6C6.0523 6 6.5 5.5523 6.5 5C6.5 4.44771 6.0523 4 5.5 4C4.94771 4 4.5 4.44771 4.5 5C4.5 5.5523 4.94771 6 5.5 6Z"
               fill="black"
-              fillOpacity="0.65"
+
             />
             <path
               d="M6.25 5C6.25 5.41423 5.91423 5.75 5.5 5.75C5.08578 5.75 4.75 5.41423 4.75 5C4.75 4.58579 5.08579 4.25 5.5 4.25C5.91423 4.25 6.25 4.58578 6.25 5Z"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth="0.5"
             />
             <path
@@ -621,12 +645,12 @@ const MenuBar = ({ editor, configAndActions }: any) => {
               clipRule="evenodd"
               d="M8.5 6C9.0523 6 9.5 5.5523 9.5 5C9.5 4.44771 9.0523 4 8.5 4C7.9477 4 7.5 4.44771 7.5 5C7.5 5.5523 7.9477 6 8.5 6Z"
               fill="black"
-              fillOpacity="0.65"
+
             />
             <path
               d="M9.25 5C9.25 5.41423 8.91423 5.75 8.5 5.75C8.08577 5.75 7.75 5.41423 7.75 5C7.75 4.58578 8.08577 4.25 8.5 4.25C8.91423 4.25 9.25 4.58578 9.25 5Z"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth="0.5"
             />
             <path
@@ -634,12 +658,12 @@ const MenuBar = ({ editor, configAndActions }: any) => {
               clipRule="evenodd"
               d="M11.5 6C12.0523 6 12.5 5.5523 12.5 5C12.5 4.44771 12.0523 4 11.5 4C10.9477 4 10.5 4.44771 10.5 5C10.5 5.5523 10.9477 6 11.5 6Z"
               fill="black"
-              fillOpacity="0.65"
+
             />
             <path
               d="M12.25 5C12.25 5.41423 11.9142 5.75 11.5 5.75C11.0858 5.75 10.75 5.41423 10.75 5C10.75 4.58578 11.0858 4.25 11.5 4.25C11.9142 4.25 12.25 4.58578 12.25 5Z"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth="0.5"
             />
           </svg>
@@ -662,7 +686,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
               clipRule="evenodd"
               d="M3.5 4H20.5C21.0523 4 21.5 4.44772 21.5 5V19C21.5 19.5523 21.0523 20 20.5 20H3.5C2.94772 20 2.5 19.5523 2.5 19V5C2.5 4.44772 2.94772 4 3.5 4Z"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -670,7 +694,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             <path
               d="M7.25 9C7.66421 9 8 8.66421 8 8.25C8 7.83579 7.66421 7.5 7.25 7.5C6.83579 7.5 6.5 7.83579 6.5 8.25C6.5 8.66421 6.83579 9 7.25 9Z"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -679,7 +703,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
               d="M7.5 12L10 14L13 10.5L21.5 17V19C21.5 19.5523 21.0523 20 20.5 20H3.5C2.94772 20 2.5 19.5523 2.5 19V17L7.5 12Z"
               fill="white"
               stroke="black"
-              strokeOpacity="0.65"
+
               strokeWidth={2}
               strokeLinejoin="round"
             />
@@ -702,13 +726,13 @@ const MenuBar = ({ editor, configAndActions }: any) => {
               fillRule="evenodd"
               clipRule="evenodd"
               d="M9.42665 4.55793C5.66135 6.9761 3.56957 9.79055 3.15128 13.0014C2.50011 17.9999 6.9702 20.4466 9.23515 18.2483C11.5001 16.05 10.1424 13.2597 8.50235 12.497C6.8623 11.7343 5.85935 11.9999 6.0343 10.9807C6.20925 9.9615 8.54255 7.1356 10.5925 5.81955C10.7285 5.7039 10.7802 5.4795 10.6493 5.3093C10.5631 5.1973 10.3942 4.97772 10.1424 4.65051C9.92225 4.36438 9.71135 4.37508 9.42665 4.55793Z"
-              fill="#595959"
+              fill="black"
             />
             <path
               fillRule="evenodd"
               clipRule="evenodd"
               d="M19.3395 4.55793C15.5742 6.9761 13.4824 9.79055 13.0641 13.0014C12.413 17.9999 16.8831 20.4466 19.148 18.2483C21.413 16.05 20.0553 13.2597 18.4152 12.497C16.7752 11.7343 15.7722 11.9999 15.9472 10.9807C16.1221 9.9615 18.4554 7.1356 20.5053 5.81955C20.6413 5.7039 20.6931 5.4795 20.5621 5.3093C20.476 5.1973 20.307 4.97772 20.0553 4.65051C19.8351 4.36438 19.6242 4.37508 19.3395 4.55793Z"
-              fill="#595959"
+              fill="black"
             />
           </svg>
 
@@ -742,6 +766,8 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           editor={editor}
 
         />
+
+
       </div>
     </div>
   );
@@ -834,16 +860,16 @@ type EditorProps = {
   className?: string;
   html: string;
   setHtml: any;
+  onlyEditor?: boolean;
+  editorStyle: "default" | "white" | "dark";
 };
 
 
 const CustomTableCell = TableCell.extend({
   addAttributes() {
     return {
-      // extend the existing attributes …
       ...this.parent?.(),
 
-      // and add a new one …
       backgroundColor: {
         default: null,
         parseHTML: element => element.getAttribute('data-background-color'),
@@ -851,6 +877,45 @@ const CustomTableCell = TableCell.extend({
           return {
             'data-background-color': attributes.backgroundColor,
             style: `background-color: ${attributes.backgroundColor}`,
+          }
+        },
+      },
+      color: {
+        default: null,
+        parseHTML: element => element.getAttribute('data-color'),
+        renderHTML: attributes => {
+          return {
+            'data-color': attributes.color,
+            style: `color: ${attributes.color}`,
+          }
+        },
+      },
+    }
+  },
+})
+
+const CustomTableHeader = TableHeader.extend({
+  addAttributes() {
+    return {
+      ...this.parent?.(),
+
+      backgroundColor: {
+        default: null,
+        parseHTML: element => element.getAttribute('data-background-color'),
+        renderHTML: attributes => {
+          return {
+            'data-background-color': attributes.backgroundColor,
+            style: `background-color: ${attributes.backgroundColor}`,
+          }
+        },
+      },
+      color: {
+        default: null,
+        parseHTML: element => element.getAttribute('data-color'),
+        renderHTML: attributes => {
+          return {
+            'data-color': attributes.color,
+            style: `color: ${attributes.color}`,
           }
         },
       },
@@ -865,7 +930,7 @@ const CustomTableCell = TableCell.extend({
 * @param onClick Function to call when the button is clicked
 * @returns Button component
 */
-export const LidiaEditor = ({ className, html, setHtml }: EditorProps) => {
+export const LidiaEditor = ({ className, html, setHtml, onlyEditor = false, editorStyle = "dark" }: EditorProps) => {
   const [overlayisActive, setOverlayIsActive] = useState(false);
   const editor = useEditor({
     onUpdate({ editor }: any) {
@@ -874,6 +939,13 @@ export const LidiaEditor = ({ className, html, setHtml }: EditorProps) => {
     extensions: [
       StarterKit.configure({
         codeBlock: false,
+      }),
+      Color.configure({
+        // editor.chain().focus().setColor('#958DF1').run()
+        types: [
+          TextStyle.name,
+          // ListItem.name
+        ]
       }),
       TextAlign.configure({
         types: ["heading", "paragraph"]
@@ -907,11 +979,16 @@ export const LidiaEditor = ({ className, html, setHtml }: EditorProps) => {
         resizable: true,
       }),
       TableRow,
-      TableHeader,
+      CustomTableHeader,
       CustomTableCell,
+      TaskList,
+      TaskItem.configure({
+        nested: true,
+      }),
     ],
     autofocus: true,
-    content: html
+    content: html,
+    // editable: !onlyEditor,
   });
 
   const configAndActions = {
@@ -922,11 +999,12 @@ export const LidiaEditor = ({ className, html, setHtml }: EditorProps) => {
   };
 
   return (
-    <div className={`${s.lidiaEditor} ${s.withBackground} ${className ? className : ''}`}>
-      <MenuBar
+    <div className={`${s.lidiaEditor} ${s[editorStyle]} ${className ? className : ''}`}>
+
+      {!onlyEditor && <MenuBar
         editor={editor}
         configAndActions={configAndActions}
-      />
+      />}
 
 
       <div className={s.editorContainer}>
@@ -946,8 +1024,8 @@ const FontSelector = ({ editor, getFontValue }: any) => {
 
   return (
     <>
-      <div className={`${s.lidiaEditorOverlay}  ${active ? s.show : ''}`} onClick={() => setActive(!active)}></div>
-      <div className={`${s.customSelect} ${active ? s.show : ''}`}>
+      <div className={`${s.lidiaEditorOverlay}  ${active ? s.show : ''} `} onClick={() => setActive(!active)}></div>
+      <div className={`${s.customSelect} ${active ? s.show : ''} `}>
         <button className={s.selector} onClick={() => setActive(!active)}>
           <span>
             {getFontValue() || "Poppins"}
@@ -975,16 +1053,23 @@ const FontSelector = ({ editor, getFontValue }: any) => {
             </span>
             <span className={s.icon}><CheckIcon /></span>
           </button>
+
           <button
             onClick={() => {
-              editor.chain().focus().setFontFamily('Inter').run()
+              editor.chain().focus().setFontFamily('Arial Black').run();
               setActive(!active);
             }}
-            className={editor.isActive('textStyle', { fontFamily: 'Inter' }) ? s.isActive : ""}
+            className={editor.isActive('textStyle', { fontFamily: 'Arial Black' }) ? s.isActive : ""}
           >
-            <span className={s.text}>Inter</span>
+            <span className={s.text} style={{
+              fontFamily: "Arial Black"
+            }}>
+              Arial
+            </span>
             <span className={s.icon}><CheckIcon /></span>
           </button>
+
+
           <button
             onClick={() => {
               editor.chain().focus().setFontFamily('Comic Sans MS, Comic Sans').run();
@@ -992,9 +1077,24 @@ const FontSelector = ({ editor, getFontValue }: any) => {
             }}
             className={editor.isActive('textStyle', { fontFamily: 'Comic Sans MS, Comic Sans' }) ? s.isActive : ""}
           >
-            <span className={s.text}>
+            <span className={s.text} style={{
+              fontFamily: "Comic Sans MS, Comic Sans"
+            }}>
               Comic Sans
             </span>
+            <span className={s.icon}><CheckIcon /></span>
+          </button>
+
+          <button
+            onClick={() => {
+              editor.chain().focus().setFontFamily('Inter').run()
+              setActive(!active);
+            }}
+            className={editor.isActive('textStyle', { fontFamily: 'Inter' }) ? s.isActive : ""}
+          >
+            <span className={s.text} style={{
+              fontFamily: "Inter"
+            }}>Inter</span>
             <span className={s.icon}><CheckIcon /></span>
           </button>
 
@@ -1003,9 +1103,12 @@ const FontSelector = ({ editor, getFontValue }: any) => {
               editor.chain().focus().setFontFamily('monospace').run();
               setActive(!active);
             }}
+
             className={editor.isActive('textStyle', { fontFamily: 'monospace' }) ? s.isActive : ""}
           >
-            <span className={s.text}>
+            <span className={s.text} style={{
+              fontFamily: "monospace"
+            }}>
               Monospace
             </span>
             <span className={s.icon}><CheckIcon /></span>
@@ -1023,10 +1126,10 @@ const HeadingSelector = ({ editor, getHeadingValue }: any) => {
   return (
     <>
 
-      <div className={`${s.lidiaEditorOverlay}  ${active ? s.show : ''}`}
+      <div className={`${s.lidiaEditorOverlay}  ${active ? s.show : ''} `}
         onClick={() => setActive(!active)}></div>
 
-      <div className={`${s.customSelect} ${active ? s.show : ''}`}>
+      <div className={`${s.customSelect} ${active ? s.show : ''} `}>
         <button className={s.selector} onClick={() => setActive(!active)}>
           <span>
             {getHeadingValue() || "Normal"}
@@ -1059,7 +1162,10 @@ const HeadingSelector = ({ editor, getHeadingValue }: any) => {
             }}
             className={editor.isActive("heading", { level: 1 }) ? s.isActive : ""}
           >
-            <span className={s.text}>
+            <span className={s.text} style={{
+              fontSize: "15px",
+              fontWeight: "700"
+            }}>
               Heading
             </span>
             <span className={s.icon}><CheckIcon /></span>
@@ -1071,8 +1177,11 @@ const HeadingSelector = ({ editor, getHeadingValue }: any) => {
             }}
             className={editor.isActive("heading", { level: 2 }) ? s.isActive : ""}
           >
-            <span className={s.text}>
-              Sub heading
+            <span className={s.text} style={{
+              fontSize: "13px",
+              fontWeight: "700"
+            }}>
+              Subheading
             </span>
             <span className={s.icon}><CheckIcon /></span>
           </button>
@@ -1084,7 +1193,7 @@ const HeadingSelector = ({ editor, getHeadingValue }: any) => {
             className={editor.isActive("heading", { level: 3 }) ? s.isActive : ""}
           >
             <span className={s.text}>
-              Sub heading 2
+              Subheading 3
             </span>
             <span className={s.icon}><CheckIcon /></span>
           </button>
@@ -1096,7 +1205,7 @@ const HeadingSelector = ({ editor, getHeadingValue }: any) => {
             className={editor.isActive("heading", { level: 4 }) ? s.isActive : ""}
           >
             <span className={s.text}>
-              Sub heading 3
+              Subheading 4
             </span>
             <span className={s.icon}><CheckIcon /></span>
           </button>
@@ -1108,7 +1217,7 @@ const HeadingSelector = ({ editor, getHeadingValue }: any) => {
             className={editor.isActive("heading", { level: 5 }) ? s.isActive : ""}
           >
             <span className={s.text}>
-              Sub heading 4
+              Subheading 5
             </span>
             <span className={s.icon}><CheckIcon /></span>
           </button>
@@ -1120,7 +1229,7 @@ const HeadingSelector = ({ editor, getHeadingValue }: any) => {
             className={editor.isActive("heading", { level: 6 }) ? s.isActive : ""}
           >
             <span className={s.text}>
-              Sub heading 5
+              Subheading 6
             </span>
             <span className={s.icon}><CheckIcon /></span>
           </button>
@@ -1137,9 +1246,9 @@ const AlignSelector = ({ editor, getValue, type, options }: any) => {
   if (type === "align") {
     return (
       <>
-        <div className={`${s.lidiaEditorOverlay}  ${active ? s.show : ''}`}
+        <div className={`${s.lidiaEditorOverlay}  ${active ? s.show : ''} `}
           onClick={() => setActive(!active)}></div>
-        <div className={`${s.iconSelect} ${s.inRow} ${active ? s.show : ''}`}>
+        <div className={`${s.iconSelect} ${s.inRow} ${active ? s.show : ''} `}>
           <button className={s.selector} onClick={() => setActive(!active)}>
             <span>
               {getValue(type) || <AlignIcon id="left" />}
@@ -1178,20 +1287,25 @@ const AlignSelector = ({ editor, getValue, type, options }: any) => {
 
 const TableOptions = ({ editor }: any) => {
   const [active, setActive] = useState(false);
+  const [color, setColor] = useState("");
+  const [textColor, setTextColor] = useState("")
 
+  const changeColorToCell = (color: string) => {
+    setColor(color);
+    editor.chain().focus().setCellAttribute('backgroundColor', color).run()
+  }
 
-
-  const changeColorToCell = () => {
-    // TODO: REPLACE BY COLORS
-    editor.chain().focus().setCellAttribute('backgroundColor', '#FAF594').run()
+  const changeTextColorToCell = (color: string) => {
+    setTextColor(color);
+    editor.chain().focus().setCellAttribute('color', color).run()
   }
 
   return (
     <>
-      <div className={`${s.lidiaEditorOverlay}  ${active ? s.show : ''}`}
+      <div className={`${s.lidiaEditorOverlay}  ${active ? s.show : ''} `}
         onClick={() => setActive(!active)}></div>
-      <div className={`${s.iconSelectModal} ${s.inRow} ${active ? s.show : ''}`}>
-        <button className={`${s.selector}`} onClick={() => setActive(!active)}>
+      <div className={`${s.iconSelectModal} ${s.inRow} ${active ? s.show : ''} `}>
+        <button className={`${s.selector} `} onClick={() => setActive(!active)}>
           <svg
             width={32}
             height={32}
@@ -1202,7 +1316,7 @@ const TableOptions = ({ editor }: any) => {
             <path
               d="M20 5H4C2.9 5 2 5.9 2 7V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17V7C22 5.9 21.1 5 20 5ZM8 17.5H4C3.7 17.5 3.5 17.3 3.5 17.1V17V15H8V17.5ZM8 13.5H3.5V10.5H8V13.5ZM14.5 17.5H9.5V15H14.5V17.5ZM14.5 13.5H9.5V10.5H14.5V13.5ZM20.5 17C20.5 17.3 20.3 17.5 20.1 17.5H16V15H20.5V17ZM20.5 13.5H16V10.5H20.5V13.5ZM20.5 9H16.1H16H14.5H9.5H8H7.9H3.5V7C3.5 6.7 3.7 6.5 3.9 6.5H7.9H16.1H20C20.3 6.5 20.5 6.7 20.5 6.9V9Z"
               fill="black"
-              fillOpacity="0.7"
+              strokeWidth={2}
             />
           </svg>
         </button>
@@ -1210,7 +1324,7 @@ const TableOptions = ({ editor }: any) => {
 
           <button
             onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}
-            className={`${s.onlyIcon}`}
+            className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
               width={36}
@@ -1222,14 +1336,13 @@ const TableOptions = ({ editor }: any) => {
               <path
                 d="M20 5H4C2.9 5 2 5.9 2 7V9V10.5V13.5V15V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17V15V13.5V10.5V9V7C22 5.9 21.1 5 20 5ZM9.5 13.5V10.5H14.5V13.5H9.5ZM14.5 15V17.5H9.5V15H14.5ZM9.5 9V6.5H14.5V9H9.5ZM3.5 7C3.5 6.7 3.7 6.5 4 6.5H8V9H3.5V7ZM3.5 10.5H8V13.5H3.5V10.5ZM3.5 17V15H8V17.5H4C3.7 17.5 3.5 17.3 3.5 17ZM20.5 17C20.5 17.3 20.3 17.5 20 17.5H16V15H20.5V17ZM20.5 13.5H16V10.5H20.5V13.5ZM16 9V6.5H20C20.3 6.5 20.5 6.7 20.5 7V9H16Z"
                 fill="black"
-                fillOpacity="0.65"
               />
             </svg>
           </button>
 
           <button
             onClick={() => editor.chain().focus().deleteTable().run()}
-            className={`${s.onlyIcon}`}
+            className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
               width={26}
@@ -1241,14 +1354,14 @@ const TableOptions = ({ editor }: any) => {
               <path
                 d="M7.5 6L8.1 2.5H15.9L16.5 6"
                 stroke="black"
-                strokeOpacity="0.65"
+
                 strokeWidth={2}
                 strokeLinejoin="round"
               />
               <path
                 d="M3 6H21"
                 stroke="black"
-                strokeOpacity="0.65"
+
                 strokeWidth={2}
                 strokeLinecap="round"
               />
@@ -1258,7 +1371,7 @@ const TableOptions = ({ editor }: any) => {
                 d="M18.5 6L17.5 21.5H6.5L5.5 6H18.5Z"
                 fill="white"
                 stroke="black"
-                strokeOpacity="0.65"
+
                 strokeWidth={2}
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -1266,7 +1379,7 @@ const TableOptions = ({ editor }: any) => {
               <path
                 d="M9.5 17.5H14.5"
                 stroke="black"
-                strokeOpacity="0.65"
+
                 strokeWidth={2}
                 strokeLinecap="round"
               />
@@ -1275,7 +1388,7 @@ const TableOptions = ({ editor }: any) => {
 
           <button
             onClick={() => editor.chain().focus().addColumnAfter().run()}
-            className={`${s.onlyIcon}`}
+            className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
               width={40}
@@ -1287,14 +1400,14 @@ const TableOptions = ({ editor }: any) => {
               <path
                 d="M20 5H4C2.9 5 2 5.9 2 7V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17V7C22 5.9 21.1 5 20 5ZM8 17.5H4C3.7 17.5 3.5 17.3 3.5 17.1V17V15H8V17.5ZM8 13.5H3.5V10.5H8V13.5ZM8 9H3.5V7C3.5 6.7 3.7 6.5 3.9 6.5H8V9ZM20.5 17C20.5 17.3 20.3 17.5 20.1 17.5H16V15H20.5V17ZM20.5 13.5H16V10.5H20.5V13.5ZM20.5 9H16V6.5H20C20.3 6.5 20.5 6.7 20.5 6.9V9Z"
                 fill="black"
-                fillOpacity="0.65"
+
               />
             </svg>
           </button>
 
           <button
             onClick={() => editor.chain().focus().addRowAfter().run()}
-            className={`${s.onlyIcon}`}
+            className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
               width={35}
@@ -1306,14 +1419,14 @@ const TableOptions = ({ editor }: any) => {
               <path
                 d="M20 5H4C2.9 5 2 5.9 2 7V9V10.5V13.5V15V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17V15V13.5V10.5V9V7C22 5.9 21.1 5 20 5ZM16 6.5H20C20.3 6.5 20.5 6.7 20.5 7V9H16V6.5ZM9.5 6.5H14.5V9H9.5V6.5ZM3.5 7C3.5 6.7 3.7 6.5 4 6.5H8V9H3.5V7ZM8 17.5H4C3.7 17.5 3.5 17.3 3.5 17V15H8V17.5ZM14.5 17.5H9.5V15H14.5V17.5ZM20.5 17C20.5 17.3 20.3 17.5 20 17.5H16V15H20.5V17Z"
                 fill="black"
-                fillOpacity="0.65"
+
               />
             </svg>
           </button>
 
           <button
             onClick={() => editor.chain().focus().deleteColumn().run()}
-            className={`${s.onlyIcon}`}
+            className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
               width={36}
@@ -1327,14 +1440,14 @@ const TableOptions = ({ editor }: any) => {
                 clipRule="evenodd"
                 d="M25.3999 6H4.59999C3.17 6 2 7.17 2 8.59999V21.5999C2 23.0299 3.17 24.1999 4.59999 24.1999H25.3999C26.8299 24.1999 27.9999 23.0299 27.9999 21.5999V18.3511C27.4713 18.9757 26.8059 19.4808 26.0499 19.8201V21.5999C26.0499 21.9899 25.7899 22.2499 25.5299 22.2499H20.1999V19.4742C18.639 18.5037 17.5999 16.7732 17.5999 14.7999V14.1C17.5999 12.1267 18.639 10.3962 20.1999 9.42575V7.94999H25.3999C25.7899 7.94999 26.0499 8.20999 26.0499 8.46999V9.07981C26.8059 9.41915 27.4713 9.92424 27.9999 10.5488V8.59999C27.9999 7.17 26.8299 6 25.3999 6ZM9.79997 22.2499H4.59999C4.20999 22.2499 3.94999 21.9899 3.94999 21.7299V21.5999V18.9999H9.79997V22.2499ZM9.79997 17.05H3.94999V13.15H9.79997V17.05ZM9.79997 11.2H3.94999V8.59999C3.94999 8.20999 4.20999 7.94999 4.46999 7.94999H9.79997V11.2ZM27.9999 16.725L25.725 14.45L27.9999 12.175L25.725 9.89998L23.45 12.175L21.175 9.89998L18.9 12.175L21.175 14.45L18.9 16.725L21.175 18.9999L23.45 16.725L25.725 18.9999L27.9999 16.725Z"
                 fill="black"
-                fillOpacity="0.65"
+
               />
             </svg>
           </button>
 
           <button
             onClick={() => editor.chain().focus().deleteRow().run()}
-            className={`${s.onlyIcon}`}
+            className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
               width={35}
@@ -1348,14 +1461,13 @@ const TableOptions = ({ editor }: any) => {
                 clipRule="evenodd"
                 d="M25.7856 6H4.64285C3.18928 6 2 7.18928 2 8.64285V11.2857V13.2678V17.2321V19.2142V21.8571C2 23.3106 3.18928 24.4999 4.64285 24.4999H25.7856C27.2392 24.4999 28.4285 23.3106 28.4285 21.8571V19.2142V17.7748C27.9839 18.8033 27.2997 19.7041 26.4463 20.4067V21.8571C26.4463 22.2535 26.182 22.5178 25.7856 22.5178H20.4999V21.8389C19.7934 21.6847 19.1268 21.4237 18.5178 21.0738V22.5178H11.9107V19.2142H16.4102C15.5249 18.0419 15 16.5822 15 15C15 13.6355 15.3904 12.3622 16.0656 11.2857H11.9107V7.98213H18.5178V8.9262C19.1268 8.57629 19.7934 8.31535 20.4999 8.1611V7.98213H25.7856C26.182 7.98213 26.4463 8.24642 26.4463 8.64285V9.59328C27.2997 10.2959 27.9839 11.1967 28.4285 12.2252V11.2857V8.64285C28.4285 7.18928 27.2392 6 25.7856 6ZM3.98213 8.64285C3.98213 8.24642 4.24642 7.98213 4.64285 7.98213H9.92854V11.2857H3.98213V8.64285ZM9.92854 22.5178H4.64285C4.24642 22.5178 3.98213 22.2535 3.98213 21.8571V19.2142H9.92854V22.5178ZM27 17.5L24.5 15L27 12.5L24.5 10L22 12.5L19.5 10L17 12.5L19.5 15L17 17.5L19.5 20L22 17.5L24.5 20L27 17.5Z"
                 fill="black"
-                fillOpacity="0.65"
               />
             </svg>
           </button>
 
           <button
             onClick={() => editor.chain().focus().mergeCells().run()}
-            className={`${s.onlyIcon}`}
+            className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
               width={28}
@@ -1367,35 +1479,35 @@ const TableOptions = ({ editor }: any) => {
               <path
                 d="M10 7V2.5C10 2.22386 9.77615 2 9.5 2H2.5C2.22386 2 2 2.22386 2 2.5V21.5C2 21.7761 2.22386 22 2.5 22H9.5C9.77615 22 10 21.7761 10 21.5V17"
                 stroke="black"
-                strokeOpacity="0.65"
+
                 strokeWidth={2}
                 strokeLinecap="round"
               />
               <path
                 d="M14 17V21.5C14 21.7761 14.2239 22 14.5 22H21.5C21.7761 22 22 21.7761 22 21.5V2.5C22 2.22386 21.7761 2 21.5 2H14.5C14.2239 2 14 2.22386 14 2.5V7"
                 stroke="black"
-                strokeOpacity="0.65"
+
                 strokeWidth={2}
                 strokeLinecap="round"
               />
               <path
                 d="M14 12H22"
                 stroke="black"
-                strokeOpacity="0.65"
+
                 strokeWidth={2}
                 strokeLinecap="round"
               />
               <path
                 d="M2.5 12H10"
                 stroke="black"
-                strokeOpacity="0.65"
+
                 strokeWidth={2}
                 strokeLinecap="round"
               />
               <path
                 d="M16.3742 14.4092L15.5787 13.6137L13.9878 12.0227L15.5787 10.4317L16.3742 9.63623"
                 stroke="black"
-                strokeOpacity="0.65"
+
                 strokeWidth={2}
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -1403,7 +1515,7 @@ const TableOptions = ({ editor }: any) => {
               <path
                 d="M7.6875 14.4092L8.483 13.6137L10.074 12.0227L8.483 10.4317L7.6875 9.63623"
                 stroke="black"
-                strokeOpacity="0.65"
+
                 strokeWidth={2}
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -1414,7 +1526,7 @@ const TableOptions = ({ editor }: any) => {
 
           <button
             onClick={() => editor.chain().focus().splitCell().run()}
-            className={`${s.onlyIcon}`}
+            className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
               width={28}
@@ -1426,28 +1538,28 @@ const TableOptions = ({ editor }: any) => {
               <path
                 d="M22 7V2.5C22 2.22386 21.7761 2 21.5 2H14.5C14.2239 2 14 2.22386 14 2.5V21.5C14 21.7761 14.2239 22 14.5 22H21.5C21.7761 22 22 21.7761 22 21.5V17"
                 stroke="black"
-                strokeOpacity="0.65"
+
                 strokeWidth={2}
                 strokeLinecap="round"
               />
               <path
                 d="M2 12H10"
                 stroke="black"
-                strokeOpacity="0.65"
+
                 strokeWidth={2}
                 strokeLinecap="round"
               />
               <path
                 d="M14.5 12H22"
                 stroke="black"
-                strokeOpacity="0.65"
+
                 strokeWidth={2}
                 strokeLinecap="round"
               />
               <path
                 d="M4.37424 14.4092L3.57874 13.6137L1.98779 12.0227L3.57874 10.4317L4.37424 9.63623"
                 stroke="black"
-                strokeOpacity="0.65"
+
                 strokeWidth={2}
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -1455,7 +1567,7 @@ const TableOptions = ({ editor }: any) => {
               <path
                 d="M19.6875 14.4092L20.483 13.6137L22.074 12.0227L20.483 10.4317L19.6875 9.63623"
                 stroke="black"
-                strokeOpacity="0.65"
+
                 strokeWidth={2}
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -1463,15 +1575,112 @@ const TableOptions = ({ editor }: any) => {
               <path
                 d="M2 17V21.5C2 21.7761 2.22385 22 2.5 22H9.5C9.77615 22 10 21.7761 10 21.5V2.5C10 2.22386 9.77615 2 9.5 2H2.5C2.22385 2 2 2.22386 2 2.5V7"
                 stroke="black"
-                strokeOpacity="0.65"
+
                 strokeWidth={2}
                 strokeLinecap="round"
               />
             </svg>
           </button>
 
-          <button onClick={changeColorToCell}>
-            Color
+          <button
+            className={`${s.buttonMenu} ${s.onlyIcon} ${s.colorPicker}`}
+            style={{
+              borderBottomColor: color
+            }}
+          >
+            <svg
+              width={24}
+              height={24}
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14.2929 4.20711L2.70711 15.7929C2.31658 16.1834 2.31658 16.8166 2.70711 17.2071L13.2929 27.7929C13.6834 28.1834 14.3166 28.1834 14.7071 27.7929L26.2929 16.2071C26.6834 15.8166 26.6834 15.1834 26.2929 14.7929L15.7071 4.20711C15.3166 3.81658 14.6834 3.81658 14.2929 4.20711Z"
+                stroke="black"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M16 17.001C17.3807 17.001 18.5 15.8817 18.5 14.501C18.5 13.1203 17.3807 12.001 16 12.001C14.6193 12.001 13.5 13.1203 13.5 14.501C13.5 15.8817 14.6193 17.001 16 17.001Z"
+                stroke="black"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M26 24.5C26 22.0007 28.5 19.5 28.5 19.5C28.5 19.5 31 22.0007 31 24.5C31 25.163 30.7366 25.7989 30.2678 26.2678C29.7989 26.7366 29.163 27 28.5 27C27.837 27 27.2011 26.7366 26.7322 26.2678C26.2634 25.7989 26 25.163 26 24.5Z"
+                stroke="black"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M14.2322 12.7334L6.23224 4.7334"
+                stroke="black"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <div
+              className={s.inputHidden}
+            >
+              <input
+                type="color"
+                onChange={(e) => {
+
+                  changeColorToCell(e.target.value);
+                }} />
+            </div>
+          </button>
+
+
+          <button
+            className={`${s.buttonMenu} ${s.onlyIcon} ${s.colorPicker}`}
+            style={{
+              borderBottomColor: textColor
+            }}
+          >
+            <svg
+              width={32}
+              height={32}
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15.9993 6.99902V24.999"
+                stroke="black"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M5.99927 10.999V6.99902H25.9993V10.999"
+                stroke="black"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M11.9993 24.999H19.9993"
+                stroke="black"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <div
+              className={s.inputHidden}
+            >
+              <input
+                type="color"
+                onChange={(e) => {
+                  changeTextColorToCell(e.target.value);
+                }} />
+            </div>
           </button>
         </div>
       </div>
@@ -1494,7 +1703,7 @@ const AlignIcon = ({ id }: any) => {
       <path
         d="M21 4.5H3"
         stroke="black"
-        strokeOpacity="0.65"
+
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1502,7 +1711,7 @@ const AlignIcon = ({ id }: any) => {
       <path
         d="M17 9.5H3"
         stroke="black"
-        strokeOpacity="0.65"
+
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1510,7 +1719,7 @@ const AlignIcon = ({ id }: any) => {
       <path
         d="M21 14.5H3"
         stroke="black"
-        strokeOpacity="0.65"
+
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1518,7 +1727,7 @@ const AlignIcon = ({ id }: any) => {
       <path
         d="M17 19.5H3"
         stroke="black"
-        strokeOpacity="0.65"
+
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1536,7 +1745,7 @@ const AlignIcon = ({ id }: any) => {
       <path
         d="M21 4.5H3"
         stroke="black"
-        strokeOpacity="0.65"
+
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1544,7 +1753,7 @@ const AlignIcon = ({ id }: any) => {
       <path
         d="M21 9.5H7"
         stroke="black"
-        strokeOpacity="0.65"
+
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1552,7 +1761,7 @@ const AlignIcon = ({ id }: any) => {
       <path
         d="M21 14.5H3"
         stroke="black"
-        strokeOpacity="0.65"
+
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1560,7 +1769,7 @@ const AlignIcon = ({ id }: any) => {
       <path
         d="M21 19.5H7"
         stroke="black"
-        strokeOpacity="0.65"
+
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1579,7 +1788,7 @@ const AlignIcon = ({ id }: any) => {
       <path
         d="M18 9.5H6"
         stroke="black"
-        strokeOpacity="0.65"
+
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1587,7 +1796,7 @@ const AlignIcon = ({ id }: any) => {
       <path
         d="M21 4.5H3"
         stroke="black"
-        strokeOpacity="0.65"
+
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1595,7 +1804,7 @@ const AlignIcon = ({ id }: any) => {
       <path
         d="M21 14.5H3"
         stroke="black"
-        strokeOpacity="0.65"
+
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1603,7 +1812,7 @@ const AlignIcon = ({ id }: any) => {
       <path
         d="M18 19.5H6"
         stroke="black"
-        strokeOpacity="0.65"
+
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1621,7 +1830,7 @@ const AlignIcon = ({ id }: any) => {
       <path
         d="M21 9.5H3"
         stroke="black"
-        strokeOpacity="0.65"
+
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1629,7 +1838,7 @@ const AlignIcon = ({ id }: any) => {
       <path
         d="M21 4.5H3"
         stroke="black"
-        strokeOpacity="0.65"
+
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1637,7 +1846,7 @@ const AlignIcon = ({ id }: any) => {
       <path
         d="M21 14.5H3"
         stroke="black"
-        strokeOpacity="0.65"
+
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1645,7 +1854,7 @@ const AlignIcon = ({ id }: any) => {
       <path
         d="M21 19.5H3"
         stroke="black"
-        strokeOpacity="0.65"
+
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1694,7 +1903,7 @@ const CheckIcon = () => {
     <path
       d="M5 12L10 17L20 7"
       stroke="black"
-      strokeOpacity="0.65"
+
       strokeWidth={2}
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -1703,9 +1912,9 @@ const CheckIcon = () => {
 }
 
 const Modal = ({ children, width = "auto", showModal = false, setShowModal }: any) => {
-  return <div className={`${s.modal} ${showModal ? s.show : ""}`}>
+  return <div className={`${s.modal} ${showModal ? s.show : ""} `}>
     <div className={s.overlay} onClick={() => setShowModal(false)}></div>
-    <div className={`${s.content} ${width === "full" ? s.full : s.auto}`}>
+    <div className={`${s.content} ${width === "full" ? s.full : s.auto} `}>
       {children}
     </div>
   </div>
@@ -1737,7 +1946,10 @@ const IframeContent = ({ editor, setIframeContent, iframeTitle, setIframeTitle, 
       <button onClick={() => setShowModal(false)}>
         Cancel
       </button>
-      <button onClick={showData}>
+      <button
+        onClick={showData}
+        className={s.saveButton}
+      >
         Save
       </button>
     </div>

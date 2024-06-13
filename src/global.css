@@ -9,14 +9,14 @@
         max-height: 400px;
         overflow: auto;
     }
-    .tableWrapper::-webkit-scrollbar-track {
+    /* .tableWrapper::-webkit-scrollbar-track {
         background: red;
         width: 10px;
     }
     .tableWrapper::-webkit-scrollbar-track-piece {
         background: red;
         width: 10px;
-    }
+    } */
 }
 
 .column-resize-handle {
@@ -34,5 +34,14 @@
 }
 
 .selectedCell {
-    background:  rgba(0, 0, 0, 0.486) !important;
+    position: relative;
+}
+
+.selectedCell::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    background: rgba(37, 37, 37, 0.418) !important;
 }

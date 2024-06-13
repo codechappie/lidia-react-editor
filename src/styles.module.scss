@@ -365,7 +365,6 @@
               width: 100%;
               height: 100%;
               border: none;
-
             }
           }
         }
@@ -542,12 +541,23 @@
       }
 
       ul[data-type*="taskList"] {
-        margin-left: -20px;
+        margin-left: -24px;
         li {
           display: flex;
           align-items: flex-start;
           justify-content: flex-start;
           gap: 5px;
+          margin: 10px 0;
+
+          input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: green;
+          }
+
+          div {
+            width: 100%;
+          }
         }
       }
     }
@@ -746,13 +756,14 @@
 
   .codeBlock {
     position: relative;
-    padding-top: 1.2rem;
+    border: 10px solid transparent;
 
     pre {
       overflow: hidden;
       overflow-y: auto;
       max-height: 300px;
-
+      margin: 0;
+      padding-bottom: 0;
       &::-webkit-scrollbar {
         background: #363636;
         width: 8px;
@@ -769,7 +780,7 @@
     select {
       position: absolute;
       right: 0.6rem;
-      top: 45px;
+      top: 12px;
       border: none;
       padding: 6px;
       border-radius: 5px;

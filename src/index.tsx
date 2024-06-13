@@ -839,9 +839,9 @@ const setALink = (editor: any) => {
 type EditorProps = {
   className?: string;
   html: string;
-  setHtml: any;
-  onlyEditor?: boolean;
-  editorStyle: "default" | "white" | "dark";
+  setHtml?: any;
+  onlyPreview?: boolean;
+  editorStyle?: "default" | "white" | "dark";
 };
 
 
@@ -910,7 +910,7 @@ const CustomTableHeader = TableHeader.extend({
 * @param onClick Function to call when the button is clicked
 * @returns Button component
 */
-export const LidiaEditor = ({ className, html, setHtml, onlyEditor = false, editorStyle = "default" }: EditorProps) => {
+export const LidiaEditor = ({ className, html, setHtml, onlyPreview = false, editorStyle = "default" }: EditorProps) => {
   const [overlayisActive, setOverlayIsActive] = useState(false);
   const editor = useEditor({
     onUpdate({ editor }: any) {
@@ -968,7 +968,7 @@ export const LidiaEditor = ({ className, html, setHtml, onlyEditor = false, edit
     ],
     autofocus: true,
     content: html,
-    // editable: !onlyEditor,
+    editable: !onlyPreview,
   });
 
   const configAndActions = {
@@ -981,7 +981,7 @@ export const LidiaEditor = ({ className, html, setHtml, onlyEditor = false, edit
   return (
     <div className={`${s.lidiaEditor} ${s[editorStyle]} ${className ? className : ''}`}>
 
-      {!onlyEditor && <MenuBar
+      {!onlyPreview && <MenuBar
         editor={editor}
         configAndActions={configAndActions}
       />}

@@ -1184,7 +1184,6 @@ const TableOptions = ({ editor }: any) => {
   const changeColorToCell = () => {
     // TODO: REPLACE BY COLORS
     editor.chain().focus().setCellAttribute('backgroundColor', '#FAF594').run()
-    console.log("change color")
   }
 
   return (

@@ -28,6 +28,19 @@
     font-family: "Poppins", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
+
+    &:not(code, pre, .hljs-*) {
+      color: #000000;
+    }
+
+    svg {
+      width: 30px;
+      height: 30px;
+      path {
+        stroke: #000;
+        stroke-width: 2px;
+      }
+    }
   }
 
   &.default::before {
@@ -374,7 +387,8 @@
           svg {
             position: relative;
             z-index: 1;
-            background: white;
+            width: 28px;
+            // background: white;
             border-radius: 5px;
           }
 
@@ -389,7 +403,7 @@
             .colorIndicator {
               background: #eeeeee;
               width: 100%;
-              height: 8px;
+              height: 5px;
               border-bottom-left-radius: 6px;
               border-bottom-right-radius: 6px;
             }
@@ -444,10 +458,10 @@
           opacity: 0;
           cursor: pointer;
         }
-        .colorIndicator{
+        .colorIndicator {
           background: #eeeeee;
           width: 100%;
-          height: 6px;
+          height: 5px;
           border-bottom-left-radius: 8px;
           border-bottom-right-radius: 8px;
         }
@@ -463,7 +477,7 @@
           inset: 0;
           width: 100%;
           height: 100%;
-          background: #d6d6d6;
+          background: #d6d6d63b;
           z-index: 1;
         }
 

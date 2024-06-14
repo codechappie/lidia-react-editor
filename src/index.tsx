@@ -137,17 +137,21 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           title='Undo'
         >
           <svg
-            width={25}
-            height={25}
-            viewBox="0 0 32 32"
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M20 10H7.815L11.402 6.414L10 5L4 11L10 17L11.402 15.585L7.818 12H20C21.5913 12 23.1174 12.6321 24.2426 13.7574C25.3679 14.8826 26 16.4087 26 18C26 19.5913 25.3679 21.1174 24.2426 22.2426C23.1174 23.3679 21.5913 24 20 24H12V26H20C22.1217 26 24.1566 25.1571 25.6569 23.6569C27.1571 22.1566 28 20.1217 28 18C28 15.8783 27.1571 13.8434 25.6569 12.3431C24.1566 10.8429 22.1217 10 20 10Z"
-              fill="#212529"
+              d="M11.0833 20.5833L4.75 14.25M4.75 14.25L11.0833 7.91663M4.75 14.25H25.3333C29.7056 14.25 33.25 17.7944 33.25 22.1666C33.25 26.5389 29.7056 30.0833 25.3333 30.0833H17.4167"
+              stroke="white"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
+
 
         </button>
 
@@ -157,18 +161,20 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           title='Redo'
         >
           <svg
-            width={25}
-            height={25}
-            viewBox="0 0 32 32"
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M12 10H24.185L20.598 6.414L22 5L28 11L22 17L20.598 15.585L24.182 12H12C10.4087 12 8.88258 12.6321 7.75736 13.7574C6.63214 14.8826 6 16.4087 6 18C6 19.5913 6.63214 21.1174 7.75736 22.2426C8.88258 23.3679 10.4087 24 12 24H20V26H12C9.87827 26 7.84344 25.1571 6.34315 23.6569C4.84285 22.1566 4 20.1217 4 18C4 15.8783 4.84285 13.8434 6.34315 12.3431C7.84344 10.8429 9.87827 10 12 10Z"
-              fill="#212529"
+              d="M26.9167 20.5833L33.25 14.25M33.25 14.25L26.9167 7.91663M33.25 14.25H12.6667C8.29441 14.25 4.75 17.7944 4.75 22.1666C4.75 26.5389 8.29441 30.0833 12.6667 30.0833H20.5833"
+              stroke="white"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
-
         </button>
 
         <FontSelector
@@ -195,31 +201,14 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           className={`${s.onlyIcon} ${editor.isActive("bold") ? s.isActive : ""}`}
         >
           <svg
-            width={19}
-            height={19}
-            viewBox="0 0 24 24"
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M12.7031 12C15.4559 12 17.6875 9.7614 17.6875 7C17.6875 4.23857 15.4559 2 12.7031 2H5V12H12.7031Z"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M14.5156 22C17.2684 22 19.5 19.7614 19.5 17C19.5 14.2386 17.2684 12 14.5156 12H5V22H14.5156Z"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              d="M12.6665 19H19.7915M12.6665 19V7.91663H19.7915C22.8521 7.91663 25.3332 10.3977 25.3332 13.4583C25.3332 16.5189 22.8521 19 19.7915 19M12.6665 19V30.0833H21.3748C24.4354 30.0833 26.9165 27.6022 26.9165 24.5416C26.9165 21.481 24.4354 19 21.3748 19H19.7915"
             />
           </svg>
         </button>
@@ -229,38 +218,16 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           className={`${s.onlyIcon} ${editor.isActive("italic") ? s.isActive : ""}`}
         >
           <svg
-            width={19}
-            height={19}
-            viewBox="0 0 24 24"
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M10 3H18"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M6 21H14"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M14.5 2.97607L9.5 20.9999"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              d="M12.6665 30.0833H15.8332M15.8332 30.0833H18.9998M15.8332 30.0833L22.1665 7.91663M18.9998 7.91663H22.1665M22.1665 7.91663H25.3332"
             />
           </svg>
-
         </button>
 
         <button
@@ -268,16 +235,14 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           className={`${s.onlyIcon} ${editor.isActive("strike") ? s.isActive : ""}`}
         >
           <svg
-            width={25}
-            height={25}
-            viewBox="0 0 32 32"
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M28 15H17.956C17.512 14.8806 17.0659 14.7689 16.618 14.665C13.81 14.001 12.222 13.515 12.222 11.242C12.1992 10.8496 12.2573 10.4567 12.3927 10.0877C12.5281 9.71873 12.7378 9.3815 13.009 9.09698C13.8584 8.39848 14.9223 8.01359 16.022 8.00698C18.852 7.93698 20.157 8.89698 21.224 10.357L22.839 9.17698C22.083 8.09133 21.0524 7.22583 19.8524 6.66888C18.6525 6.11194 17.3261 5.88353 16.009 6.00698C14.391 6.01731 12.8302 6.60652 11.609 7.66798C11.1461 8.13747 10.7844 8.69681 10.546 9.31149C10.3076 9.92618 10.1977 10.5832 10.223 11.242C10.1791 11.9629 10.3146 12.6834 10.6171 13.3392C10.9197 13.9949 11.3801 14.5655 11.957 15H4V17H17.652C19.619 17.57 20.795 18.312 20.825 20.358C20.8575 20.795 20.7975 21.234 20.649 21.6463C20.5005 22.0587 20.2667 22.435 19.963 22.751C18.9048 23.5851 17.5901 24.0265 16.243 24C15.2375 23.9708 14.2518 23.7134 13.3605 23.2472C12.4691 22.781 11.6955 22.1182 11.098 21.309L9.565 22.593C10.3417 23.6281 11.3439 24.4728 12.4956 25.0631C13.6472 25.6534 14.9181 25.9738 16.212 26H16.312C18.1588 26.0212 19.9512 25.3753 21.36 24.181C21.86 23.6769 22.2487 23.0735 22.501 22.4098C22.7534 21.7461 22.8637 21.0369 22.825 20.328C22.8623 19.1152 22.4531 17.931 21.675 17H28V15Z"
-              fill="black"
-
+              d="M19.0009 19.0002C20.4187 19.0002 21.8105 19.3048 23.0308 19.8821C23.5821 20.1429 24.0899 20.4554 24.5433 20.8109C25.0935 21.2424 25.5642 21.7376 25.9387 22.2825C26.6217 23.2765 26.9585 24.3986 26.9139 25.5323C26.8694 26.666 26.445 27.7693 25.6853 28.7269C24.9256 29.6846 23.8584 30.4611 22.5951 30.976C21.3319 31.4909 19.9188 31.7257 18.5038 31.6545C17.0888 31.5833 15.7243 31.2089 14.5517 30.5713C13.3791 29.9338 12.4417 29.0564 11.8381 28.0301M19.0009 19.0002H6.3335M19.0009 19.0002H31.6668M26.1636 9.97057C25.5599 8.94429 24.6228 8.06653 23.4502 7.42899C22.2776 6.79146 20.9123 6.41708 19.4973 6.34586C18.0823 6.27464 16.6692 6.50898 15.406 7.02391C14.1427 7.53884 13.0755 8.31579 12.3158 9.27345C11.5561 10.2311 11.1319 11.3349 11.0874 12.4686C11.0743 12.8007 11.0941 13.1313 11.1456 13.4586"
             />
           </svg>
         </button>
@@ -287,26 +252,14 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           className={`${s.onlyIcon} ${editor.isActive('underline') ? s.isActive : ''}`}
         >
           <svg
-            width={20}
-            height={20}
-            viewBox="0 0 24 24"
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M4 22H20"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M18.5 3.04834C18.5 6.38165 18.5 7.6665 18.5 10.9998C18.5 14.5897 15.5898 17.4998 12 17.4998C8.41015 17.4998 5.5 14.5897 5.5 10.9998C5.5 7.6665 5.5 6.38165 5.5 3.04834"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
+              d="M9.5 30.0833H28.5M12.6667 7.91663V17.4166C12.6667 20.9144 15.5022 23.75 19 23.75C22.4978 23.75 25.3333 20.9144 25.3333 17.4166V7.91663"
             />
           </svg>
         </button>
@@ -315,34 +268,17 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           className={`${s.onlyIcon} ${s.inputHidden}`}
         >
           <svg
-            width={24}
-            height={24}
-            viewBox="0 0 32 32"
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M15.9993 6.99902V24.999"
-              stroke="black"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M5.99927 10.999V6.99902H25.9993V10.999"
-              stroke="black"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M11.9993 24.999H19.9993"
-              stroke="black"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              d="M15.8333 30.0833H19M19 30.0833H22.1667M19 30.0833V7.91663M19 7.91663H9.5V9.49996M19 7.91663H28.5V9.49996"
             />
           </svg>
+
           <div
             className={s.inputHidden}
           >
@@ -364,46 +300,19 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           className={`${s.onlyIcon} ${editor.isActive('highlight') ? s.isActive : ''}`}
         >
           <svg
-            width={24}
-            height={24}
-            viewBox="0 0 32 32"
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M11.5858 26.9998H6C5.73478 26.9998 5.48043 26.8945 5.29289 26.707C5.10536 26.5194 5 26.2651 5 25.9998V20.4141C5 20.2827 5.02587 20.1527 5.07612 20.0314C5.12638 19.9101 5.20004 19.7998 5.29289 19.707L20.2929 4.70695C20.4804 4.51942 20.7348 4.41406 21 4.41406C21.2652 4.41406 21.5196 4.51942 21.7071 4.70695L27.2929 10.2927C27.4804 10.4803 27.5858 10.7346 27.5858 10.9998C27.5858 11.2651 27.4804 11.5194 27.2929 11.707L12.2929 26.707C12.2 26.7998 12.0898 26.8735 11.9685 26.9237C11.8471 26.974 11.7171 26.9998 11.5858 26.9998Z"
-              stroke="black"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-
+              d="M29.5269 32.6936L29.5268 27.6231C29.5268 27.1105 29.1378 26.6872 28.6265 26.6435L8.81954 24.9531C8.20918 24.901 7.68732 25.4047 7.71893 26.0155L8.0645 32.6936"
             />
             <path
-              d="M17 8L24 15"
-              stroke="black"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-
-            />
-            <path
-              d="M20 24L25 19L24 15"
-              stroke="black"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-
-            />
-            <path
-              d="M5.06354 20.0635L11.9365 26.9364"
-              stroke="black"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-
+              d="M29.2472 27.0346L8.1207 25.0032L13.8123 15.6063L22.9198 15.6182L29.3148 26.721L29.2472 27.0346ZM15.4303 8.61911L18.9838 6.38119L21.2117 12.615L14.807 12.5491L15.4303 8.61911Z"
             />
           </svg>
-
         </button>
 
 
@@ -412,62 +321,16 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           className={`${s.onlyIcon} ${editor.isActive('orderedList') ? s.isActive : ''}`}
         >
           <svg
-            width={22}
-            height={22}
-            viewBox="0 0 24 24"
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M10 4.5H21"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M10 9.5H21"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M10 14.5H21"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M10 19.5H21"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M3 14.5H6V16L3 19V19.5H6"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M4.5 9.5H5.5M3.5 5.5L4.5 4.5V9.5L3.5 5.5ZM4.5 9.5H3.5H4.5Z"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              d="M15.8335 26.9166H31.6668M6.3335 24.8351V24.5416C6.3335 23.23 7.39682 22.1666 8.7085 22.1666H8.77269C10.0489 22.1666 11.0838 23.2013 11.0838 24.4775C11.0838 25.033 10.9033 25.5739 10.57 26.0183L6.3335 31.6669L11.0835 31.6666M15.8335 19H31.6668M15.8335 11.0833H31.6668M6.3335 7.91665L9.50016 6.33331V15.8333"
             />
           </svg>
-
         </button>
 
         <button
@@ -475,62 +338,16 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           className={`${s.onlyIcon} ${editor.isActive('bulletList') ? s.isActive : ''}`}
         >
           <svg
-            width={22}
-            height={22}
-            viewBox="0 0 24 24"
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M4 21C5.10455 21 6 20.1045 6 19C6 17.8954 5.10455 17 4 17C2.89543 17 2 17.8954 2 19C2 20.1045 2.89543 21 4 21Z"
-              fill="white"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinejoin="round"
-            />
-            <path
-              d="M4 6C4.55228 6 5 5.5523 5 5C5 4.44771 4.55228 4 4 4C3.44771 4 3 4.44771 3 5C3 5.5523 3.44771 6 4 6Z"
-              fill="white"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinejoin="round"
-            />
-            <path
-              d="M4 13C4.55228 13 5 12.5523 5 12C5 11.4477 4.55228 11 4 11C3.44771 11 3 11.4477 3 12C3 12.5523 3.44771 13 4 13Z"
-              fill="white"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinejoin="round"
-            />
-            <path
-              d="M10 12H22"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M10 19H22"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M10 5H22"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              d="M14.2498 26.9166H30.0832M14.2498 19H30.0832M14.2498 11.0833H30.0832M7.9196 26.9166V26.9198L7.9165 26.9197V26.9166H7.9196ZM7.9196 19V19.0031L7.9165 19.0031V19H7.9196ZM7.9196 11.0833V11.0865L7.9165 11.0864V11.0833H7.9196Z"
             />
           </svg>
-
         </button>
 
         <button
@@ -538,17 +355,14 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           className={`${s.onlyIcon} ${editor.isActive('taskList') ? s.isActive : ''}`}
         >
           <svg
-            width={22}
-            height={22}
-            viewBox="0 0 32 32"
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M5 5.5C5 5.22386 5.22386 5 5.5 5H26.5C26.7762 5 27 5.22386 27 5.5V26.5C27 26.7762 26.7762 27 26.5 27H5.5C5.22386 27 5 26.7762 5 26.5V5.5ZM5.5 2C3.567 2 2 3.567 2 5.5V26.5C2 28.433 3.567 30 5.5 30H26.5C28.433 30 30 28.433 30 26.5V5.5C30 3.567 28.433 2 26.5 2H5.5ZM23.5606 12.5607C24.1464 11.9749 24.1464 11.0251 23.5606 10.4393C22.9748 9.85356 22.0252 9.85356 21.4394 10.4393L13.5 18.3787L10.5607 15.4393C9.97488 14.8536 9.02512 14.8536 8.43934 15.4393C7.85356 16.0251 7.85356 16.9749 8.43934 17.5607L12.4393 21.5606C13.0251 22.1464 13.9749 22.1464 14.5607 21.5606L23.5606 12.5607Z"
-              fill="#24292E"
+              d="M17.4168 26.9167H31.6668M12.6668 23.75L8.7085 28.5L6.3335 26.9167M17.4168 19H31.6668M12.6668 15.8334L8.7085 20.5834L6.3335 19M17.4168 11.0834H31.6668M12.6668 7.91669L8.7085 12.6667L6.3335 11.0834"
             />
           </svg>
         </button>
@@ -558,30 +372,16 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           className={`${s.onlyIcon} ${editor.isActive('code') ? s.isActive : ''}`}
         >
           <svg
-            width={20}
-            height={20}
-            viewBox="0 0 24 24"
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M8 2C7 2 5.5 2.5 5.5 4.5C5.5 6.5 5.5 7.5 5.5 9C5.5 10.5 3 11.5 3 11.5C3 11.5 5.5 12.5 5.5 14C5.5 15.5 5.5 17.5 5.5 19.5C5.5 21.5 7 22 8 22"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M16 2C17 2 18.5 2.5 18.5 4.5C18.5 6.5 18.5 7.5 18.5 9C18.5 10.5 21 11.5 21 11.5C21 11.5 18.5 12.5 18.5 14C18.5 15.5 18.5 17.5 18.5 19.5C18.5 21.5 17 22 16 22"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              d="M23.7499 11.0833L31.6666 18.9999L23.7499 26.9166M14.2499 26.9166L6.33325 18.9999L14.2499 11.0833"
             />
           </svg>
-
         </button>
 
         <button
@@ -589,37 +389,16 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           className={`${s.onlyIcon} ${editor.isActive('codeBlock') ? s.isActive : ''}`}
         >
           <svg
-            width={22}
-            height={22}
-            viewBox="0 0 24 24"
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M8 6.5L2 12.7161L8 18.5"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M16 6.5L22 12.7161L16 18.5"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M13.3302 2.5L10.9453 21.5"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
+              d="M4.75 9.49992H4.78039M4.78039 9.49992H33.2198M4.78039 9.49992C4.75 9.99768 4.75 10.6113 4.75 11.4002V26.6002C4.75 28.3737 4.75 29.2592 5.09515 29.9366C5.39875 30.5325 5.88283 31.0182 6.47868 31.3218C7.15541 31.6666 8.04176 31.6666 9.81183 31.6666L28.1882 31.6666C29.9583 31.6666 30.8433 31.6666 31.52 31.3218C32.1159 31.0182 32.6016 30.5325 32.9052 29.9366C33.25 29.2599 33.25 28.3748 33.25 26.6048L33.25 11.395C33.25 10.6086 33.25 9.99658 33.2198 9.49992M4.78039 9.49992C4.8183 8.87875 4.90354 8.43798 5.09515 8.06193C5.39874 7.46608 5.88283 6.982 6.47868 6.6784C7.15607 6.33325 8.04348 6.33325 9.81698 6.33325H28.1836C29.9571 6.33325 30.8427 6.33325 31.52 6.6784C32.1159 6.982 32.6016 7.46608 32.9052 8.06193C33.0968 8.43798 33.1819 8.87875 33.2198 9.49992M33.2198 9.49992H33.25M22.1667 17.4166L25.3333 20.5833L22.1667 23.7499M15.8333 23.7499L12.6667 20.5833L15.8333 17.4166"
             />
           </svg>
-
         </button>
 
         <button
@@ -627,22 +406,16 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           className={`${s.onlyIcon} ${editor.isActive('link') ? s.isActive : ''}`}
         >
           <svg
-            width={23}
-            height={23}
-            viewBox="0 0 24 24"
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M12.3536 4.78247L4.92898 12.2071C3.17162 13.9644 3.17162 16.8137 4.92898 18.571C6.68634 20.3284 9.53559 20.3284 11.2929 18.571L20.1318 9.73224C21.3033 8.56064 21.3033 6.66114 20.1318 5.48959C18.9602 4.318 17.0607 4.318 15.8891 5.48959L7.05029 14.3284C6.46454 14.9142 6.46454 15.8639 7.05029 16.4497C7.63609 17.0355 8.58584 17.0355 9.17164 16.4497L16.5962 9.02509"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              d="M14.522 23.4789L23.4787 14.5222M11.1639 17.8806L8.92468 20.1198C6.45136 22.5931 6.45065 26.6034 8.92397 29.0767C11.3973 31.5501 15.4085 31.5493 17.8818 29.076L20.1186 26.8371M17.8804 11.1625L20.1196 8.92331C22.5929 6.44999 26.6025 6.45043 29.0758 8.92375C31.5491 11.3971 31.549 15.4072 29.0757 17.8805L26.8377 20.1196"
             />
           </svg>
-
         </button>
 
 
@@ -651,69 +424,16 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           className={s.onlyIcon}
         >
           <svg
-            width={21}
-            height={21}
-            viewBox="0 0 24 24"
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M21.5 8V21H2.5V8"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M2.5 2H21.5V8H2.5V2Z"
-              fill="white"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinejoin="round"
-            />
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M5.5 6C6.0523 6 6.5 5.5523 6.5 5C6.5 4.44771 6.0523 4 5.5 4C4.94771 4 4.5 4.44771 4.5 5C4.5 5.5523 4.94771 6 5.5 6Z"
-              fill="black"
-
-            />
-            <path
-              d="M6.25 5C6.25 5.41423 5.91423 5.75 5.5 5.75C5.08578 5.75 4.75 5.41423 4.75 5C4.75 4.58579 5.08579 4.25 5.5 4.25C5.91423 4.25 6.25 4.58578 6.25 5Z"
-              stroke="black"
-
-              strokeWidth="0.5"
-            />
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M8.5 6C9.0523 6 9.5 5.5523 9.5 5C9.5 4.44771 9.0523 4 8.5 4C7.9477 4 7.5 4.44771 7.5 5C7.5 5.5523 7.9477 6 8.5 6Z"
-              fill="black"
-
-            />
-            <path
-              d="M9.25 5C9.25 5.41423 8.91423 5.75 8.5 5.75C8.08577 5.75 7.75 5.41423 7.75 5C7.75 4.58578 8.08577 4.25 8.5 4.25C8.91423 4.25 9.25 4.58578 9.25 5Z"
-              stroke="black"
-
-              strokeWidth="0.5"
-            />
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M11.5 6C12.0523 6 12.5 5.5523 12.5 5C12.5 4.44771 12.0523 4 11.5 4C10.9477 4 10.5 4.44771 10.5 5C10.5 5.5523 10.9477 6 11.5 6Z"
-              fill="black"
-
-            />
-            <path
-              d="M12.25 5C12.25 5.41423 11.9142 5.75 11.5 5.75C11.0858 5.75 10.75 5.41423 10.75 5C10.75 4.58578 11.0858 4.25 11.5 4.25C11.9142 4.25 12.25 4.58578 12.25 5Z"
-              stroke="black"
-
-              strokeWidth="0.5"
+              d="M4.75 19H12.6667M4.75 19C4.75 26.8701 11.1299 33.25 19 33.25M4.75 19C4.75 11.1299 11.1299 4.75 19 4.75M12.6667 19H25.3333M12.6667 19C12.6667 26.8701 15.5022 33.25 19 33.25M12.6667 19C12.6667 11.1299 15.5022 4.75 19 4.75M25.3333 19H33.25M25.3333 19C25.3333 11.1299 22.4978 4.75 19 4.75M25.3333 19C25.3333 26.8701 22.4978 33.25 19 33.25M33.25 19C33.25 11.1299 26.8701 4.75 19 4.75M33.25 19C33.25 26.8701 26.8701 33.25 19 33.25"
             />
           </svg>
-
         </button>
 
         <button
@@ -721,40 +441,16 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           className={`${s.onlyIcon} ${editor.isActive('image') ? s.isActive : ''}`}
         >
           <svg
-            width={22}
-            height={22}
-            viewBox="0 0 24 24"
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M3.5 4H20.5C21.0523 4 21.5 4.44772 21.5 5V19C21.5 19.5523 21.0523 20 20.5 20H3.5C2.94772 20 2.5 19.5523 2.5 19V5C2.5 4.44772 2.94772 4 3.5 4Z"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M7.25 9C7.66421 9 8 8.66421 8 8.25C8 7.83579 7.66421 7.5 7.25 7.5C6.83579 7.5 6.5 7.83579 6.5 8.25C6.5 8.66421 6.83579 9 7.25 9Z"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M7.5 12L10 14L13 10.5L21.5 17V19C21.5 19.5523 21.0523 20 20.5 20H3.5C2.94772 20 2.5 19.5523 2.5 19V17L7.5 12Z"
-              fill="white"
-              stroke="black"
-
-              strokeWidth={2}
-              strokeLinejoin="round"
+              d="M4.75008 28.5001C4.75 28.3979 4.75 28.2924 4.75 28.1836V9.81698C4.75 8.04348 4.75 7.15607 5.09515 6.47868C5.39875 5.88283 5.88283 5.39875 6.47868 5.09515C7.15607 4.75 8.04348 4.75 9.81698 4.75H28.1836C29.9571 4.75 30.8434 4.75 31.5208 5.09515C32.1167 5.39875 32.6016 5.88283 32.9052 6.47868C33.25 7.1554 33.25 8.04174 33.25 9.81177V28.1882C33.25 28.9562 33.25 29.5575 33.2218 30.0476M4.75008 28.5001C4.7513 30.065 4.77117 30.8842 5.09515 31.52C5.39875 32.1159 5.88283 32.6016 6.47868 32.9052C7.1554 33.25 8.04174 33.25 9.81177 33.25H28.189C29.959 33.25 30.8441 33.25 31.5208 32.9052C32.1167 32.6016 32.6016 32.1159 32.9052 31.52C33.1004 31.1369 33.1851 30.687 33.2218 30.0476M4.75008 28.5001L12.2993 19.6927L12.3015 19.6903C12.9711 18.9091 13.3064 18.5179 13.7042 18.3769C14.0536 18.253 14.435 18.2559 14.7827 18.3846C15.1788 18.5313 15.5088 18.927 16.1689 19.719L20.3982 24.7942C21.0092 25.5274 21.3164 25.8961 21.6895 26.0441C22.0186 26.1746 22.3814 26.1893 22.721 26.0891C23.1075 25.975 23.4477 25.6349 24.1281 24.9545L24.9151 24.1675C25.6078 23.4748 25.9541 23.1287 26.3462 23.0155C26.6905 22.9162 27.0586 22.9375 27.3898 23.0743C27.767 23.23 28.0728 23.6113 28.6848 24.3762L33.2218 30.0476M33.2218 30.0476L33.25 30.0827M23.75 14.25C22.8756 14.25 22.1667 13.5411 22.1667 12.6667C22.1667 11.7922 22.8756 11.0833 23.75 11.0833C24.6245 11.0833 25.3333 11.7922 25.3333 12.6667C25.3333 13.5411 24.6245 14.25 23.75 14.25Z"
             />
           </svg>
-
         </button>
 
         <button
@@ -762,23 +458,14 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           className={`${s.onlyIcon} ${editor.isActive('blockquote') ? s.isActive : ''}`}
         >
           <svg
-            width={24}
-            height={24}
-            viewBox="0 0 24 24"
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M9.42665 4.55793C5.66135 6.9761 3.56957 9.79055 3.15128 13.0014C2.50011 17.9999 6.9702 20.4466 9.23515 18.2483C11.5001 16.05 10.1424 13.2597 8.50235 12.497C6.8623 11.7343 5.85935 11.9999 6.0343 10.9807C6.20925 9.9615 8.54255 7.1356 10.5925 5.81955C10.7285 5.7039 10.7802 5.4795 10.6493 5.3093C10.5631 5.1973 10.3942 4.97772 10.1424 4.65051C9.92225 4.36438 9.71135 4.37508 9.42665 4.55793Z"
-              fill="black"
-            />
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M19.3395 4.55793C15.5742 6.9761 13.4824 9.79055 13.0641 13.0014C12.413 17.9999 16.8831 20.4466 19.148 18.2483C21.413 16.05 20.0553 13.2597 18.4152 12.497C16.7752 11.7343 15.7722 11.9999 15.9472 10.9807C16.1221 9.9615 18.4554 7.1356 20.5053 5.81955C20.6413 5.7039 20.6931 5.4795 20.5621 5.3093C20.476 5.1973 20.307 4.97772 20.0553 4.65051C19.8351 4.36438 19.6242 4.37508 19.3395 4.55793Z"
-              fill="black"
+              d="M25.3332 26.9167C27.9565 26.9167 30.0832 24.7901 30.0832 22.1667V19.0002M30.0832 19.0002V13.6143C30.0832 12.7293 30.0832 12.2861 29.9108 11.9477C29.759 11.6498 29.5161 11.4077 29.2182 11.2559C28.8795 11.0834 28.4367 11.0834 27.55 11.0834H24.7C23.8132 11.0834 23.3695 11.0834 23.0308 11.2559C22.7329 11.4077 22.4909 11.6498 22.3391 11.9477C22.1665 12.2864 22.1665 12.7301 22.1665 13.6169V16.4669C22.1665 17.3536 22.1665 17.7964 22.3391 18.1351C22.4909 18.433 22.7329 18.6758 23.0308 18.8276C23.3692 19 23.8124 19 24.6974 19L30.0832 19.0002ZM11.0832 26.9167C13.7065 26.9167 15.8332 24.7901 15.8332 22.1667L15.8332 19.0002M15.8332 19.0002V13.6143C15.8332 12.7293 15.8332 12.2861 15.6608 11.9477C15.509 11.6498 15.2661 11.4077 14.9682 11.2559C14.6295 11.0834 14.1867 11.0834 13.3 11.0834H10.45C9.56324 11.0834 9.11954 11.0834 8.78084 11.2559C8.48292 11.4077 8.24088 11.6498 8.08908 11.9477C7.9165 12.2864 7.9165 12.7301 7.9165 13.6169V16.4669C7.9165 17.3536 7.9165 17.7964 8.08908 18.1351C8.24088 18.433 8.48292 18.6758 8.78084 18.8276C9.1192 19 9.56238 19 10.4474 19L15.8332 19.0002Z"
             />
           </svg>
         </button>
@@ -788,22 +475,16 @@ const MenuBar = ({ editor, configAndActions }: any) => {
           className={`${s.onlyIcon} ${editor.isActive('horizontalRule') ? s.isActive : ''}`}
         >
           <svg
-            width={32}
-            height={32}
-            viewBox="0 0 32 32"
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-
           >
             <path
-              d="M5 16H27"
-              stroke="black"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              d="M7 19H31"
             />
           </svg>
-
         </button>
 
         <TableOptions
@@ -963,7 +644,7 @@ const CustomTableHeader = TableHeader.extend({
 * @param onClick Function to call when the button is clicked
 * @returns Button component
 */
-export const LidiaEditor = ({ className, html, setHtml, onlyPreview = false, editorStyle = "default" }: EditorProps) => {
+export const LidiaEditor = ({ className = "", html, setHtml, onlyPreview = false, editorStyle = "default" }: EditorProps) => {
   const [overlayisActive, setOverlayIsActive] = useState(false);
   const editor = useEditor({
     onUpdate({ editor }: any) {
@@ -976,7 +657,6 @@ export const LidiaEditor = ({ className, html, setHtml, onlyPreview = false, edi
       Color.configure({
         types: [
           TextStyle.name,
-          // ListItem.name
         ]
       }),
       TextAlign.configure({
@@ -1048,8 +728,6 @@ export const LidiaEditor = ({ className, html, setHtml, onlyPreview = false, edi
   );
 }
 
-
-
 const FontSelector = ({ editor, getFontValue }: any) => {
   const [active, setActive] = useState(false);
 
@@ -1062,14 +740,21 @@ const FontSelector = ({ editor, getFontValue }: any) => {
             {getFontValue() || "Poppins"}
           </span>
           <svg
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
+            fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            width={24}
-            height={24}
-            viewBox="0 0 24 24"
-            style={{ fill: "rgba(0, 0, 0, 1)" }}
           >
-            <path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z" />
+            <path
+              d="M25.3333 15.8333L19 22.1666L12.6667 15.8333"
+              stroke="white"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
+
         </button>
         <div className={s.options}>
           <div
@@ -1181,14 +866,21 @@ const HeadingSelector = ({ editor, getHeadingValue }: any) => {
             {getHeadingValue() || "Normal"}
           </span>
           <svg
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
+            fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            width={24}
-            height={24}
-            viewBox="0 0 24 24"
-            style={{ fill: "rgba(0, 0, 0, 1)" }}
           >
-            <path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z" />
+            <path
+              d="M25.3333 15.8333L19 22.1666L12.6667 15.8333"
+              stroke="white"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
+
         </button>
         <div className={s.options}>
           <div
@@ -1313,13 +1005,15 @@ const AlignSelector = ({ editor, getValue, type, options }: any) => {
               {getValue(type) || <AlignIcon id="left" />}
             </span>
             <svg
+              width={38}
+              height={38}
+              viewBox="0 0 38 38"
+              fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              width={24}
-              height={24}
-              viewBox="0 0 24 24"
-              style={{ fill: "rgba(0, 0, 0, 1)" }}
             >
-              <path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z" />
+              <path
+                d="M25.3333 15.8333L19 22.1666L12.6667 15.8333"
+              />
             </svg>
           </button>
           <div className={s.options}>
@@ -1367,18 +1061,17 @@ const TableOptions = ({ editor }: any) => {
       <div className={`${s.iconSelectModal} ${s.inRow} ${active ? s.show : ''} `}>
         <button className={`${s.selector} `} onClick={() => setActive(!active)}>
           <svg
-            width={32}
-            height={32}
-            viewBox="0 0 24 24"
+            width={38}
+            height={38}
+            viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M20 5H4C2.9 5 2 5.9 2 7V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17V7C22 5.9 21.1 5 20 5ZM8 17.5H4C3.7 17.5 3.5 17.3 3.5 17.1V17V15H8V17.5ZM8 13.5H3.5V10.5H8V13.5ZM14.5 17.5H9.5V15H14.5V17.5ZM14.5 13.5H9.5V10.5H14.5V13.5ZM20.5 17C20.5 17.3 20.3 17.5 20.1 17.5H16V15H20.5V17ZM20.5 13.5H16V10.5H20.5V13.5ZM20.5 9H16.1H16H14.5H9.5H8H7.9H3.5V7C3.5 6.7 3.7 6.5 3.9 6.5H7.9H16.1H20C20.3 6.5 20.5 6.7 20.5 6.9V9Z"
-              fill="black"
-              strokeWidth={2}
+              d="M6.3335 23.75V26.6004C6.3335 28.3739 6.3335 29.2601 6.67864 29.9375C6.98224 30.5334 7.46633 31.0183 8.06217 31.3219C8.7389 31.6667 9.62524 31.6667 11.3953 31.6667H19.0002M6.3335 23.75V14.25M6.3335 23.75H19.0002M6.3335 14.25V11.4004C6.3335 9.62685 6.3335 8.73944 6.67864 8.06205C6.98224 7.46621 7.46633 6.98212 8.06217 6.67852C8.73956 6.33337 9.62697 6.33337 11.4005 6.33337H19.0002M6.3335 14.25H19.0002M19.0002 6.33337H26.6005C28.374 6.33337 29.2603 6.33337 29.9376 6.67852C30.5335 6.98212 31.0184 7.46621 31.322 8.06205C31.6668 8.73878 31.6668 9.62511 31.6668 11.3951V14.25M19.0002 6.33337V14.25M19.0002 14.25V23.75M19.0002 14.25H31.6668M19.0002 23.75V31.6667M19.0002 23.75H31.6668M19.0002 31.6667H26.6058C28.3759 31.6667 29.2609 31.6667 29.9376 31.3219C30.5335 31.0183 31.0184 30.5334 31.322 29.9375C31.6668 29.2608 31.6668 28.3757 31.6668 26.6057V23.75M31.6668 23.75V14.25"
             />
           </svg>
+
         </button>
         <div className={s.options}>
 
@@ -1387,15 +1080,14 @@ const TableOptions = ({ editor }: any) => {
             className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
-              width={36}
-              height={36}
-              viewBox="0 0 24 24"
+              width={38}
+              height={38}
+              viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M20 5H4C2.9 5 2 5.9 2 7V9V10.5V13.5V15V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17V15V13.5V10.5V9V7C22 5.9 21.1 5 20 5ZM9.5 13.5V10.5H14.5V13.5H9.5ZM14.5 15V17.5H9.5V15H14.5ZM9.5 9V6.5H14.5V9H9.5ZM3.5 7C3.5 6.7 3.7 6.5 4 6.5H8V9H3.5V7ZM3.5 10.5H8V13.5H3.5V10.5ZM3.5 17V15H8V17.5H4C3.7 17.5 3.5 17.3 3.5 17ZM20.5 17C20.5 17.3 20.3 17.5 20 17.5H16V15H20.5V17ZM20.5 13.5H16V10.5H20.5V13.5ZM16 9V6.5H20C20.3 6.5 20.5 6.7 20.5 7V9H16Z"
-                fill="black"
+                d="M17.4167 6.33337H25.017C26.7905 6.33337 27.6768 6.33337 28.3541 6.67852C28.95 6.98212 29.4349 7.46621 29.7385 8.06205C30.0833 8.73878 30.0833 9.62511 30.0833 11.3951V14.2504L17.4168 14.2502M17.4167 6.33337H9.81698C8.04348 6.33337 7.15607 6.33337 6.47868 6.67852C5.88283 6.98212 5.39875 7.46621 5.09515 8.06205C4.75 8.73944 4.75 9.62685 4.75 11.4004V14.25M17.4167 6.33337L17.4168 14.2502M4.75 14.25V23.75M4.75 14.25L17.4168 14.2502M4.75 23.75V26.6004C4.75 28.3739 4.75 29.2601 5.09515 29.9375C5.39875 30.5334 5.88283 31.0183 6.47868 31.3219C7.1554 31.6667 8.04174 31.6667 9.81177 31.6667H17.417L17.4168 14.2502M4.75 23.75H17.4167M23.75 25.3334H28.5M28.5 25.3334H33.25M28.5 25.3334V30.0834M28.5 25.3334V20.5834"
               />
             </svg>
           </button>
@@ -1405,45 +1097,17 @@ const TableOptions = ({ editor }: any) => {
             className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
-              width={26}
-              height={26}
-              viewBox="0 0 24 24"
+              width={38}
+              height={38}
+              viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M7.5 6L8.1 2.5H15.9L16.5 6"
-                stroke="black"
-
-                strokeWidth={2}
-                strokeLinejoin="round"
-              />
-              <path
-                d="M3 6H21"
-                stroke="black"
-
-                strokeWidth={2}
-                strokeLinecap="round"
-              />
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M18.5 6L17.5 21.5H6.5L5.5 6H18.5Z"
-                fill="white"
-                stroke="black"
-
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M9.5 17.5H14.5"
-                stroke="black"
-
-                strokeWidth={2}
-                strokeLinecap="round"
+                d="M17.4167 6.33337H25.017C26.7905 6.33337 27.6768 6.33337 28.3541 6.67852C28.95 6.98212 29.4349 7.46621 29.7385 8.06205C30.0833 8.73878 30.0833 9.62511 30.0833 11.3951V14.2504L17.4168 14.2502M17.4167 6.33337H9.81698C8.04348 6.33337 7.15607 6.33337 6.47868 6.67852C5.88283 6.98212 5.39875 7.46621 5.09515 8.06205C4.75 8.73944 4.75 9.62685 4.75 11.4004V14.25M17.4167 6.33337L17.4168 14.2502M4.75 14.25V23.75M4.75 14.25L17.4168 14.2502M4.75 23.75V26.6004C4.75 28.3739 4.75 29.2601 5.09515 29.9375C5.39875 30.5334 5.88283 31.0183 6.47868 31.3219C7.1554 31.6667 8.04174 31.6667 9.81177 31.6667H17.417L17.4168 14.2502M4.75 23.75H17.4167M23.75 25.3334H33.25"
               />
             </svg>
+
           </button>
 
           <button
@@ -1451,16 +1115,14 @@ const TableOptions = ({ editor }: any) => {
             className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
-              width={40}
-              height={40}
-              viewBox="0 0 24 24"
+              width={38}
+              height={38}
+              viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M20 5H4C2.9 5 2 5.9 2 7V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17V7C22 5.9 21.1 5 20 5ZM8 17.5H4C3.7 17.5 3.5 17.3 3.5 17.1V17V15H8V17.5ZM8 13.5H3.5V10.5H8V13.5ZM8 9H3.5V7C3.5 6.7 3.7 6.5 3.9 6.5H8V9ZM20.5 17C20.5 17.3 20.3 17.5 20.1 17.5H16V15H20.5V17ZM20.5 13.5H16V10.5H20.5V13.5ZM20.5 9H16V6.5H20C20.3 6.5 20.5 6.7 20.5 6.9V9Z"
-                fill="black"
-
+                d="M7.9165 26.9167H12.6665M12.6665 26.9167H17.4165M12.6665 26.9167V22.1667M12.6665 26.9167V31.6667M22.1665 33.25H23.7498C25.4987 33.25 26.9165 31.8322 26.9165 30.0833V7.91667C26.9165 6.16777 25.4987 4.75 23.7498 4.75H20.5832C18.8343 4.75 17.4165 6.16777 17.4165 7.91667V17.4167"
               />
             </svg>
           </button>
@@ -1470,18 +1132,17 @@ const TableOptions = ({ editor }: any) => {
             className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
-              width={35}
-              height={35}
-              viewBox="0 0 24 24"
+              width={38}
+              height={38}
+              viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M20 5H4C2.9 5 2 5.9 2 7V9V10.5V13.5V15V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17V15V13.5V10.5V9V7C22 5.9 21.1 5 20 5ZM16 6.5H20C20.3 6.5 20.5 6.7 20.5 7V9H16V6.5ZM9.5 6.5H14.5V9H9.5V6.5ZM3.5 7C3.5 6.7 3.7 6.5 4 6.5H8V9H3.5V7ZM8 17.5H4C3.7 17.5 3.5 17.3 3.5 17V15H8V17.5ZM14.5 17.5H9.5V15H14.5V17.5ZM20.5 17C20.5 17.3 20.3 17.5 20 17.5H16V15H20.5V17Z"
-                fill="black"
-
+                d="M4.75 22.1666V23.75C4.75 25.4989 6.16777 26.9166 7.91667 26.9166L30.0833 26.9166C31.8322 26.9166 33.25 25.4989 33.25 23.75L33.25 20.5833C33.25 18.8344 31.8322 17.4166 30.0833 17.4166H20.5833M15.8333 12.6666H11.0833M11.0833 12.6666H6.33333M11.0833 12.6666V7.91663M11.0833 12.6666V17.4166"
               />
             </svg>
+
           </button>
 
           <button
@@ -1489,18 +1150,14 @@ const TableOptions = ({ editor }: any) => {
             className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
-              width={36}
-              height={36}
-              viewBox="0 0 30 30"
+              width={38}
+              height={38}
+              viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M25.3999 6H4.59999C3.17 6 2 7.17 2 8.59999V21.5999C2 23.0299 3.17 24.1999 4.59999 24.1999H25.3999C26.8299 24.1999 27.9999 23.0299 27.9999 21.5999V18.3511C27.4713 18.9757 26.8059 19.4808 26.0499 19.8201V21.5999C26.0499 21.9899 25.7899 22.2499 25.5299 22.2499H20.1999V19.4742C18.639 18.5037 17.5999 16.7732 17.5999 14.7999V14.1C17.5999 12.1267 18.639 10.3962 20.1999 9.42575V7.94999H25.3999C25.7899 7.94999 26.0499 8.20999 26.0499 8.46999V9.07981C26.8059 9.41915 27.4713 9.92424 27.9999 10.5488V8.59999C27.9999 7.17 26.8299 6 25.3999 6ZM9.79997 22.2499H4.59999C4.20999 22.2499 3.94999 21.9899 3.94999 21.7299V21.5999V18.9999H9.79997V22.2499ZM9.79997 17.05H3.94999V13.15H9.79997V17.05ZM9.79997 11.2H3.94999V8.59999C3.94999 8.20999 4.20999 7.94999 4.46999 7.94999H9.79997V11.2ZM27.9999 16.725L25.725 14.45L27.9999 12.175L25.725 9.89998L23.45 12.175L21.175 9.89998L18.9 12.175L21.175 14.45L18.9 16.725L21.175 18.9999L23.45 16.725L25.725 18.9999L27.9999 16.725Z"
-                fill="black"
-
+                d="M15.8335 33.25H14.2502C12.5013 33.25 11.0835 31.8322 11.0835 30.0833V7.91667C11.0835 6.16777 12.5013 4.75 14.2502 4.75H17.4168C19.1657 4.75 20.5835 6.16777 20.5835 7.91667V17.4167M30.0835 25.3333H20.5835"
               />
             </svg>
           </button>
@@ -1510,17 +1167,14 @@ const TableOptions = ({ editor }: any) => {
             className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
-              width={35}
-              height={35}
-              viewBox="0 0 30 30"
+              width={38}
+              height={38}
+              viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M25.7856 6H4.64285C3.18928 6 2 7.18928 2 8.64285V11.2857V13.2678V17.2321V19.2142V21.8571C2 23.3106 3.18928 24.4999 4.64285 24.4999H25.7856C27.2392 24.4999 28.4285 23.3106 28.4285 21.8571V19.2142V17.7748C27.9839 18.8033 27.2997 19.7041 26.4463 20.4067V21.8571C26.4463 22.2535 26.182 22.5178 25.7856 22.5178H20.4999V21.8389C19.7934 21.6847 19.1268 21.4237 18.5178 21.0738V22.5178H11.9107V19.2142H16.4102C15.5249 18.0419 15 16.5822 15 15C15 13.6355 15.3904 12.3622 16.0656 11.2857H11.9107V7.98213H18.5178V8.9262C19.1268 8.57629 19.7934 8.31535 20.4999 8.1611V7.98213H25.7856C26.182 7.98213 26.4463 8.24642 26.4463 8.64285V9.59328C27.2997 10.2959 27.9839 11.1967 28.4285 12.2252V11.2857V8.64285C28.4285 7.18928 27.2392 6 25.7856 6ZM3.98213 8.64285C3.98213 8.24642 4.24642 7.98213 4.64285 7.98213H9.92854V11.2857H3.98213V8.64285ZM9.92854 22.5178H4.64285C4.24642 22.5178 3.98213 22.2535 3.98213 21.8571V19.2142H9.92854V22.5178ZM27 17.5L24.5 15L27 12.5L24.5 10L22 12.5L19.5 10L17 12.5L19.5 15L17 17.5L19.5 20L22 17.5L24.5 20L27 17.5Z"
-                fill="black"
+                d="M22.1667 25.3334H31.6667M33.25 15.8334V14.25C33.25 12.5011 31.8322 11.0834 30.0833 11.0834H7.91667C6.16776 11.0834 4.75 12.5011 4.75 14.25V17.4167C4.75 19.1656 6.16777 20.5834 7.91667 20.5834H17.4167"
               />
             </svg>
           </button>
@@ -1530,55 +1184,14 @@ const TableOptions = ({ editor }: any) => {
             className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
-              width={28}
-              height={28}
-              viewBox="0 0 24 24"
+              width={38}
+              height={38}
+              viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M10 7V2.5C10 2.22386 9.77615 2 9.5 2H2.5C2.22386 2 2 2.22386 2 2.5V21.5C2 21.7761 2.22386 22 2.5 22H9.5C9.77615 22 10 21.7761 10 21.5V17"
-                stroke="black"
-
-                strokeWidth={2}
-                strokeLinecap="round"
-              />
-              <path
-                d="M14 17V21.5C14 21.7761 14.2239 22 14.5 22H21.5C21.7761 22 22 21.7761 22 21.5V2.5C22 2.22386 21.7761 2 21.5 2H14.5C14.2239 2 14 2.22386 14 2.5V7"
-                stroke="black"
-
-                strokeWidth={2}
-                strokeLinecap="round"
-              />
-              <path
-                d="M14 12H22"
-                stroke="black"
-
-                strokeWidth={2}
-                strokeLinecap="round"
-              />
-              <path
-                d="M2.5 12H10"
-                stroke="black"
-
-                strokeWidth={2}
-                strokeLinecap="round"
-              />
-              <path
-                d="M16.3742 14.4092L15.5787 13.6137L13.9878 12.0227L15.5787 10.4317L16.3742 9.63623"
-                stroke="black"
-
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M7.6875 14.4092L8.483 13.6137L10.074 12.0227L8.483 10.4317L7.6875 9.63623"
-                stroke="black"
-
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                d="M19.0002 25.3334V26.9167M19.0002 17.4167V20.5834M19.0002 11.0834V12.6667M6.3335 26.6004V11.4004C6.3335 9.62685 6.3335 8.73944 6.67864 8.06205C6.98224 7.46621 7.46633 6.98212 8.06217 6.67852C8.73956 6.33337 9.62697 6.33337 11.4005 6.33337H26.6005C28.374 6.33337 29.2603 6.33337 29.9376 6.67852C30.5335 6.98212 31.0184 7.46621 31.322 8.06205C31.6668 8.73878 31.6668 9.62511 31.6668 11.3951V26.6057C31.6668 28.3757 31.6668 29.2608 31.322 29.9375C31.0184 30.5334 30.5335 31.0183 29.9376 31.3219C29.2609 31.6667 28.3759 31.6667 26.6058 31.6667H11.3953C9.62524 31.6667 8.7389 31.6667 8.06217 31.3219C7.46633 31.0183 6.98224 30.5334 6.67864 29.9375C6.3335 29.2601 6.3335 28.3739 6.3335 26.6004Z"
               />
             </svg>
           </button>
@@ -1589,98 +1202,37 @@ const TableOptions = ({ editor }: any) => {
             className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
-              width={28}
-              height={28}
-              viewBox="0 0 24 24"
+              width={38}
+              height={38}
+              viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M22 7V2.5C22 2.22386 21.7761 2 21.5 2H14.5C14.2239 2 14 2.22386 14 2.5V21.5C14 21.7761 14.2239 22 14.5 22H21.5C21.7761 22 22 21.7761 22 21.5V17"
-                stroke="black"
-
-                strokeWidth={2}
-                strokeLinecap="round"
+                d="M22.1665 10.2917V27.7084C22.1665 28.4441 22.1665 28.8119 22.2273 29.1178C22.4772 30.374 23.4593 31.3558 24.7155 31.6056C25.0213 31.6665 25.3892 31.6665 26.1249 31.6665C26.8606 31.6665 27.2283 31.6665 27.5342 31.6056C28.7904 31.3558 29.7722 30.374 30.0221 29.1178C30.0829 28.8119 30.0832 28.4441 30.0832 27.7084V10.2917C30.0832 9.55601 30.0829 9.18822 30.0221 8.88232C29.7722 7.62614 28.7905 6.64409 27.5343 6.39422C27.2284 6.33337 26.8605 6.33337 26.1248 6.33337C25.3891 6.33337 25.0214 6.33337 24.7155 6.39422C23.4593 6.64409 22.4772 7.62614 22.2273 8.88232C22.1665 9.18822 22.1665 9.556 22.1665 10.2917Z"
               />
               <path
-                d="M2 12H10"
-                stroke="black"
-
-                strokeWidth={2}
-                strokeLinecap="round"
-              />
-              <path
-                d="M14.5 12H22"
-                stroke="black"
-
-                strokeWidth={2}
-                strokeLinecap="round"
-              />
-              <path
-                d="M4.37424 14.4092L3.57874 13.6137L1.98779 12.0227L3.57874 10.4317L4.37424 9.63623"
-                stroke="black"
-
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M19.6875 14.4092L20.483 13.6137L22.074 12.0227L20.483 10.4317L19.6875 9.63623"
-                stroke="black"
-
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M2 17V21.5C2 21.7761 2.22385 22 2.5 22H9.5C9.77615 22 10 21.7761 10 21.5V2.5C10 2.22386 9.77615 2 9.5 2H2.5C2.22385 2 2 2.22386 2 2.5V7"
-                stroke="black"
-
-                strokeWidth={2}
-                strokeLinecap="round"
+                d="M7.9165 10.2917V27.7084C7.9165 28.4441 7.9165 28.8119 7.97735 29.1178C8.22722 30.374 9.20927 31.3558 10.4655 31.6056C10.7713 31.6665 11.1392 31.6665 11.8749 31.6665C12.6106 31.6665 12.9783 31.6665 13.2842 31.6056C14.5404 31.3558 15.5222 30.374 15.7721 29.1178C15.8329 28.8119 15.8332 28.4441 15.8332 27.7084V10.2917C15.8332 9.55601 15.8329 9.18822 15.7721 8.88232C15.5222 7.62614 14.5405 6.64409 13.2843 6.39422C12.9784 6.33337 12.6105 6.33337 11.8748 6.33337C11.1391 6.33337 10.7714 6.33337 10.4655 6.39422C9.20927 6.64409 8.22722 7.62614 7.97735 8.88232C7.9165 9.18822 7.9165 9.556 7.9165 10.2917Z"
               />
             </svg>
           </button>
 
           <button
             className={`${s.buttonMenu} ${s.onlyIcon} ${s.colorPicker}`}
+            title='Change background'
           >
             <svg
-              width={24}
-              height={24}
-              viewBox="0 0 32 32"
+              width={38}
+              height={38}
+              viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M14.2929 4.20711L2.70711 15.7929C2.31658 16.1834 2.31658 16.8166 2.70711 17.2071L13.2929 27.7929C13.6834 28.1834 14.3166 28.1834 14.7071 27.7929L26.2929 16.2071C26.6834 15.8166 26.6834 15.1834 26.2929 14.7929L15.7071 4.20711C15.3166 3.81658 14.6834 3.81658 14.2929 4.20711Z"
-                stroke="black"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M16 17.001C17.3807 17.001 18.5 15.8817 18.5 14.501C18.5 13.1203 17.3807 12.001 16 12.001C14.6193 12.001 13.5 13.1203 13.5 14.501C13.5 15.8817 14.6193 17.001 16 17.001Z"
-                stroke="black"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M26 24.5C26 22.0007 28.5 19.5 28.5 19.5C28.5 19.5 31 22.0007 31 24.5C31 25.163 30.7366 25.7989 30.2678 26.2678C29.7989 26.7366 29.163 27 28.5 27C27.837 27 27.2011 26.7366 26.7322 26.2678C26.2634 25.7989 26 25.163 26 24.5Z"
-                stroke="black"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M14.2322 12.7334L6.23224 4.7334"
-                stroke="black"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                d="M10.2917 33.25H32.4118C32.8747 33.25 33.2504 32.8748 33.2504 32.4119L33.25 23.0047M12.6357 32.7295L32.6834 23.3812C33.1029 23.1855 33.2843 22.6867 33.0887 22.2671L29.1131 13.742C28.9174 13.3225 28.4186 13.1403 27.999 13.3359L19.0479 17.5102M15.6462 29.1409C14.8541 32.0972 11.8154 33.8516 8.85909 33.0594C5.9028 32.2673 4.14804 29.2289 4.94018 26.2726L10.6653 4.90613C10.7851 4.45896 11.2443 4.19349 11.6915 4.31331L20.7782 6.74766C21.2253 6.86748 21.4908 7.32699 21.3709 7.77416L15.6462 29.1409ZM10.2917 27.8668H10.2948L10.2948 27.8699L10.2917 27.8699V27.8668Z"
               />
             </svg>
+
             <div
               className={s.inputHidden}
             >
@@ -1700,34 +1252,17 @@ const TableOptions = ({ editor }: any) => {
             className={`${s.buttonMenu} ${s.onlyIcon} ${s.colorPicker}`}
           >
             <svg
-              width={24}
-              height={24}
-              viewBox="0 0 32 32"
+              width={38}
+              height={38}
+              viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M15.9993 6.99902V24.999"
-                stroke="black"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M5.99927 10.999V6.99902H25.9993V10.999"
-                stroke="black"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M11.9993 24.999H19.9993"
-                stroke="black"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                d="M15.8333 30.0833H19M19 30.0833H22.1667M19 30.0833V7.91663M19 7.91663H9.5V9.49996M19 7.91663H28.5V9.49996"
               />
             </svg>
+
             <div
               className={s.inputHidden}
             >
@@ -1755,170 +1290,52 @@ const AlignIcon = ({ id }: any) => {
 
   if (id === "left") {
     return <svg
-      width={26}
-      height={26}
-      viewBox="0 0 24 24"
+      width={38}
+      height={38}
+      viewBox="0 0 38 38"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M21 4.5H3"
-        stroke="black"
-
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M17 9.5H3"
-        stroke="black"
-
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M21 14.5H3"
-        stroke="black"
-
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M17 19.5H3"
-        stroke="black"
-
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="M6.3335 28.5H22.1668M6.3335 22.1667H31.6668M6.3335 15.8333H22.1668M6.3335 9.5H31.6668"
       />
     </svg>
+
 
   } else if (id === "right") {
     return <svg
-      width={26}
-      height={26}
-      viewBox="0 0 24 24"
+      width={38}
+      height={38}
+      viewBox="0 0 38 38"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M21 4.5H3"
-        stroke="black"
-
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M21 9.5H7"
-        stroke="black"
-
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M21 14.5H3"
-        stroke="black"
-
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M21 19.5H7"
-        stroke="black"
-
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="M31.6668 28.5H15.8335M31.6668 22.1667H6.3335M31.6668 15.8333H15.8335M31.6668 9.5H6.3335"
       />
     </svg>
-
-
   } else if (id === "center") {
     return <svg
-      width={26}
-      height={26}
-      viewBox="0 0 24 24"
+      width={38}
+      height={38}
+      viewBox="0 0 38 38"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M18 9.5H6"
-        stroke="black"
-
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M21 4.5H3"
-        stroke="black"
-
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M21 14.5H3"
-        stroke="black"
-
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M18 19.5H6"
-        stroke="black"
-
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="M26.9168 28.5H11.0835M31.6668 22.1667H6.3335M26.9168 15.8333H11.0835M31.6668 9.5H6.3335"
       />
     </svg>
-
   } else if (id === "justify") {
     return <svg
-      width={26}
-      height={26}
-      viewBox="0 0 24 24"
+      width={38}
+      height={38}
+      viewBox="0 0 38 38"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M21 9.5H3"
-        stroke="black"
-
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M21 4.5H3"
-        stroke="black"
-
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M21 14.5H3"
-        stroke="black"
-
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M21 19.5H3"
-        stroke="black"
-
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="M31.6668 28.5H6.3335M31.6668 22.1667H6.3335M31.6668 15.8333H6.3335M31.6668 9.5H6.3335"
       />
     </svg>
 
@@ -1955,21 +1372,17 @@ export const CodeBlockComponent = ({ node: { attrs: { language: defaultLanguage 
 
 const CheckIcon = () => {
   return <svg
-    width={20}
-    height={20}
-    viewBox="0 0 24 24"
+    width={38}
+    height={38}
+    viewBox="0 0 38 38"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M5 12L10 17L20 7"
-      stroke="black"
-
-      strokeWidth={2}
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      d="M9.5 19L16.2175 25.7175L29.6511 12.2824"
     />
   </svg>
+
 }
 
 const Modal = ({ children, width = "auto", showModal = false, setShowModal }: any) => {

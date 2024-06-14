@@ -9,14 +9,17 @@
         max-height: 400px;
         overflow: auto;
     }
-    /* .tableWrapper::-webkit-scrollbar-track {
-        background: red;
-        width: 10px;
+    .tableWrapper::-webkit-scrollbar {
+        background: #b9b9b9;
+        width: 8px;
+        height: 8px;
     }
-    .tableWrapper::-webkit-scrollbar-track-piece {
-        background: red;
-        width: 10px;
-    } */
+    .tableWrapper::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: #474747;
+        border-radius: 10px;
+        cursor: pointer;
+    }
 }
 
 .column-resize-handle {

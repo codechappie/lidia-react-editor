@@ -53,6 +53,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
   const [iframeTitle, setIframeTitle] = useState("");
   const [iframeSrc, setIframeSrc] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [textColor, setTextColor] = useState("");
 
   if (!editor) {
     return null;
@@ -62,6 +63,8 @@ const MenuBar = ({ editor, configAndActions }: any) => {
   const getFontValue = () => {
     if (editor.isActive('textStyle', { fontFamily: 'Poppins' })) {
       return "Poppins"
+    } else if (editor.isActive('textStyle', { fontFamily: 'Verdana, Geneva' })) {
+      return "Verdana"
     } else if (editor.isActive('textStyle', { fontFamily: 'Inter' })) {
       return "Inter"
     } else if (editor.isActive('textStyle', { fontFamily: 'Comic Sans MS, Comic Sans' })) {
@@ -76,19 +79,18 @@ const MenuBar = ({ editor, configAndActions }: any) => {
 
 
   const getHeadingValue = () => {
-    // console.log("EDITOR", editor.isActive("heading", { level: 1 }));
     if (editor.isActive("heading", { level: 1 })) {
       return "Heading"
     } else if (editor.isActive("heading", { level: 2 })) {
       return "Sub heading"
     } else if (editor.isActive("heading", { level: 3 })) {
-      return "Sub heading 2"
-    } else if (editor.isActive("heading", { level: 4 })) {
       return "Sub heading 3"
-    } else if (editor.isActive("heading", { level: 5 })) {
+    } else if (editor.isActive("heading", { level: 4 })) {
       return "Sub heading 4"
-    } else if (editor.isActive("heading", { level: 6 })) {
+    } else if (editor.isActive("heading", { level: 5 })) {
       return "Sub heading 5"
+    } else if (editor.isActive("heading", { level: 6 })) {
+      return "Sub heading 6"
     } else {
       return "Normal"
     }
@@ -307,6 +309,54 @@ const MenuBar = ({ editor, configAndActions }: any) => {
               strokeLinecap="round"
             />
           </svg>
+        </button>
+
+        <button
+          className={`${s.onlyIcon} ${s.inputHidden}`}
+        >
+          <svg
+            width={24}
+            height={24}
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15.9993 6.99902V24.999"
+              stroke="black"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M5.99927 10.999V6.99902H25.9993V10.999"
+              stroke="black"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M11.9993 24.999H19.9993"
+              stroke="black"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <div
+            className={s.inputHidden}
+          >
+            <input
+              type="color"
+              onChange={(e) => {
+                changeTextColor(editor, setTextColor, e.target.value);
+              }} />
+          </div>
+          <div className={s.colorIndicator}
+            style={{
+              background: textColor
+            }}
+          ></div>
         </button>
 
         <button
@@ -765,7 +815,10 @@ const MenuBar = ({ editor, configAndActions }: any) => {
   );
 };
 
-
+const changeTextColor = (editor: any, setTextColor: any, color: string) => {
+  setTextColor(color);
+  editor.chain().focus().setColor(color).run()
+}
 
 const openModal = (editor: any, setIframeTitle: any, setIframeSrc: any, setShowModal: any) => {
   const src = editor.getAttributes("iframe").src
@@ -921,7 +974,6 @@ export const LidiaEditor = ({ className, html, setHtml, onlyPreview = false, edi
         codeBlock: false,
       }),
       Color.configure({
-        // editor.chain().focus().setColor('#958DF1').run()
         types: [
           TextStyle.name,
           // ListItem.name
@@ -940,8 +992,7 @@ export const LidiaEditor = ({ className, html, setHtml, onlyPreview = false, edi
         })
         .configure({ lowlight }),
       Link.configure({
-        // TODO: CHANGE TO TRUE IF IS  PREVIEW COMPONENT
-        openOnClick: false,
+        openOnClick: onlyPreview,
         autolink: true,
       }),
       Image.configure({
@@ -1021,25 +1072,25 @@ const FontSelector = ({ editor, getFontValue }: any) => {
           </svg>
         </button>
         <div className={s.options}>
-          <button
+          <div
             onClick={() => {
               editor.chain().focus().setFontFamily('Poppins').run();
               setActive(!active);
             }}
-            className={getFontValue() === "Poppins" ? s.isActive : ""}
+            className={`${getFontValue() === "Poppins" ? s.isActive : ""} ${s.button}`}
           >
             <span className={s.text}>
               Poppins
             </span>
             <span className={s.icon}><CheckIcon /></span>
-          </button>
+          </div>
 
-          <button
+          <div
             onClick={() => {
               editor.chain().focus().setFontFamily('Arial Black').run();
               setActive(!active);
             }}
-            className={editor.isActive('textStyle', { fontFamily: 'Arial Black' }) ? s.isActive : ""}
+            className={`${editor.isActive('textStyle', { fontFamily: 'Arial Black' }) ? s.isActive : ""} ${s.button}`}
           >
             <span className={s.text} style={{
               fontFamily: "Arial Black"
@@ -1047,15 +1098,30 @@ const FontSelector = ({ editor, getFontValue }: any) => {
               Arial
             </span>
             <span className={s.icon}><CheckIcon /></span>
-          </button>
+          </div>
+
+          <div
+            onClick={() => {
+              editor.chain().focus().setFontFamily('Verdana, Geneva').run();
+              setActive(!active);
+            }}
+            className={`${editor.isActive('textStyle', { fontFamily: 'Verdana, Geneva' }) ? s.isActive : ""} ${s.button}`}
+          >
+            <span className={s.text} style={{
+              fontFamily: "Verdana, Geneva"
+            }}>
+              Verdana
+            </span>
+            <span className={s.icon}><CheckIcon /></span>
+          </div>
 
 
-          <button
+          <div
             onClick={() => {
               editor.chain().focus().setFontFamily('Comic Sans MS, Comic Sans').run();
               setActive(!active);
             }}
-            className={editor.isActive('textStyle', { fontFamily: 'Comic Sans MS, Comic Sans' }) ? s.isActive : ""}
+            className={`${editor.isActive('textStyle', { fontFamily: 'Comic Sans MS, Comic Sans' }) ? s.isActive : ""} ${s.button}`}
           >
             <span className={s.text} style={{
               fontFamily: "Comic Sans MS, Comic Sans"
@@ -1063,28 +1129,28 @@ const FontSelector = ({ editor, getFontValue }: any) => {
               Comic Sans
             </span>
             <span className={s.icon}><CheckIcon /></span>
-          </button>
+          </div>
 
-          <button
+          <div
             onClick={() => {
               editor.chain().focus().setFontFamily('Inter').run()
               setActive(!active);
             }}
-            className={editor.isActive('textStyle', { fontFamily: 'Inter' }) ? s.isActive : ""}
+            className={`${editor.isActive('textStyle', { fontFamily: 'Inter' }) ? s.isActive : ""} ${s.button}`}
           >
             <span className={s.text} style={{
               fontFamily: "Inter"
             }}>Inter</span>
             <span className={s.icon}><CheckIcon /></span>
-          </button>
+          </div>
 
-          <button
+          <div
             onClick={() => {
               editor.chain().focus().setFontFamily('monospace').run();
               setActive(!active);
             }}
 
-            className={editor.isActive('textStyle', { fontFamily: 'monospace' }) ? s.isActive : ""}
+            className={`${editor.isActive('textStyle', { fontFamily: 'monospace' }) ? s.isActive : ""} ${s.button}`}
           >
             <span className={s.text} style={{
               fontFamily: "monospace"
@@ -1092,7 +1158,7 @@ const FontSelector = ({ editor, getFontValue }: any) => {
               Monospace
             </span>
             <span className={s.icon}><CheckIcon /></span>
-          </button>
+          </div>
         </div>
       </div>
     </>
@@ -1125,94 +1191,108 @@ const HeadingSelector = ({ editor, getHeadingValue }: any) => {
           </svg>
         </button>
         <div className={s.options}>
-          <button
+          <div
             onClick={() => {
               editor.chain().focus().setParagraph().run();
               setActive(!active);
             }}
-            className={editor.isActive("paragraph") ? s.isActive : ""}
+            className={`${editor.isActive("paragraph") ? s.isActive : ""} ${s.button}`}
           >
-            <span className={s.text}>Normal</span>
+            <span className={s.text} style={{
+              fontSize: "14px",
+            }}>Normal</span>
             <span className={s.icon}><CheckIcon /></span>
-          </button>
-          <button
+          </div>
+          <div
             onClick={() => {
               editor.chain().focus().toggleHeading({ level: 1 }).run();
               setActive(!active);
             }}
-            className={editor.isActive("heading", { level: 1 }) ? s.isActive : ""}
+            className={`${editor.isActive("heading", { level: 1 }) ? s.isActive : ""} ${s.button}`}
           >
             <span className={s.text} style={{
-              fontSize: "15px",
+              fontSize: "20px",
               fontWeight: "700"
             }}>
               Heading
             </span>
             <span className={s.icon}><CheckIcon /></span>
-          </button>
-          <button
+          </div>
+          <div
             onClick={() => {
               editor.chain().focus().toggleHeading({ level: 2 }).run();
               setActive(!active);
             }}
-            className={editor.isActive("heading", { level: 2 }) ? s.isActive : ""}
+            className={`${editor.isActive("heading", { level: 2 }) ? s.isActive : ""} ${s.button}`}
           >
             <span className={s.text} style={{
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: "700"
             }}>
               Subheading
             </span>
             <span className={s.icon}><CheckIcon /></span>
-          </button>
-          <button
+          </div>
+          <div
             onClick={() => {
               editor.chain().focus().toggleHeading({ level: 3 }).run();
               setActive(!active);
             }}
-            className={editor.isActive("heading", { level: 3 }) ? s.isActive : ""}
+            className={`${editor.isActive("heading", { level: 3 }) ? s.isActive : ""} ${s.button}`}
           >
-            <span className={s.text}>
+            <span className={s.text} style={{
+              fontSize: "14px",
+              fontWeight: "600"
+            }}>
               Subheading 3
             </span>
             <span className={s.icon}><CheckIcon /></span>
-          </button>
-          <button
+          </div>
+          <div
             onClick={() => {
               editor.chain().focus().toggleHeading({ level: 4 }).run();
               setActive(!active);
             }}
-            className={editor.isActive("heading", { level: 4 }) ? s.isActive : ""}
+            className={`${editor.isActive("heading", { level: 4 }) ? s.isActive : ""} ${s.button}`}
           >
-            <span className={s.text}>
+            <span className={s.text} style={{
+              fontSize: "13px",
+              fontWeight: "600"
+            }}>
               Subheading 4
             </span>
             <span className={s.icon}><CheckIcon /></span>
-          </button>
-          <button
+          </div>
+          <div
             onClick={() => {
               editor.chain().focus().toggleHeading({ level: 5 }).run();
               setActive(!active);
             }}
-            className={editor.isActive("heading", { level: 5 }) ? s.isActive : ""}
+            className={`${editor.isActive("heading", { level: 5 }) ? s.isActive : ""} ${s.button}`}
           >
-            <span className={s.text}>
+            <span className={s.text} style={{
+              fontSize: "12px",
+              fontWeight: "600"
+            }}>
               Subheading 5
             </span>
             <span className={s.icon}><CheckIcon /></span>
-          </button>
-          <button
+          </div>
+          <div
             onClick={() => {
               editor.chain().focus().toggleHeading({ level: 6 }).run();
               setActive(!active);
             }}
-            className={editor.isActive("heading", { level: 6 }) ? s.isActive : ""}
+            className={`${editor.isActive("heading", { level: 6 }) ? s.isActive : ""} ${s.button}`}
           >
-            <span className={s.text}>
+            <span className={s.text} style={{
+              fontSize: "11px",
+              fontWeight: "600"
+            }}>
               Subheading 6
             </span>
             <span className={s.icon}><CheckIcon /></span>
-          </button>
+          </div>
         </div>
       </div>
     </>
@@ -1221,7 +1301,6 @@ const HeadingSelector = ({ editor, getHeadingValue }: any) => {
 
 const AlignSelector = ({ editor, getValue, type, options }: any) => {
   const [active, setActive] = useState(false);
-
 
   if (type === "align") {
     return (
@@ -1245,15 +1324,16 @@ const AlignSelector = ({ editor, getValue, type, options }: any) => {
           </button>
           <div className={s.options}>
             {options.map((item: any) => (
-              <button
+              <div
                 key={item.value}
                 onClick={() => {
                   editor.chain().focus().setTextAlign(item.value).run();
                   setActive(!active);
                 }}
+                className={s.button}
               >
                 <AlignIcon id={item.value} />
-              </button>
+              </div>
             ))}
           </div>
         </div>
@@ -1564,9 +1644,6 @@ const TableOptions = ({ editor }: any) => {
 
           <button
             className={`${s.buttonMenu} ${s.onlyIcon} ${s.colorPicker}`}
-            style={{
-              borderBottomColor: color
-            }}
           >
             <svg
               width={24}
@@ -1610,22 +1687,21 @@ const TableOptions = ({ editor }: any) => {
               <input
                 type="color"
                 onChange={(e) => {
-
                   changeColorToCell(e.target.value);
                 }} />
             </div>
+            <div className={s.colorIndicator} style={{
+              background: color,
+            }}></div>
           </button>
 
 
           <button
             className={`${s.buttonMenu} ${s.onlyIcon} ${s.colorPicker}`}
-            style={{
-              borderBottomColor: textColor
-            }}
           >
             <svg
-              width={32}
-              height={32}
+              width={24}
+              height={24}
               viewBox="0 0 32 32"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -1661,6 +1737,11 @@ const TableOptions = ({ editor }: any) => {
                   changeTextColorToCell(e.target.value);
                 }} />
             </div>
+            <div className={s.colorIndicator}
+              style={{
+                background: textColor
+              }}
+            ></div>
           </button>
         </div>
       </div>
@@ -1674,8 +1755,8 @@ const AlignIcon = ({ id }: any) => {
 
   if (id === "left") {
     return <svg
-      width={22}
-      height={22}
+      width={26}
+      height={26}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -1716,8 +1797,8 @@ const AlignIcon = ({ id }: any) => {
 
   } else if (id === "right") {
     return <svg
-      width={21}
-      height={21}
+      width={26}
+      height={26}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -1759,8 +1840,8 @@ const AlignIcon = ({ id }: any) => {
 
   } else if (id === "center") {
     return <svg
-      width={21}
-      height={21}
+      width={26}
+      height={26}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -1801,8 +1882,8 @@ const AlignIcon = ({ id }: any) => {
 
   } else if (id === "justify") {
     return <svg
-      width={21}
-      height={21}
+      width={26}
+      height={26}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

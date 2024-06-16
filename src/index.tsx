@@ -575,7 +575,7 @@ type EditorProps = {
   html: string;
   setHtml?: any;
   onlyPreview?: boolean;
-  editorStyle?: "default" | "white" | "dark";
+  editorStyle?: "default" | "white" | "dark" | "clear";
 };
 
 
@@ -710,7 +710,7 @@ export const LidiaEditor = ({ className = "", html, setHtml, onlyPreview = false
   };
 
   return (
-    <div className={`${s.lidiaEditor} ${s[editorStyle]} ${className ? className : ''}`}>
+    <div className={`${s.lidiaEditor} ${s[editorStyle]} ${className ? className : ''} ${onlyPreview && s.preview}`}>
 
       {!onlyPreview && <MenuBar
         editor={editor}
@@ -1348,6 +1348,7 @@ const AlignIcon = ({ id }: any) => {
 export const CodeBlockComponent = ({ node: { attrs: { language: defaultLanguage } }, updateAttributes, extension }: any) => (
   <NodeViewWrapper className={s.codeBlock}>
     <select
+      className={s.selectLanguage}
       contentEditable={false}
       defaultValue={defaultLanguage}
       onChange={event => updateAttributes({ language: event.target.value })}>

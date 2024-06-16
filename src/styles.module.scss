@@ -21,28 +21,6 @@
   -moz-transform: scale(1);
   -ms-transform: scale(1);
 
-  &.preview {
-    background: none;
-
-    &::before {
-      background: none;
-      backdrop-filter: none;
-    }
-
-    .editorContainer {
-      background: none;
-      padding: 0;
-      height: auto;
-      max-height: fit-content;
-
-      .codeBlock {
-        .selectLanguage {
-          display: none;
-        }
-      }
-    }
-  }
-
   & * {
     box-sizing: content-box;
     outline: none;
@@ -987,6 +965,28 @@
       table {
         & > * {
           color: #000000;
+        }
+      }
+    }
+  }
+
+  &.preview {
+    background: none;
+
+    &::before {
+      background: none;
+      backdrop-filter: none;
+    }
+
+    .editorContainer {
+      background: none;
+      padding: 0;
+      height: auto;
+      max-height: fit-content;
+
+      .codeBlock {
+        .selectLanguage {
+          display: none;
         }
       }
     }

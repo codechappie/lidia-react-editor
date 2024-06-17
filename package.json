@@ -4,7 +4,7 @@
     "name": "CodeChappie",
     "email": "codechappie@gmail.com"
   },
-  "version": "0.0.55",
+  "version": "0.0.56",
   "description": "An intuitive and minimal WYSIWYG react editor.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",

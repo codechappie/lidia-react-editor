@@ -975,7 +975,13 @@
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
       .codeBlock {
+        margin: 20px 0;
+        border: none;
+        margin-top: 10px;
+        
         pre {
+          padding-bottom: 15px;
+          padding-top: 20px;
           code {
             padding: 0;
           }

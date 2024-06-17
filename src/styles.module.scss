@@ -975,6 +975,11 @@
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
       .codeBlock {
+        pre {
+          code {
+            padding: 0;
+          }
+        }
         .copyCode {
           display: flex;
         }

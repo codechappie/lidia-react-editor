@@ -1,40 +1,32 @@
-// import BulletList from '@tiptap/extension-bullet-list';
+
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import FontFamily from '@tiptap/extension-font-family';
 import Highlight from "@tiptap/extension-highlight";
 import Link from '@tiptap/extension-link';
-// import ListItem from '@tiptap/extension-list-item'; CHECK IF FAILS
-// import OrderedList from '@tiptap/extension-ordered-list';
+
 import TextAlign from "@tiptap/extension-text-align";
 import TextStyle from '@tiptap/extension-text-style';
 import Underline from '@tiptap/extension-underline';
 import { EditorContent, NodeViewContent, NodeViewWrapper, ReactNodeViewRenderer, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 import Image from '@tiptap/extension-image';
-// import Code from '@tiptap/extension-code'
+
 import Focus from '@tiptap/extension-focus'
 import Table from '@tiptap/extension-table'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
 import TableRow from '@tiptap/extension-table-row'
 import { Color } from '@tiptap/extension-color'
-
 import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'
-import Dropcursor from '@tiptap/extension-dropcursor'
-
 import { common, createLowlight } from 'lowlight';
 import { Iframe } from "./extensions/Iframe";
-
-import 'highlight.js/styles/tokyo-night-dark.min.css';
-
 import s from './styles.module.scss';
-import "./global.css";
+const lowlight = createLowlight(common);
 
-
-const lowlight = createLowlight(common)
-
+// TODO: UNCOMMENT TO TEST AND ADD GLOBAL STYLES
+// import '../dist/theme.css'
 
 const alignOptions = [
   {
@@ -49,16 +41,15 @@ const alignOptions = [
     value: "justify",
   }];
 
-const MenuBar = ({ editor, configAndActions }: any) => {
+const MenuBar = ({ editor }: any) => {
   const [iframeTitle, setIframeTitle] = useState("");
   const [iframeSrc, setIframeSrc] = useState("");
-  const [showModal, setShowModal] = useState(false);
   const [textColor, setTextColor] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   if (!editor) {
     return null;
   }
-
 
   const getFontValue = () => {
     if (editor.isActive('textStyle', { fontFamily: 'Poppins' })) {
@@ -74,9 +65,7 @@ const MenuBar = ({ editor, configAndActions }: any) => {
     } else if (editor.isActive('textStyle', { fontFamily: 'Arial Black' })) {
       return "Arial"
     } else return "Poppins"
-
   }
-
 
   const getHeadingValue = () => {
     if (editor.isActive("heading", { level: 1 })) {
@@ -94,7 +83,6 @@ const MenuBar = ({ editor, configAndActions }: any) => {
     } else {
       return "Normal"
     }
-
   }
 
   const getCurrentValue = (id: string): any => {
@@ -114,7 +102,6 @@ const MenuBar = ({ editor, configAndActions }: any) => {
     }
   }
 
-
   return (
     <div className={`${s.menuBar} ${s.withBackground}`}>
       <Modal
@@ -132,77 +119,69 @@ const MenuBar = ({ editor, configAndActions }: any) => {
       </Modal>
       <div className={s.container}>
         <button
+          type='button'
           onClick={() => editor.chain().focus().undo().run()}
           className={s.onlyIcon}
           title='Undo'
         >
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
               d="M11.0833 20.5833L4.75 14.25M4.75 14.25L11.0833 7.91663M4.75 14.25H25.3333C29.7056 14.25 33.25 17.7944 33.25 22.1666C33.25 26.5389 29.7056 30.0833 25.3333 30.0833H17.4167"
-              stroke="white"
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           </svg>
-
-
         </button>
-
         <button
+          type='button'
           onClick={() => editor.chain().focus().redo().run()}
           className={s.onlyIcon}
           title='Redo'
         >
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
               d="M26.9167 20.5833L33.25 14.25M33.25 14.25L26.9167 7.91663M33.25 14.25H12.6667C8.29441 14.25 4.75 17.7944 4.75 22.1666C4.75 26.5389 8.29441 30.0833 12.6667 30.0833H20.5833"
-              stroke="white"
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           </svg>
         </button>
-
         <FontSelector
           editor={editor}
           getFontValue={getFontValue}
-          configAndActions={configAndActions}
         />
-
         <HeadingSelector
           editor={editor}
           getHeadingValue={getHeadingValue}
-          configAndActions={configAndActions}
         />
-
         <AlignSelector
           editor={editor}
           options={alignOptions}
           type="align"
           getValue={getCurrentValue}
         />
-
         <button
+          type='button'
           onClick={() => editor.chain().focus().toggleBold().run()}
           className={`${s.onlyIcon} ${editor.isActive("bold") ? s.isActive : ""}`}
         >
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -214,12 +193,13 @@ const MenuBar = ({ editor, configAndActions }: any) => {
         </button>
 
         <button
+          type='button'
           onClick={() => editor.chain().focus().toggleItalic().run()}
           className={`${s.onlyIcon} ${editor.isActive("italic") ? s.isActive : ""}`}
         >
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -229,14 +209,14 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             />
           </svg>
         </button>
-
         <button
+          type='button'
           onClick={() => editor.chain().focus().toggleStrike().run()}
           className={`${s.onlyIcon} ${editor.isActive("strike") ? s.isActive : ""}`}
         >
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -246,14 +226,14 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             />
           </svg>
         </button>
-
         <button
+          type='button'
           onClick={() => editor.chain().focus().toggleUnderline().run()}
           className={`${s.onlyIcon} ${editor.isActive('underline') ? s.isActive : ''}`}
         >
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -263,13 +243,13 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             />
           </svg>
         </button>
-
         <button
+          type='button'
           className={`${s.onlyIcon} ${s.inputHidden}`}
         >
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -294,14 +274,14 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             }}
           ></div>
         </button>
-
         <button
+          type='button'
           onClick={() => editor.chain().focus().toggleHighlight().run()}
           className={`${s.onlyIcon} ${editor.isActive('highlight') ? s.isActive : ''}`}
         >
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -314,15 +294,14 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             />
           </svg>
         </button>
-
-
         <button
+          type='button'
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
           className={`${s.onlyIcon} ${editor.isActive('orderedList') ? s.isActive : ''}`}
         >
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -332,14 +311,14 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             />
           </svg>
         </button>
-
         <button
+          type='button'
           onClick={() => editor.chain().focus().toggleBulletList().run()}
           className={`${s.onlyIcon} ${editor.isActive('bulletList') ? s.isActive : ''}`}
         >
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -349,14 +328,14 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             />
           </svg>
         </button>
-
         <button
+          type='button'
           onClick={() => editor.chain().focus().toggleTaskList().run()}
           className={`${s.onlyIcon} ${editor.isActive('taskList') ? s.isActive : ''}`}
         >
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -366,14 +345,14 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             />
           </svg>
         </button>
-
         <button
+          type='button'
           onClick={() => editor.chain().focus().toggleCode().run()}
           className={`${s.onlyIcon} ${editor.isActive('code') ? s.isActive : ''}`}
         >
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -383,14 +362,14 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             />
           </svg>
         </button>
-
         <button
+          type='button'
           onClick={() => editor.chain().focus().toggleCodeBlock().run()}
           className={`${s.onlyIcon} ${editor.isActive('codeBlock') ? s.isActive : ''}`}
         >
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -400,14 +379,14 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             />
           </svg>
         </button>
-
         <button
+          type='button'
           onClick={() => setALink(editor)}
           className={`${s.onlyIcon} ${editor.isActive('link') ? s.isActive : ''}`}
         >
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -417,15 +396,14 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             />
           </svg>
         </button>
-
-
         <button
+          type='button'
           onClick={() => openModal(editor, setIframeTitle, setIframeSrc, setShowModal)}
           className={s.onlyIcon}
         >
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -435,14 +413,14 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             />
           </svg>
         </button>
-
         <button
+          type='button'
           onClick={() => addImage(editor)}
           className={`${s.onlyIcon} ${editor.isActive('image') ? s.isActive : ''}`}
         >
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -452,14 +430,14 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             />
           </svg>
         </button>
-
         <button
+          type='button'
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
           className={`${s.onlyIcon} ${editor.isActive('blockquote') ? s.isActive : ''}`}
         >
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -469,14 +447,14 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             />
           </svg>
         </button>
-
         <button
+          type='button'
           onClick={() => editor.chain().focus().setHorizontalRule().run()}
           className={`${s.onlyIcon} ${editor.isActive('horizontalRule') ? s.isActive : ''}`}
         >
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -486,10 +464,8 @@ const MenuBar = ({ editor, configAndActions }: any) => {
             />
           </svg>
         </button>
-
         <TableOptions
           editor={editor}
-
         />
       </div>
     </div>
@@ -569,15 +545,13 @@ const setALink = (editor: any) => {
     .run()
 }
 
-
 type EditorProps = {
   className?: string;
   html: string;
   setHtml?: any;
   onlyPreview?: boolean;
-  editorStyle?: "default" | "white" | "dark" | "clear";
+  editorStyle?: "default" | "white" | "dark" | "preview";
 };
-
 
 const CustomTableCell = TableCell.extend({
   addAttributes() {
@@ -637,7 +611,6 @@ const CustomTableHeader = TableHeader.extend({
   },
 })
 
-
 /**
 * Button component
 * @param text Text to display in the button
@@ -645,7 +618,6 @@ const CustomTableHeader = TableHeader.extend({
 * @returns Button component
 */
 export const LidiaEditor = ({ className = "", html, setHtml, onlyPreview = false, editorStyle = "default" }: EditorProps) => {
-  const [overlayisActive, setOverlayIsActive] = useState(false);
   const editor = useEditor({
     onUpdate({ editor }: any) {
       setHtml && setHtml(editor.getHTML())
@@ -681,7 +653,6 @@ export const LidiaEditor = ({ className = "", html, setHtml, onlyPreview = false
       Iframe,
       TextStyle,
       FontFamily,
-      Dropcursor,
       Focus.configure({
         className: s.focus,
         mode: 'all',
@@ -702,23 +673,13 @@ export const LidiaEditor = ({ className = "", html, setHtml, onlyPreview = false
     editable: !onlyPreview,
   });
 
-  const configAndActions = {
-    overlay: {
-      overlayisActive,
-      setOverlayIsActive,
-    }
-  };
-
   return (
-    <div className={`${s.lidiaEditor} ${s[editorStyle]} ${className ? className : ''} ${onlyPreview && s.preview}`}>
-
+    <div className={`${s.lidiaEditor} ${s[editorStyle]} ${className ? className : ''}`}>
       {!onlyPreview && <MenuBar
         editor={editor}
-        configAndActions={configAndActions}
       />}
 
-
-      <div className={s.editorContainer}>
+      <div className={`${s.editorContainer}`}>
         <EditorContent
           className={s.editor}
           editor={editor}
@@ -735,20 +696,20 @@ const FontSelector = ({ editor, getFontValue }: any) => {
     <>
       <div className={`${s.lidiaEditorOverlay}  ${active ? s.show : ''} `} onClick={() => setActive(!active)}></div>
       <div className={`${s.customSelect} ${active ? s.show : ''} `}>
-        <button className={s.selector} onClick={() => setActive(!active)}>
+        <button
+          type='button' className={s.selector} onClick={() => setActive(!active)}>
           <span>
             {getFontValue() || "Poppins"}
           </span>
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
               d="M25.3333 15.8333L19 22.1666L12.6667 15.8333"
-              stroke="white"
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -861,20 +822,20 @@ const HeadingSelector = ({ editor, getHeadingValue }: any) => {
         onClick={() => setActive(!active)}></div>
 
       <div className={`${s.customSelect} ${active ? s.show : ''} `}>
-        <button className={s.selector} onClick={() => setActive(!active)}>
+        <button
+          type='button' className={s.selector} onClick={() => setActive(!active)}>
           <span>
             {getHeadingValue() || "Normal"}
           </span>
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
               d="M25.3333 15.8333L19 22.1666L12.6667 15.8333"
-              stroke="white"
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -1000,13 +961,14 @@ const AlignSelector = ({ editor, getValue, type, options }: any) => {
         <div className={`${s.lidiaEditorOverlay}  ${active ? s.show : ''} `}
           onClick={() => setActive(!active)}></div>
         <div className={`${s.iconSelect} ${s.inRow} ${active ? s.show : ''} `}>
-          <button className={s.selector} onClick={() => setActive(!active)}>
+          <button
+            type='button' className={s.selector} onClick={() => setActive(!active)}>
             <span>
               {getValue(type) || <AlignIcon id="left" />}
             </span>
             <svg
-              width={38}
-              height={38}
+              width={24}
+              height={24}
               viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -1033,10 +995,7 @@ const AlignSelector = ({ editor, getValue, type, options }: any) => {
         </div>
       </>
     )
-  } else {
-    return null
-  }
-
+  } else return null
 }
 
 const TableOptions = ({ editor }: any) => {
@@ -1059,10 +1018,11 @@ const TableOptions = ({ editor }: any) => {
       <div className={`${s.lidiaEditorOverlay}  ${active ? s.show : ''} `}
         onClick={() => setActive(!active)}></div>
       <div className={`${s.iconSelectModal} ${s.inRow} ${active ? s.show : ''} `}>
-        <button className={`${s.selector} `} onClick={() => setActive(!active)}>
+        <button
+          type='button' className={`${s.selector} `} onClick={() => setActive(!active)}>
           <svg
-            width={38}
-            height={38}
+            width={24}
+            height={24}
             viewBox="0 0 38 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -1076,12 +1036,13 @@ const TableOptions = ({ editor }: any) => {
         <div className={s.options}>
 
           <button
+            type='button'
             onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}
             className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
-              width={38}
-              height={38}
+              width={24}
+              height={24}
               viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -1093,12 +1054,13 @@ const TableOptions = ({ editor }: any) => {
           </button>
 
           <button
+            type='button'
             onClick={() => editor.chain().focus().deleteTable().run()}
             className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
-              width={38}
-              height={38}
+              width={24}
+              height={24}
               viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -1111,12 +1073,13 @@ const TableOptions = ({ editor }: any) => {
           </button>
 
           <button
+            type='button'
             onClick={() => editor.chain().focus().addColumnAfter().run()}
             className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
-              width={38}
-              height={38}
+              width={24}
+              height={24}
               viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -1128,12 +1091,13 @@ const TableOptions = ({ editor }: any) => {
           </button>
 
           <button
+            type='button'
             onClick={() => editor.chain().focus().addRowAfter().run()}
             className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
-              width={38}
-              height={38}
+              width={24}
+              height={24}
               viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -1146,12 +1110,13 @@ const TableOptions = ({ editor }: any) => {
           </button>
 
           <button
+            type='button'
             onClick={() => editor.chain().focus().deleteColumn().run()}
             className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
-              width={38}
-              height={38}
+              width={24}
+              height={24}
               viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -1163,12 +1128,13 @@ const TableOptions = ({ editor }: any) => {
           </button>
 
           <button
+            type='button'
             onClick={() => editor.chain().focus().deleteRow().run()}
             className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
-              width={38}
-              height={38}
+              width={24}
+              height={24}
               viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -1180,12 +1146,13 @@ const TableOptions = ({ editor }: any) => {
           </button>
 
           <button
+            type='button'
             onClick={() => editor.chain().focus().mergeCells().run()}
             className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
-              width={38}
-              height={38}
+              width={24}
+              height={24}
               viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -1198,12 +1165,13 @@ const TableOptions = ({ editor }: any) => {
 
 
           <button
+            type='button'
             onClick={() => editor.chain().focus().splitCell().run()}
             className={`${s.buttonMenu} ${s.onlyIcon} `}
           >
             <svg
-              width={38}
-              height={38}
+              width={24}
+              height={24}
               viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -1218,12 +1186,13 @@ const TableOptions = ({ editor }: any) => {
           </button>
 
           <button
+            type='button'
             className={`${s.buttonMenu} ${s.onlyIcon} ${s.colorPicker}`}
             title='Change background'
           >
             <svg
-              width={38}
-              height={38}
+              width={24}
+              height={24}
               viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -1249,11 +1218,12 @@ const TableOptions = ({ editor }: any) => {
 
 
           <button
+            type='button'
             className={`${s.buttonMenu} ${s.onlyIcon} ${s.colorPicker}`}
           >
             <svg
-              width={38}
-              height={38}
+              width={24}
+              height={24}
               viewBox="0 0 38 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -1290,8 +1260,8 @@ const AlignIcon = ({ id }: any) => {
 
   if (id === "left") {
     return <svg
-      width={38}
-      height={38}
+      width={24}
+      height={24}
       viewBox="0 0 38 38"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -1304,8 +1274,8 @@ const AlignIcon = ({ id }: any) => {
 
   } else if (id === "right") {
     return <svg
-      width={38}
-      height={38}
+      width={24}
+      height={24}
       viewBox="0 0 38 38"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -1316,8 +1286,8 @@ const AlignIcon = ({ id }: any) => {
     </svg>
   } else if (id === "center") {
     return <svg
-      width={38}
-      height={38}
+      width={24}
+      height={24}
       viewBox="0 0 38 38"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -1328,8 +1298,8 @@ const AlignIcon = ({ id }: any) => {
     </svg>
   } else if (id === "justify") {
     return <svg
-      width={38}
-      height={38}
+      width={24}
+      height={24}
       viewBox="0 0 38 38"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -1345,8 +1315,54 @@ const AlignIcon = ({ id }: any) => {
 
 }
 
-export const CodeBlockComponent = ({ node: { attrs: { language: defaultLanguage } }, updateAttributes, extension }: any) => (
-  <NodeViewWrapper className={s.codeBlock}>
+
+
+export const CodeBlockComponent = ({ node: { attrs: { language: defaultLanguage } }, updateAttributes, extension }: any) => {
+  const id = useId().replaceAll(":", "");
+  const copyCode = (id: any) => {
+    console.log(id)
+    const copyText = document.querySelector(id).textContent;
+    const tooltip = document.querySelector(id + "Tooltip");
+    tooltip?.classList.add(s.show)
+    const textArea = document.createElement('textarea');
+    textArea.textContent = copyText;
+    document.body.append(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    textArea.remove();
+    setTimeout(() => {
+      tooltip?.classList.remove(s.show);
+    }, 3000);
+  }
+
+  return <NodeViewWrapper className={s.codeBlock}>
+    <div
+      className={s.copyCode}
+    >
+      <div className={s.container}>
+        <button
+          id="copy__button__${ind}"
+          onClick={() => copyCode(`#pre${id}code`)}
+          type='button'
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={24}
+            height={24}
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill='#ffffff'
+              d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4v-4c0-1.103-.897-2-2-2h-4V4h10v10z" />
+            <path
+              fill='#ffffff'
+              d="M6 12h6v2H6zm0 4h6v2H6z" />
+          </svg>
+
+        </button>
+        <span id={`pre${id}codeTooltip`} className={s.tooltip}>¡Texto copiado ✨!</span>
+      </div>
+    </div>
     <select
       className={s.selectLanguage}
       contentEditable={false}
@@ -1364,17 +1380,17 @@ export const CodeBlockComponent = ({ node: { attrs: { language: defaultLanguage 
         </option>
       ))}
     </select>
-    <pre>
+    <pre id={`pre${id}code`}>
       <NodeViewContent as="code" />
     </pre>
-  </NodeViewWrapper>
-)
+  </NodeViewWrapper >
+}
 
 
 const CheckIcon = () => {
   return <svg
-    width={38}
-    height={38}
+    width={24}
+    height={24}
     viewBox="0 0 38 38"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -1418,10 +1434,12 @@ const IframeContent = ({ editor, setIframeContent, iframeTitle, setIframeTitle, 
     />
 
     <div className={s.buttons}>
-      <button onClick={() => setShowModal(false)}>
+      <button
+        type='button' onClick={() => setShowModal(false)}>
         Cancel
       </button>
       <button
+        type='button'
         onClick={showData}
         className={s.saveButton}
       >

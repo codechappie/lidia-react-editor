@@ -4,29 +4,29 @@ import FontFamily from '@tiptap/extension-font-family';
 import Highlight from "@tiptap/extension-highlight";
 import Link from '@tiptap/extension-link';
 
+import Image from '@tiptap/extension-image';
 import TextAlign from "@tiptap/extension-text-align";
 import TextStyle from '@tiptap/extension-text-style';
 import Underline from '@tiptap/extension-underline';
 import { EditorContent, NodeViewContent, NodeViewWrapper, ReactNodeViewRenderer, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import React, { useId, useState } from 'react';
-import Image from '@tiptap/extension-image';
+import React, { useEffect, useId, useState } from 'react';
 
-import Focus from '@tiptap/extension-focus'
-import Table from '@tiptap/extension-table'
-import TableCell from '@tiptap/extension-table-cell'
-import TableHeader from '@tiptap/extension-table-header'
-import TableRow from '@tiptap/extension-table-row'
-import { Color } from '@tiptap/extension-color'
-import TaskItem from '@tiptap/extension-task-item'
-import TaskList from '@tiptap/extension-task-list'
+import { Color } from '@tiptap/extension-color';
+import Focus from '@tiptap/extension-focus';
+import Table from '@tiptap/extension-table';
+import TableCell from '@tiptap/extension-table-cell';
+import TableHeader from '@tiptap/extension-table-header';
+import TableRow from '@tiptap/extension-table-row';
+import TaskItem from '@tiptap/extension-task-item';
+import TaskList from '@tiptap/extension-task-list';
 import { common, createLowlight } from 'lowlight';
 import { Iframe } from "./extensions/Iframe";
 import s from './styles.module.scss';
 const lowlight = createLowlight(common);
 
 // TODO: UNCOMMENT TO TEST AND ADD GLOBAL STYLES
-// import '../dist/theme.css'
+// import '../dist/theme.css';
 
 const alignOptions = [
   {
@@ -617,7 +617,8 @@ const CustomTableHeader = TableHeader.extend({
 * @param onClick Function to call when the button is clicked
 * @returns Button component
 */
-export const LidiaEditor = ({ className = "", html, setHtml, onlyPreview = false, editorStyle = "default" }: EditorProps) => {
+export const LidiaEditor = ({ className = "", html, setHtml, onlyPreview = false, editorStyle = "preview" }: EditorProps) => {
+
   const editor = useEditor({
     onUpdate({ editor }: any) {
       setHtml && setHtml(editor.getHTML())
@@ -672,6 +673,15 @@ export const LidiaEditor = ({ className = "", html, setHtml, onlyPreview = false
     content: html,
     editable: !onlyPreview,
   });
+
+  useEffect(() => {
+    if (editor && onlyPreview) {
+      setTimeout(() => {
+        editor.commands.setContent(html);
+      });
+    }
+  }, [editor, html])
+
 
   return (
     <div className={`${s.lidiaEditor} ${s[editorStyle]} ${className ? className : ''}`}>
@@ -1320,7 +1330,6 @@ const AlignIcon = ({ id }: any) => {
 export const CodeBlockComponent = ({ node: { attrs: { language: defaultLanguage } }, updateAttributes, extension }: any) => {
   const id = useId().replaceAll(":", "");
   const copyCode = (id: any) => {
-    console.log(id)
     const copyText = document.querySelector(id).textContent;
     const tooltip = document.querySelector(id + "Tooltip");
     tooltip?.classList.add(s.show)

@@ -54,6 +54,9 @@ export const LidiaEditorComponent = ({ className, onlyPreview = false }: any) =>
         editorStyle='dark'
         onlyPreview={onlyPreview}
       />
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quos aliquid maxime illo a possimus assumenda commodi. Excepturi voluptate ipsam iste quas! Officia debitis commodi adipisci unde deserunt labore, distinctio repellendus. Quasi est natus eum nemo illo laudantium, quisquam tempora maxime eaque facilis illum nisi? Porro recusandae quia id pariatur, doloremque illo repellat nisi! Numquam voluptates repudiandae officiis voluptatibus modi a iure vel, porro sunt, facilis corporis illum. Ipsum repudiandae cumque, incidunt accusantium saepe repellendus ab dolore quia doloribus repellat. Temporibus similique cumque sint quia reprehenderit sit aliquid adipisci omnis voluptatem ea minima, iure sunt mollitia officia deserunt voluptates illo laboriosam hic assumenda. Temporibus soluta reiciendis magnam voluptatibus rem nobis omnis dolore facere nemo, impedit harum dolorem quas, dolor vel optio? Necessitatibus autem quis nulla modi, quas quia dignissimos molestias exercitationem repudiandae rem iusto quisquam magni doloribus id. Esse laborum, illum alias nobis dolores, distinctio facilis at quae explicabo reiciendis totam debitis? Porro dignissimos fugiat minima in quaerat ipsum totam. Similique autem nobis sed eos delectus numquam est deserunt hic, aliquid quisquam harum voluptas. Corporis possimus rerum sint in illum vitae tenetur eum ipsam dicta quos placeat corrupti blanditiis repellat eos error, et, est animi rem nesciunt, iste qui incidunt.
+      </p>
     </>
   )
 }

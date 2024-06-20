@@ -22,11 +22,40 @@ import TaskItem from '@tiptap/extension-task-item';
 import TaskList from '@tiptap/extension-task-list';
 import { common, createLowlight } from 'lowlight';
 import { Iframe } from "./extensions/Iframe";
+import Subscript from '@tiptap/extension-subscript';
+import Superscript from '@tiptap/extension-superscript';
 import s from './styles.module.scss';
 const lowlight = createLowlight(common);
 
 // TODO: UNCOMMENT TO TEST AND ADD GLOBAL STYLES
-import '../dist/theme.css';
+// import '../dist/theme.css';
+
+const CustomImage = Image.extend({
+  addAttributes() {
+    return {
+      ...this.parent?.(),
+      class: {
+        default: "image",
+        parseHTML: element => element.getAttribute('data-class'),
+        renderHTML: attributes => {
+          return {
+            'class': attributes.class,
+          }
+        },
+      },
+      // width: {
+      //   default: "image",
+      //   parseHTML: element => element.getAttribute('data-class'),
+      //   renderHTML: attributes => {
+      //     return {
+      //       'data-class': attributes.class,
+      //       class: attributes.color,
+      //     }
+      //   },
+      // },
+    }
+  },
+})
 
 const alignOptions = [
   {
@@ -41,11 +70,12 @@ const alignOptions = [
     value: "justify",
   }];
 
-const MenuBar = ({ editor }: any) => {
+
+const MenuBar = ({ editor, setIsFullscreen, isFullscreen }: any) => {
   const [iframeTitle, setIframeTitle] = useState("");
   const [iframeSrc, setIframeSrc] = useState("");
   const [textColor, setTextColor] = useState("");
-  const [showModal, setShowModal] = useState(false);
+  const [showIframeModal, setShowIframeModal] = useState(false);
 
   if (!editor) {
     return null;
@@ -104,19 +134,16 @@ const MenuBar = ({ editor }: any) => {
 
   return (
     <div className={`${s.menuBar} ${s.withBackground}`}>
-      <Modal
-        setShowModal={setShowModal}
-        showModal={showModal}>
-        <IframeContent
-          editor={editor}
-          iframeTitle={iframeTitle}
-          setIframeTitle={setIframeTitle}
-          iframeSrc={iframeSrc}
-          setIframeSrc={setIframeSrc}
-          setShowModal={setShowModal}
-          setIframeContent={setIframeContent}
-        />
-      </Modal>
+      <IframeContent
+        editor={editor}
+        iframeTitle={iframeTitle}
+        setIframeTitle={setIframeTitle}
+        iframeSrc={iframeSrc}
+        setIframeSrc={setIframeSrc}
+        setShowModal={setShowIframeModal}
+        showModal={showIframeModal}
+        setIframeContent={setIframeContent}
+      />
       <div className={s.container}>
         <button
           type='button'
@@ -398,7 +425,7 @@ const MenuBar = ({ editor }: any) => {
         </button>
         <button
           type='button'
-          onClick={() => openModal(editor, setIframeTitle, setIframeSrc, setShowModal)}
+          onClick={() => openModal(editor, setIframeTitle, setIframeSrc, setShowIframeModal)}
           className={s.onlyIcon}
         >
           <svg
@@ -467,6 +494,91 @@ const MenuBar = ({ editor }: any) => {
         <TableOptions
           editor={editor}
         />
+
+        <button
+          type='button'
+          onClick={() => editor.chain().focus().toggleSubscript().run()}
+          className={`${s.onlyIcon} ${editor.isActive('subscript') ? 'is-active' : ''}`}
+        >
+          <svg
+            width={24}
+            height={24}
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 16L8 10.7353M8 10.7353L4 16M8 10.7353L12 6M8 10.7353L4 6M20 20V17.3529M20 17.3529V14.7059M20 17.3529C20 18.8149 18.8061 20 17.3333 20C15.8606 20 14.6667 18.8149 14.6667 17.3529C14.6667 15.891 15.8606 14.7059 17.3333 14.7059C18.8061 14.7059 20 15.891 20 17.3529Z"
+            />
+          </svg>
+        </button>
+
+        <button
+          type='button'
+          onClick={() => editor.chain().focus().toggleSuperscript().run()}
+          className={`${s.onlyIcon} ${editor.isActive('subscript') ? 'is-active' : ''}`}
+        >
+          <svg
+            width={24}
+            height={24}
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 19.2941L8 14.0294M8 14.0294L4 19.2941M8 14.0294L12 9.29412M8 14.0294L4 9.29412M20 10.2941V7.64706M20 7.64706V5M20 7.64706C20 9.10899 18.8061 10.2941 17.3333 10.2941C15.8606 10.2941 14.6667 9.10899 14.6667 7.64706C14.6667 6.18513 15.8606 5 17.3333 5C18.8061 5 20 6.18513 20 7.64706Z"
+            />
+          </svg>
+
+        </button>
+
+        <button
+          type='button'
+          className={`${s.onlyIcon} ${isFullscreen ? s.isActive : ''}`}
+          onClick={() => {
+            setIsFullscreen(!isFullscreen);
+
+            if (!isFullscreen) {
+              document.body.style.overflowY = "hidden";
+              document.documentElement.style.overflowY = "hidden";
+            }
+
+            if (isFullscreen) {
+              document.body.style.overflowY = "auto";
+              document.documentElement.style.overflowY = "auto";
+            }
+
+          }}>
+          {
+            isFullscreen ? <svg
+              width={24}
+              height={24}
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+
+              <g clipPath="url(#clip0_6_13446)">
+                <path
+                  d="M9.65 14.5V14.35H9.5H5.15V14.15H9.85V18.85H9.65V14.5ZM9.5 9.65H9.65V9.5V5.15H9.85V9.85H5.15V9.65H9.5ZM14.5 14.35H14.35V14.5V18.85H14.15V14.15H18.85V14.35H14.5ZM14.35 9.5V9.65H14.5H18.85V9.85H14.15V5.15H14.35V9.5Z"
+                />
+              </g>
+            </svg> :
+              <svg
+                width={24}
+                height={24}
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g>
+                  <path
+                    d="M5.6 18V18.4H6H9.6V18.6H5.4V14.4H5.6V18ZM6 5.6H5.6V6V9.6H5.4V5.4H9.6V5.6H6ZM18 18.4H18.4V18V14.4H18.6V18.6H14.4V18.4H18ZM18.4 6V5.6H18H14.4V5.4H18.6V9.6H18.4V6Z"
+                  />
+                </g>
+              </svg>
+          }
+        </button>
       </div>
     </div>
   );
@@ -494,8 +606,6 @@ const openModal = (editor: any, setIframeTitle: any, setIframeSrc: any, setShowM
   }
 
   setShowModal(true);
-
-
 }
 
 const setIframeContent = (editor: any, iframeTitle: any, iframeSrc: any) => {
@@ -517,6 +627,7 @@ const addImage = (editor: any) => {
           type: 'image',
           attrs: {
             src: url,
+            class: s.medium
           },
         },
       ])
@@ -618,6 +729,7 @@ type EditorProps = {
 * @returns Button component
 */
 export const LidiaEditor = ({ className = "", html, setHtml, onlyPreview = false, editorStyle = "default" }: EditorProps) => {
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const editor = useEditor({
     onUpdate({ editor }: any) {
@@ -648,9 +760,9 @@ export const LidiaEditor = ({ className = "", html, setHtml, onlyPreview = false
         openOnClick: onlyPreview,
         autolink: true,
       }),
-      Image.configure({
-        inline: true,
-      }),
+      // Image.configure({
+      //   inline: true,
+      // }),
       Iframe,
       TextStyle,
       FontFamily,
@@ -668,6 +780,11 @@ export const LidiaEditor = ({ className = "", html, setHtml, onlyPreview = false
       TaskItem.configure({
         nested: true,
       }),
+      CustomImage.configure({
+        inline: true
+      }),
+      Subscript,
+      Superscript
     ],
     autofocus: true,
     content: html,
@@ -684,9 +801,11 @@ export const LidiaEditor = ({ className = "", html, setHtml, onlyPreview = false
 
 
   return (
-    <div className={`${s.lidiaEditor} ${s[editorStyle]} ${className ? className : ''}`}>
+    <div className={`${s.lidiaEditor} ${s[editorStyle]} ${className ? className : ''} ${isFullscreen ? s.fullScreen : ''}`}>
       {!onlyPreview && <MenuBar
         editor={editor}
+        setIsFullscreen={setIsFullscreen}
+        isFullscreen={isFullscreen}
       />}
 
       <div className={`${s.editorContainer}`}>
@@ -1041,7 +1160,17 @@ const TableOptions = ({ editor }: any) => {
               d="M6.3335 23.75V26.6004C6.3335 28.3739 6.3335 29.2601 6.67864 29.9375C6.98224 30.5334 7.46633 31.0183 8.06217 31.3219C8.7389 31.6667 9.62524 31.6667 11.3953 31.6667H19.0002M6.3335 23.75V14.25M6.3335 23.75H19.0002M6.3335 14.25V11.4004C6.3335 9.62685 6.3335 8.73944 6.67864 8.06205C6.98224 7.46621 7.46633 6.98212 8.06217 6.67852C8.73956 6.33337 9.62697 6.33337 11.4005 6.33337H19.0002M6.3335 14.25H19.0002M19.0002 6.33337H26.6005C28.374 6.33337 29.2603 6.33337 29.9376 6.67852C30.5335 6.98212 31.0184 7.46621 31.322 8.06205C31.6668 8.73878 31.6668 9.62511 31.6668 11.3951V14.25M19.0002 6.33337V14.25M19.0002 14.25V23.75M19.0002 14.25H31.6668M19.0002 23.75V31.6667M19.0002 23.75H31.6668M19.0002 31.6667H26.6058C28.3759 31.6667 29.2609 31.6667 29.9376 31.3219C30.5335 31.0183 31.0184 30.5334 31.322 29.9375C31.6668 29.2608 31.6668 28.3757 31.6668 26.6057V23.75M31.6668 23.75V14.25"
             />
           </svg>
-
+          <svg
+            width={24}
+            height={24}
+            viewBox="0 0 38 38"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M25.3333 15.8333L19 22.1666L12.6667 15.8333"
+            />
+          </svg>
         </button>
         <div className={s.options}>
 
@@ -1420,40 +1549,48 @@ const Modal = ({ children, width = "auto", showModal = false, setShowModal }: an
   </div>
 }
 
-const IframeContent = ({ editor, setIframeContent, iframeTitle, setIframeTitle, iframeSrc, setIframeSrc, setShowModal }: any) => {
+const IframeContent = ({
+  editor,
+  setIframeContent, iframeTitle,
+  setIframeTitle, iframeSrc,
+  setIframeSrc, setShowModal, showModal }: any) => {
 
   const showData = () => {
     setShowModal(false);
     setIframeContent(editor, iframeTitle, iframeSrc)
   }
 
-  return <div className={s.iframeModal}>
-    <h3>Add a new iframe content</h3>
-    <input
-      type="text"
-      placeholder='Title'
-      value={iframeTitle}
-      onChange={(e) => setIframeTitle(e.target.value)}
-    />
-    <input
-      type="url"
-      placeholder='URL'
-      value={iframeSrc}
-      onChange={(e) => setIframeSrc(e.target.value)}
-    />
+  return <Modal
+    setShowModal={setShowModal}
+    showModal={showModal}>
+    <div className={s.iframeModal}>
+      <h3>Add a new iframe content</h3>
+      <input
+        type="text"
+        placeholder='Title'
+        value={iframeTitle}
+        onChange={(e) => setIframeTitle(e.target.value)}
+      />
+      <input
+        type="url"
+        placeholder='URL'
+        value={iframeSrc}
+        onChange={(e) => setIframeSrc(e.target.value)}
+      />
 
-    <div className={s.buttons}>
-      <button
-        type='button' onClick={() => setShowModal(false)}>
-        Cancel
-      </button>
-      <button
-        type='button'
-        onClick={showData}
-        className={s.saveButton}
-      >
-        Save
-      </button>
-    </div>
-  </div >
+      <div className={s.buttons}>
+        <button
+          type='button' onClick={() => setShowModal(false)}>
+          Cancel
+        </button>
+        <button
+          type='button'
+          onClick={showData}
+          className={s.saveButton}
+        >
+          Save
+        </button>
+      </div>
+    </div >
+  </Modal>
 }

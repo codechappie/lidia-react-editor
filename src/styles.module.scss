@@ -1665,6 +1665,7 @@
 
   .menuBar {
     display: table;
+    width: calc(100% - 20px);
     height: 100%;
     margin: 10px;
     margin-bottom: 0;
@@ -2114,7 +2115,7 @@
 
     .editor {
       height: 100%;
-      overflow: auto;
+      // overflow: auto;
       display: grid;
 
       .tiptap.ProseMirror {
@@ -2184,19 +2185,12 @@
       img {
         width: 100%;
         display: block;
+        box-sizing: border-box;
+        border-radius: 10px;
       }
 
-      li {
-        vertical-align: baseline;
-        text-wrap: nowrap;
-
-        p {
-          position: relative;
-          display: inline;
-          img {
-            vertical-align: text-top;
-          }
-        }
+      .medium {
+        border: 2px solid red;
       }
 
       ul[data-type*="taskList"] {
@@ -2487,7 +2481,11 @@
   }
 
   &.dark {
-    background: #ffffff;
+    background: #1a1a1a;
+
+    &::before {
+      display: none;
+    }
 
     & * {
       &:not(code, pre, .hljs-*) {
@@ -2501,12 +2499,10 @@
       }
       .onlyIcon {
         background: #1a1a1a;
-
-        svg path {
-          filter: invert(1);
-        }
       }
-
+      svg path {
+        stroke: #ffffff;
+      }
       .selector {
         background: #1a1a1a;
         color: #ffffff;
@@ -2516,12 +2512,15 @@
           border: 0.15rem solid #636363;
         }
         svg {
-          filter: invert(1);
+          path {
+            stroke: #ffffff;
+          }
         }
       }
 
       .options {
         background: #1a1a1a;
+        color: #ffffff;
         .button {
           &:hover {
             background: #313131;
@@ -2541,7 +2540,7 @@
             svg {
               background: #1a1a1a;
               path {
-                filter: invert(1);
+                stroke: #ffffff;
               }
             }
           }
@@ -2596,12 +2595,17 @@
     .modal {
       .content {
         background: #252525;
+        h3 {
+          color: #ffffff;
+        }
         input {
           background: #252525;
           border: 2px solid #414141;
+          color: #ffffff;
         }
         button {
           background: #252525;
+          color: #ffffff;
         }
       }
     }
@@ -2685,6 +2689,23 @@
       p {
         margin: 10px 0;
       }
+    }
+  }
+
+  &.fullScreen {
+    position: fixed;
+    inset: 0;
+    height: 100%;
+    display: flex;
+    z-index: 2147483647;
+    border-radius: 0;
+
+    .menuBar {
+      height: auto;
+    }
+    .editorContainer {
+      max-height: inherit;
+      height: 100%;
     }
   }
 

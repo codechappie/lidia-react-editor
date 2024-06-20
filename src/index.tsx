@@ -26,7 +26,7 @@ import s from './styles.module.scss';
 const lowlight = createLowlight(common);
 
 // TODO: UNCOMMENT TO TEST AND ADD GLOBAL STYLES
-// import '../dist/theme.css';
+import '../dist/theme.css';
 
 const alignOptions = [
   {
@@ -545,14 +545,6 @@ const setALink = (editor: any) => {
     .run()
 }
 
-type EditorProps = {
-  className?: string;
-  html: string;
-  setHtml?: any;
-  onlyPreview?: boolean;
-  editorStyle?: "default" | "white" | "dark" | "preview";
-};
-
 const CustomTableCell = TableCell.extend({
   addAttributes() {
     return {
@@ -611,13 +603,21 @@ const CustomTableHeader = TableHeader.extend({
   },
 })
 
+type EditorProps = {
+  className?: string;
+  html: string;
+  setHtml?: any;
+  onlyPreview?: boolean;
+  editorStyle?: "default" | "white" | "dark" | "preview";
+};
+
 /**
 * Button component
 * @param text Text to display in the button
 * @param onClick Function to call when the button is clicked
 * @returns Button component
 */
-export const LidiaEditor = ({ className = "", html, setHtml, onlyPreview = false, editorStyle = "preview" }: EditorProps) => {
+export const LidiaEditor = ({ className = "", html, setHtml, onlyPreview = false, editorStyle = "default" }: EditorProps) => {
 
   const editor = useEditor({
     onUpdate({ editor }: any) {

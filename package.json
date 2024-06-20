@@ -4,7 +4,7 @@
     "name": "CodeChappie",
     "email": "codechappie@gmail.com"
   },
-  "version": "0.0.61",
+  "version": "0.0.79",
   "description": "An intuitive and minimal WYSIWYG react editor.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -32,7 +32,7 @@
   "bugs": {
     "url": "https://github.com/codechappie/lidia-react-editor/issues"
   },
-  "homepage": "https://github.com/codechappie/lidia-react-editor#readme",
+  "homepage": "lidia-editor.codechappie.com",
   "peerDependencies": {
     "react": ">=18.2.0",
     "react-dom": ">=18.2.0",

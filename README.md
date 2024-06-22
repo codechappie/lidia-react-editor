@@ -23,13 +23,13 @@ The `LidiaEditor` component offers a robust set of features designed to enhance 
 To use `LidiaEditor`, install it via npm:
 
 ```bash
-npm install lidia-editor
+npm install lidia-react-editor
 ```
 
 
 ```jsx
 import React, { useState } from 'react';
-import { LidiaEditor } from 'lidia-editor';
+import { LidiaEditor } from 'lidia-react-editor';
 // To visualize all available styles import the theme CSS file
 import "lidia-react-editor/dist/theme.css";
 

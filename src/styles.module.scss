@@ -23,6 +23,11 @@
     font-family: "Poppins", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
+    font-size: 16px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 14px;
+    }
 
     &:not(code, pre, .hljs-*) {
       color: #000000;
@@ -2115,7 +2120,6 @@
 
     .editor {
       height: 100%;
-      // overflow: auto;
       display: grid;
 
       .tiptap.ProseMirror {
@@ -2190,7 +2194,7 @@
       }
 
       .medium {
-        border: 2px solid red;
+        opacity: 1;
       }
 
       ul[data-type*="taskList"] {
@@ -2217,18 +2221,9 @@
       ul,
       ol {
         padding-left: 25px;
-      }
 
-      ol:first-child,
-      ul:first-child {
-        overflow-x: auto;
-
-        &::-webkit-scrollbar {
-          background: #363636;
-          height: 10px;
-        }
-        &::-webkit-scrollbar-thumb {
-          background: #8d8d8d;
+        p {
+          margin: 0;
         }
       }
     }
@@ -2643,22 +2638,13 @@
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
 
-      ol:first-child,
-      ul:first-child {
-        overflow-x: scroll;
-
-        &::-webkit-scrollbar {
-          background: #363636;
-          height: 10px;
-        }
-        &::-webkit-scrollbar-thumb {
-          background: #8d8d8d;
-        }
-      }
-
       ul,
       ol {
         padding-left: 25px;
+
+        p {
+          margin: 0 !important;
+        }
       }
 
       code {

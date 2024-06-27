@@ -82,7 +82,9 @@ const MenuBar = ({ editor, setIsFullscreen, isFullscreen }: any) => {
   }
 
   const getFontValue = () => {
-    if (editor.isActive('textStyle', { fontFamily: 'Poppins' })) {
+    if (editor.isActive('textStyle', { fontFamily: 'Open Sans, sans-serif' })) {
+      return "Open Sans"
+    } else if (editor.isActive('textStyle', { fontFamily: 'Poppins' })) {
       return "Poppins"
     } else if (editor.isActive('textStyle', { fontFamily: 'Verdana, Geneva' })) {
       return "Verdana"
@@ -94,7 +96,7 @@ const MenuBar = ({ editor, setIsFullscreen, isFullscreen }: any) => {
       return "Monospace"
     } else if (editor.isActive('textStyle', { fontFamily: 'Arial Black' })) {
       return "Arial"
-    } else return "Poppins"
+    } else return "Open Sans"
   }
 
   const getHeadingValue = () => {
@@ -847,6 +849,21 @@ const FontSelector = ({ editor, getFontValue }: any) => {
 
         </button>
         <div className={s.options}>
+          {/*  */}
+
+          <div
+            onClick={() => {
+              editor.chain().focus().setFontFamily('Open Sans, sans-serif').run();
+              setActive(!active);
+            }}
+            className={`${getFontValue() === "Open Sans, sans-serif" ? s.isActive : ""} ${s.button}`}
+          >
+            <span className={s.text}>
+              Open Sans
+            </span>
+            <span className={s.icon}><CheckIcon /></span>
+          </div>
+
           <div
             onClick={() => {
               editor.chain().focus().setFontFamily('Poppins').run();

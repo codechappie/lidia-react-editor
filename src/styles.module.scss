@@ -1,4 +1,4 @@
-@import "https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Fira+Code:wght@400&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Fira+Code:wght@400&family=Open+Sans:wght@400&display=swap";
 
 .lidiaEditor {
   width: 100%;
@@ -20,10 +20,10 @@
     box-sizing: content-box;
     outline: none;
     line-break: normal;
-    font-family: "Poppins", sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    font-size: 16px;
+    font-size: 16.5px;
 
     @media screen and (max-width: 768px) {
       font-size: 14px;
@@ -1630,7 +1630,7 @@
     font-size: 50%;
   }
   iframe {
-    border: 2px inset;
+    border: none;
   }
 
   &.default::before {
@@ -2222,6 +2222,10 @@
       ol {
         padding-left: 25px;
 
+        li {
+          margin: 6px 0;
+        }
+        
         p {
           margin: 0;
         }

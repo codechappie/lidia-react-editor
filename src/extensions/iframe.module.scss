@@ -1,4 +1,3 @@
-
 .lidiaEditorIframe {
     width: 100%;
     aspect-ratio: 16/9;
@@ -6,7 +5,7 @@
     overflow: hidden;
     margin: 15px 0;
     padding: 6px;
-    box-sizing: border-box!important;
+    box-sizing: border-box !important;
     cursor: pointer;
 
     iframe {
@@ -15,5 +14,10 @@
         border: 10px solid rgb(148, 148, 148);
         border-radius: 10px;
         box-sizing: border-box;
+    }
+
+    @media screen and (max-width: 768px) {
+        aspect-ratio: inherit;
+        height: 350px;
     }
 }

@@ -4,7 +4,7 @@
     "name": "CodeChappie",
     "email": "codechappie@gmail.com"
   },
-  "version": "0.0.89",
+  "version": "0.0.91",
   "description": "An intuitive and minimal WYSIWYG react editor.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -26,7 +26,13 @@
     "editor",
     "wysiwyg editor",
     "lidia editor",
-    "WYSIWYG"
+    "WYSIWYG",
+    "lidia react editor",
+    "lidia editor",
+    "codechappie",
+    "rich text editor",
+    "react editor",
+    "text editor"
   ],
   "license": "MIT",
   "bugs": {

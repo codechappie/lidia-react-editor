@@ -51,7 +51,7 @@ export const LidiaEditorComponent = ({ className, onlyPreview = false }: any) =>
         className={className}
         html={htmlContent}
         setHtml={setHtmlContent}
-        editorStyle='dark'
+        editorStyle='preview'
         onlyPreview={onlyPreview}
       />
       <p>

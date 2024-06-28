@@ -1,4 +1,4 @@
-@import "https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Fira+Code:wght@400&family=Open+Sans:wght@400&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Noto+Sans&family=Fira+Code:wght@400&family=Open+Sans:wght@400&display=swap";
 
 .lidiaEditor {
   width: 100%;
@@ -20,13 +20,28 @@
     box-sizing: content-box;
     outline: none;
     line-break: normal;
-    font-family: "Open Sans", sans-serif;
+    font-family:
+      "Noto Sans",
+      -apple-system,
+      Helvetica,
+      Arial,
+      sans-serif;
     font-optical-sizing: auto;
+    font-weight: 400;
     font-style: normal;
-    font-size: 16.5px;
+    font-variation-settings: "wdth" 100;
+    font-size: 18px;
+
+    &.menuBar * {
+      font-size: 14.5px;
+    }
 
     @media screen and (max-width: 768px) {
       font-size: 14px;
+
+      &.menuBar * {
+        font-size: 13px;
+      }
     }
 
     &:not(code, pre, .hljs-*) {
@@ -2140,7 +2155,7 @@
         background: rgb(15, 15, 15);
         color: #ffffff;
         display: inline;
-        padding: 3px 5px;
+        padding: 1px 5px;
         border-radius: 8px;
         font-family: "Fira Code", monospace !important;
 
@@ -2225,7 +2240,7 @@
         li {
           margin: 6px 0;
         }
-        
+
         p {
           margin: 0;
         }
@@ -2240,6 +2255,11 @@
     blockquote {
       border-left: 5px solid rgb(62, 132, 224);
       padding-left: 10px;
+    }
+
+    a {
+      color: #006df5;
+      font-weight: bold;
     }
   }
 
@@ -2580,10 +2600,6 @@
         }
       }
 
-      a {
-        color: rgb(94, 204, 255);
-      }
-
       table {
         & > * {
           color: #000000;
@@ -2641,6 +2657,7 @@
       max-height: fit-content;
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
+      min-height: fit-content;
 
       ul,
       ol {
@@ -2773,16 +2790,17 @@
       }
       button {
         border: none;
-        background: #0f6cdf;
+        background: #202020;
         display: flex;
         align-items: center;
         justify-content: center;
         position: absolute;
         right: 10px;
-        border-radius: 10px;
+        border-radius: 6px;
         cursor: pointer;
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
+        box-sizing: border-box;
 
         svg {
           width: 20px;
@@ -2796,15 +2814,16 @@
       }
 
       .tooltip {
-        background: #ffffff;
+        background: #202020;
         padding: 4px 10px;
         border-radius: 8px;
         position: relative;
         right: 55px;
         opacity: 0;
         transition: all ease-in-out 1s;
-        top: 4px;
-        color: #000000;
+        top: 6px;
+        color: #ffffff;
+        font-size: 14px;
 
         &.show {
           transition: all ease-in-out 1s;

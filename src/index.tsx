@@ -43,16 +43,16 @@ const CustomImage = Image.extend({
           }
         },
       },
-      // width: {
-      //   default: "image",
-      //   parseHTML: element => element.getAttribute('data-class'),
-      //   renderHTML: attributes => {
-      //     return {
-      //       'data-class': attributes.class,
-      //       class: attributes.color,
-      //     }
-      //   },
-      // },
+      width: {
+        default: "image",
+        parseHTML: element => element.getAttribute('data-class'),
+        renderHTML: attributes => {
+          return {
+            'data-class': attributes.class,
+            class: attributes.color,
+          }
+        },
+      },
     }
   },
 })
@@ -521,7 +521,7 @@ const MenuBar = ({ editor, setIsFullscreen, isFullscreen }: any) => {
         <button
           type='button'
           onClick={() => editor.chain().focus().toggleSuperscript().run()}
-          className={`${s.onlyIcon} ${editor.isActive('sub') ? s.isActive : ''}`}
+          className={`${s.onlyIcon} ${editor.isActive('superscript') ? s.isActive : ''}`}
         >
           <svg
             width={24}

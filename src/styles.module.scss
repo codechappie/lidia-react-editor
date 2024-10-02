@@ -39,6 +39,12 @@
     @media screen and (max-width: 768px) {
       font-size: 14px;
 
+      &.editorContainer h1 > * {
+        font-size: .8em;
+        font-weight: bold;
+        margin: 0.67em 0;
+      }
+
       &.menuBar * {
         font-size: 13px;
       }

@@ -1,6 +1,6 @@
 # LidiaEditor React Component
 
-`LidiaEditor` component [full featured demo](lidia-editor.codechappie.com) provides a rich text editor (minimal WYSIWYG) with various configurable functionalities. A React component that utilizes Tiptap suite.
+`LidiaEditor` component [full featured demo](https://lidia-editor.codechappie.com) provides a rich text editor (minimal WYSIWYG) with various configurable functionalities. A React component that utilizes Tiptap suite.
 
 ## Key Features
 

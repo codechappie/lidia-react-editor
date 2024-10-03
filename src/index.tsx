@@ -28,7 +28,7 @@ import s from './styles.module.scss';
 const lowlight = createLowlight(common);
 
 // TODO: UNCOMMENT TO TEST AND ADD GLOBAL STYLES
-// import '../dist/theme.css';
+import '../dist/theme.css';
 
 const CustomImage = Image.extend({
   addAttributes() {
@@ -39,17 +39,18 @@ const CustomImage = Image.extend({
         parseHTML: element => element.getAttribute('data-class'),
         renderHTML: attributes => {
           return {
-            'class': attributes.class,
+            'data-class': attributes.class,
+            'class': s[attributes.class],
           }
         },
       },
       width: {
         default: "image",
-        parseHTML: element => element.getAttribute('data-class'),
+        parseHTML: element => element.getAttribute('data-width'),
         renderHTML: attributes => {
           return {
-            'data-class': attributes.class,
-            class: attributes.color,
+            'data-width': attributes.width,
+            'width': attributes.width + "px",
           }
         },
       },
@@ -76,6 +77,12 @@ const MenuBar = ({ editor, setIsFullscreen, isFullscreen }: any) => {
   const [iframeSrc, setIframeSrc] = useState("");
   const [textColor, setTextColor] = useState("");
   const [showIframeModal, setShowIframeModal] = useState(false);
+
+  const [imageTitle, setImageTitle] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [imageSize, setImageSize] = useState("");
+  const [imageWidth, setImageWidth] = useState("");
+  const [showImageModal, setShowImageModal] = useState(false);
 
   if (!editor) {
     return null;
@@ -148,6 +155,20 @@ const MenuBar = ({ editor, setIsFullscreen, isFullscreen }: any) => {
         setShowModal={setShowIframeModal}
         showModal={showIframeModal}
         setIframeContent={setIframeContent}
+      />
+      <ImageContent
+        editor={editor}
+        imageTitle={imageTitle}
+        setImageTitle={setImageTitle}
+        imageUrl={imageUrl}
+        setImageUrl={setImageUrl}
+        setShowModal={setShowImageModal}
+        showModal={showImageModal}
+        imageSize={imageSize}
+        setImageSize={setImageSize}
+        setImageContent={addImage}
+        imageWidth={imageWidth}
+        setImageWidth={setImageWidth}
       />
       <div className={s.container}>
         <button
@@ -447,7 +468,7 @@ const MenuBar = ({ editor, setIsFullscreen, isFullscreen }: any) => {
         </button>
         <button
           type='button'
-          onClick={() => addImage(editor)}
+          onClick={() => openImageModal(editor, setImageTitle, setImageUrl, setImageSize, setImageWidth, setShowImageModal)}
           className={`${s.onlyIcon} ${editor.isActive('image') ? s.isActive : ''}`}
         >
           <svg
@@ -613,6 +634,44 @@ const openModal = (editor: any, setIframeTitle: any, setIframeSrc: any, setShowM
   setShowModal(true);
 }
 
+
+const openImageModal = (editor: any, setImageTitle: any, setImageUrl: any, setImageSize: any, setImageWidth: any, setShowModal: any) => {
+  const src = editor.getAttributes("image").src
+  const title = editor.getAttributes("image").title
+  const size = editor.getAttributes("image").class
+  const width = editor.getAttributes("image").width
+
+  console.log("MODAL DATA", editor.getAttributes("image"))
+
+  if (title) {
+    setImageTitle(title)
+  } else {
+    setImageTitle("")
+  }
+
+  if (src) {
+    setImageUrl(src)
+  } else {
+    setImageUrl("")
+  }
+
+  if (size) {
+    setImageSize(size)
+  } else {
+    setImageSize("")
+  }
+
+  console.log("W", width);
+  if (width) {
+    setImageWidth(width)
+  } else {
+    setImageWidth("")
+  }
+
+
+  setShowModal(true);
+}
+
 const setIframeContent = (editor: any, iframeTitle: any, iframeSrc: any) => {
   editor.chain().focus()
     .setIframe({
@@ -621,9 +680,10 @@ const setIframeContent = (editor: any, iframeTitle: any, iframeSrc: any) => {
     }).run()
 }
 
-const addImage = (editor: any) => {
-  const url = window.prompt('URL');
-  if (url) {
+const addImage = (editor: any, imageTitle: any, imageUrl: any, imageSize: any, imageWidth: any) => {
+  console.log("data: ", imageTitle, imageUrl, imageSize, imageWidth)
+
+  if (imageTitle && imageUrl || (imageSize && imageWidth)) {
     editor
       .chain()
       .focus()
@@ -631,8 +691,11 @@ const addImage = (editor: any) => {
         {
           type: 'image',
           attrs: {
-            src: url,
-            class: s.medium
+            alt: imageTitle,
+            title: imageTitle,
+            src: imageUrl,
+            class: imageSize,
+            width: imageWidth,
           },
         },
       ])
@@ -1609,6 +1672,110 @@ const IframeContent = ({
         value={iframeSrc}
         onChange={(e) => setIframeSrc(e.target.value)}
       />
+
+      <div className={s.buttons}>
+        <button
+          type='button' onClick={() => setShowModal(false)}>
+          Cancel
+        </button>
+        <button
+          type='button'
+          onClick={showData}
+          className={s.saveButton}
+        >
+          Save
+        </button>
+      </div>
+    </div >
+  </Modal>
+}
+
+
+const ImageContent = ({
+  editor,
+  imageTitle,
+  setImageTitle,
+  imageUrl,
+  setImageUrl,
+  imageSize,
+  setImageSize,
+  setShowModal,
+  showModal,
+  setImageContent,
+  imageWidth,
+  setImageWidth }: any) => {
+
+  const showData = () => {
+    setShowModal(false);
+    setImageContent(editor, imageTitle, imageUrl, imageSize, imageWidth)
+  }
+
+  console.log("CLASS: ", imageSize);
+  return <Modal
+    setShowModal={setShowModal}
+    showModal={showModal}>
+    <div className={s.imageModal}>
+      <h3>Add new image</h3>
+      <input
+        type="text"
+        placeholder='Title'
+        value={imageTitle}
+        onChange={(e) => setImageTitle(e.target.value)}
+      />
+      <input
+        type="url"
+        placeholder='URL'
+        value={imageUrl}
+        onChange={(e) => setImageUrl(e.target.value)}
+      />
+
+      <div className={s.size}>
+        <button
+          className={`${imageSize === "small" ? s.selected : ""}`}
+          onClick={() => {
+            setImageSize("small")
+            setImageWidth("")
+          }}
+        >
+          Sm
+        </button>
+
+        <button
+          className={`${imageSize === "medium" ? s.selected : ""}`}
+          onClick={() => {
+            setImageSize("medium")
+            setImageWidth("")
+          }}
+        >
+          Md
+        </button>
+
+        <button
+          className={`${imageSize === "large" ? s.selected : ""}`}
+          onClick={() => {
+            setImageSize("large")
+            setImageWidth("")
+          }}
+        >
+          Lg
+        </button>
+
+
+        <div className={s.pixels}
+          onClick={() => {
+            setImageSize("");
+          }}
+        >
+          <input
+            value={imageWidth}
+            onChange={(e) => {
+              setImageWidth(e.target.value)
+            }}
+            type="number"
+            min={10}
+          /> <span>px</span>
+        </div>
+      </div>
 
       <div className={s.buttons}>
         <button

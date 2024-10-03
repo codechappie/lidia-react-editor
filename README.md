@@ -16,7 +16,7 @@ The `LidiaEditor` component offers a robust set of features designed to enhance 
 
 ## Screenshots
 
-![Lidia Editor screenshots](https://i.imgur.com/QONqvIe.png)
+![Lidia Editor screenshots](https://i.imgur.com/ruopGws.png)
 
 ## Installation
 

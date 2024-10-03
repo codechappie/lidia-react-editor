@@ -32,18 +32,85 @@
     font-variation-settings: "wdth" 100;
     font-size: 18px;
 
+    h1,
+    h1 * {
+      font-size: 35px;
+      font-weight: bold;
+      margin: 12px 0;
+
+      @media screen and (max-width: 768px) {
+        font-size: 26px !important;
+        font-weight: bold !important;
+        margin: 8px 0 !important;
+      }
+    }
+    h2,
+    h2 * {
+      font-size: 29px;
+      font-weight: bold;
+      margin: 11px 0;
+
+      @media screen and (max-width: 768px) {
+        font-size: 23px !important;
+        font-weight: bold !important;
+        margin: 7px 0 !important;
+      }
+    }
+    h3,
+    h3 * {
+      font-size: 26px;
+      font-weight: bold;
+      margin: 10px 0;
+
+      @media screen and (max-width: 768px) {
+        font-size: 20px !important;
+        font-weight: bold !important;
+        margin: 6px 0 !important;
+      }
+    }
+    h4,
+    h4 * {
+      font-size: 23px;
+      font-weight: bold;
+      margin: 9px 0;
+
+      @media screen and (max-width: 768px) {
+        font-size: 18px !important;
+        font-weight: bold !important;
+        margin: 5px 0 !important;
+      }
+    }
+    h5,
+    h5 * {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 8px 0;
+
+      @media screen and (max-width: 768px) {
+        font-size: 15px !important;
+        font-weight: bold !important;
+        margin: 4px 0 !important;
+      }
+    }
+    h6,
+    h6 * {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 6px 0;
+
+      @media screen and (max-width: 768px) {
+        font-size: 13px !important;
+        font-weight: bold !important;
+        margin: 3px 0 !important;
+      }
+    }
+
     &.menuBar * {
       font-size: 14.5px;
     }
 
     @media screen and (max-width: 768px) {
       font-size: 14px;
-
-      &.editorContainer h1 > * {
-        font-size: .8em;
-        font-weight: bold;
-        margin: 0.67em 0;
-      }
 
       &.menuBar * {
         font-size: 13px;
@@ -85,43 +152,45 @@
     box-sizing: border-box;
     margin: 0.5em auto;
   }
-  h1 {
-    font-size: 2.5em;
+
+  h1,
+  p h1 {
+    font-size: 35px;
     font-weight: bold;
-    margin: 0.67em 0;
+    margin: 12px 0;
   }
   h2 {
-    font-size: 1.5em;
+    font-size: 29px;
     font-weight: bold;
-    margin: 0.83em 0;
+    margin: 11px 0;
   }
   h3 {
-    font-size: 1.17em;
+    font-size: 26px;
     font-weight: bold;
-    margin: 1em 0;
+    margin: 10px 0;
   }
   h4 {
-    font-size: 1em;
+    font-size: 23px;
     font-weight: bold;
-    margin: 1.33em 0;
+    margin: 9px 0;
   }
   h5 {
-    font-size: 0.83em;
+    font-size: 20px;
     font-weight: bold;
-    margin: 1.67em 0;
+    margin: 8px 0;
   }
   h6 {
-    font-size: 0.67em;
+    font-size: 18px;
     font-weight: bold;
-    margin: 2.33em 0;
+    margin: 6px 0;
   }
   article h1,
   aside h1,
   nav h1,
   section h1 {
-    font-size: 1.5em;
+    font-size: 15px;
     font-weight: bold;
-    margin: 0.83em 0;
+    margin: 11px 0;
   }
   article article h1,
   aside article h1,
@@ -139,9 +208,9 @@
   aside section h1,
   nav section h1,
   section section h1 {
-    font-size: 1.17em;
+    font-size: 15px;
     font-weight: bold;
-    margin: 1em 0;
+    margin: 11px 0;
   }
   article article article h1,
   aside article article h1,
@@ -207,9 +276,9 @@
   aside section section h1,
   nav section section h1,
   section section section h1 {
-    font-size: 1em;
+    font-size: 15px;
     font-weight: bold;
-    margin: 1.33em 0;
+    margin: 11px 0;
   }
   article article article article h1,
   aside article article article h1,
@@ -467,9 +536,9 @@
   aside section section section h1,
   nav section section section h1,
   section section section section h1 {
-    font-size: 0.83em;
+    font-size: 15px;
     font-weight: bold;
-    margin: 1.67em 0;
+    margin: 13px 0;
   }
   article article article article article h1,
   aside article article article article h1,
@@ -1495,9 +1564,9 @@
   aside section section section section h1,
   nav section section section section h1,
   section section section section section h1 {
-    font-size: 0.67em;
+    font-size: 15px;
     font-weight: bold;
-    margin: 2.33em 0;
+    margin: 13px 0;
   }
   table {
     border-collapse: separate;
@@ -2214,8 +2283,16 @@
         border-radius: 10px;
       }
 
+      .small {
+        max-width: 60%;
+      }
+
       .medium {
-        opacity: 1;
+        max-width: 80%;
+      }
+
+      .large {
+        max-width: 100%;
       }
 
       ul[data-type*="taskList"] {
@@ -2376,6 +2453,70 @@
             &:hover {
               background: rgb(37, 132, 255);
               transition: all ease-in-out 0.2s;
+            }
+          }
+        }
+      }
+
+      .imageModal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+
+        .buttons {
+          display: flex;
+          gap: 10px;
+
+          .saveButton {
+            background: rgb(0, 110, 255);
+            color: #fff;
+
+            &:hover {
+              background: rgb(37, 132, 255);
+              transition: all ease-in-out 0.2s;
+            }
+          }
+        }
+
+        .size {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          gap: 10px;
+          margin-bottom: 20px;
+
+          button {
+            min-width: auto;
+            padding: 6px 18px;
+            border: 2px solid transparent;
+
+            &.selected {
+              border: 2px solid #333333;
+            }
+          }
+
+          .pixels {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+
+            /* Firefox */
+            input[type="number"] {
+              -moz-appearance: textfield;
+              margin: 0;
+            }
+
+            span {
+              margin-left: 5px;
             }
           }
         }

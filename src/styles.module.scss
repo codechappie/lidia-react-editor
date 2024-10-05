@@ -2241,7 +2241,8 @@
 
       .focus iframe,
       .focus img,
-      .focus .codeBlock {
+      .focus .codeBlock,
+      img.focus {
         border: 10px solid rgb(103, 219, 235);
         border-radius: 10px;
         box-sizing: border-box;
@@ -2277,22 +2278,38 @@
       }
 
       img {
-        width: 100%;
         display: block;
         box-sizing: border-box;
         border-radius: 10px;
-      }
 
-      .small {
-        max-width: 60%;
-      }
+        &.small {
+          width: 100%;
+          max-width: 60%;
+        }
 
-      .medium {
-        max-width: 80%;
-      }
+        &.medium {
+          width: 100%;
+          max-width: 80%;
+        }
 
-      .large {
-        max-width: 100%;
+        &.large {
+          width: 100%;
+          max-width: 100%;
+        }
+
+        @media screen and (max-width: 900px) {
+          width: 100%;
+        }
+
+        &.left {
+          margin: 10px auto 10px 0;
+        }
+        &.center {
+          margin: 10px auto;
+        }
+        &.right {
+          margin: 10px 0 10px auto;
+        }
       }
 
       ul[data-type*="taskList"] {
@@ -2485,7 +2502,7 @@
           align-items: center;
           width: 100%;
           gap: 10px;
-          margin-bottom: 20px;
+          margin-bottom: 10px;
 
           button {
             min-width: auto;
@@ -2517,6 +2534,30 @@
 
             span {
               margin-left: 5px;
+            }
+          }
+        }
+
+        label {
+          width: 100%;
+          padding-left: 5px;
+          padding-bottom: 5px;
+        }
+
+        .position {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          gap: 10px;
+          margin-bottom: 40px;
+
+          button {
+            min-width: auto;
+            padding: 8px 24px;
+            border: 2px solid transparent;
+
+            &.selected {
+              border: 2px solid #333333;
             }
           }
         }

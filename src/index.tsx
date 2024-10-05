@@ -14,6 +14,8 @@ import React, { useEffect, useId, useState } from 'react';
 
 import { Color } from '@tiptap/extension-color';
 import Focus from '@tiptap/extension-focus';
+import Subscript from '@tiptap/extension-subscript';
+import Superscript from '@tiptap/extension-superscript';
 import Table from '@tiptap/extension-table';
 import TableCell from '@tiptap/extension-table-cell';
 import TableHeader from '@tiptap/extension-table-header';
@@ -22,13 +24,11 @@ import TaskItem from '@tiptap/extension-task-item';
 import TaskList from '@tiptap/extension-task-list';
 import { common, createLowlight } from 'lowlight';
 import { Iframe } from "./extensions/Iframe";
-import Subscript from '@tiptap/extension-subscript';
-import Superscript from '@tiptap/extension-superscript';
 import s from './styles.module.scss';
 const lowlight = createLowlight(common);
 
 // TODO: UNCOMMENT TO TEST AND ADD GLOBAL STYLES
-import '../dist/theme.css';
+// import '../dist/theme.css';
 
 const CustomImage = Image.extend({
   addAttributes() {
@@ -40,7 +40,7 @@ const CustomImage = Image.extend({
         renderHTML: attributes => {
           return {
             'data-class': attributes.class,
-            'class': s[attributes.class],
+            'class': s[attributes.class] + " " + s[attributes.style],
           }
         },
       },
@@ -51,6 +51,16 @@ const CustomImage = Image.extend({
           return {
             'data-width': attributes.width,
             'width': attributes.width + "px",
+          }
+        },
+      },
+      style: {
+        default: "image",
+        parseHTML: element => element.getAttribute('data-style'),
+        renderHTML: attributes => {
+          return {
+            'data-style': attributes.style,
+            'style': attributes.tyle,
           }
         },
       },
@@ -78,10 +88,11 @@ const MenuBar = ({ editor, setIsFullscreen, isFullscreen }: any) => {
   const [textColor, setTextColor] = useState("");
   const [showIframeModal, setShowIframeModal] = useState(false);
 
-  const [imageTitle, setImageTitle] = useState("");
+  const [imageTitle, setImageTitle] = useState("Image title");
   const [imageUrl, setImageUrl] = useState("");
   const [imageSize, setImageSize] = useState("");
-  const [imageWidth, setImageWidth] = useState("");
+  const [imageWidth, setImageWidth] = useState("medium");
+  const [imagePosition, setImagePosition] = useState("center");
   const [showImageModal, setShowImageModal] = useState(false);
 
   if (!editor) {
@@ -169,6 +180,8 @@ const MenuBar = ({ editor, setIsFullscreen, isFullscreen }: any) => {
         setImageContent={addImage}
         imageWidth={imageWidth}
         setImageWidth={setImageWidth}
+        imagePosition={imagePosition}
+        setImagePosition={setImagePosition}
       />
       <div className={s.container}>
         <button
@@ -468,7 +481,7 @@ const MenuBar = ({ editor, setIsFullscreen, isFullscreen }: any) => {
         </button>
         <button
           type='button'
-          onClick={() => openImageModal(editor, setImageTitle, setImageUrl, setImageSize, setImageWidth, setShowImageModal)}
+          onClick={() => openImageModal(editor, setImageTitle, setImageUrl, setImageSize, setImageWidth, setImagePosition, setShowImageModal)}
           className={`${s.onlyIcon} ${editor.isActive('image') ? s.isActive : ''}`}
         >
           <svg
@@ -635,13 +648,13 @@ const openModal = (editor: any, setIframeTitle: any, setIframeSrc: any, setShowM
 }
 
 
-const openImageModal = (editor: any, setImageTitle: any, setImageUrl: any, setImageSize: any, setImageWidth: any, setShowModal: any) => {
+const openImageModal = (editor: any, setImageTitle: any, setImageUrl: any, setImageSize: any, setImageWidth: any, setImagePosition: any, setShowModal: any) => {
   const src = editor.getAttributes("image").src
   const title = editor.getAttributes("image").title
   const size = editor.getAttributes("image").class
   const width = editor.getAttributes("image").width
+  const style = editor.getAttributes("image").style
 
-  console.log("MODAL DATA", editor.getAttributes("image"))
 
   if (title) {
     setImageTitle(title)
@@ -661,11 +674,16 @@ const openImageModal = (editor: any, setImageTitle: any, setImageUrl: any, setIm
     setImageSize("")
   }
 
-  console.log("W", width);
   if (width) {
     setImageWidth(width)
   } else {
     setImageWidth("")
+  }
+
+  if (style) {
+    setImagePosition(style)
+  } else {
+    setImagePosition("")
   }
 
 
@@ -680,10 +698,9 @@ const setIframeContent = (editor: any, iframeTitle: any, iframeSrc: any) => {
     }).run()
 }
 
-const addImage = (editor: any, imageTitle: any, imageUrl: any, imageSize: any, imageWidth: any) => {
-  console.log("data: ", imageTitle, imageUrl, imageSize, imageWidth)
+const addImage = (editor: any, imageTitle: any, imageUrl: any, imageSize: any, imageWidth: any, imagePosition: any) => {
 
-  if (imageTitle && imageUrl || (imageSize && imageWidth)) {
+  if (imageUrl || (imageSize && imageWidth)) {
     editor
       .chain()
       .focus()
@@ -695,6 +712,7 @@ const addImage = (editor: any, imageTitle: any, imageUrl: any, imageSize: any, i
             title: imageTitle,
             src: imageUrl,
             class: imageSize,
+            style: imagePosition,
             width: imageWidth,
           },
         },
@@ -828,9 +846,7 @@ export const LidiaEditor = ({ className = "", html, setHtml, onlyPreview = false
         openOnClick: onlyPreview,
         autolink: true,
       }),
-      // Image.configure({
-      //   inline: true,
-      // }),
+
       Iframe,
       TextStyle,
       FontFamily,
@@ -849,7 +865,7 @@ export const LidiaEditor = ({ className = "", html, setHtml, onlyPreview = false
         nested: true,
       }),
       CustomImage.configure({
-        inline: true
+        inline: true,
       }),
       Subscript,
       Superscript
@@ -1703,14 +1719,15 @@ const ImageContent = ({
   showModal,
   setImageContent,
   imageWidth,
-  setImageWidth }: any) => {
+  setImageWidth,
+  imagePosition,
+  setImagePosition }: any) => {
 
   const showData = () => {
     setShowModal(false);
-    setImageContent(editor, imageTitle, imageUrl, imageSize, imageWidth)
+    setImageContent(editor, imageTitle, imageUrl, imageSize, imageWidth, imagePosition)
   }
 
-  console.log("CLASS: ", imageSize);
   return <Modal
     setShowModal={setShowModal}
     showModal={showModal}>
@@ -1729,7 +1746,10 @@ const ImageContent = ({
         onChange={(e) => setImageUrl(e.target.value)}
       />
 
-      <div className={s.size}>
+      <label htmlFor="size">Size</label>
+      <div
+        id="size"
+        className={s.size}>
         <button
           className={`${imageSize === "small" ? s.selected : ""}`}
           onClick={() => {
@@ -1775,6 +1795,40 @@ const ImageContent = ({
             min={10}
           /> <span>px</span>
         </div>
+      </div>
+
+
+      <label htmlFor="position">Position</label>
+      <div
+        id='position'
+        className={s.position}
+      >
+        <button
+          className={`${imagePosition === "left" ? s.selected : ""}`}
+          onClick={() => {
+            setImagePosition("left")
+          }}
+        >
+          Left
+        </button>
+
+        <button
+          className={`${imagePosition === "center" ? s.selected : ""}`}
+          onClick={() => {
+            setImagePosition("center")
+          }}
+        >
+          Center
+        </button>
+
+        <button
+          className={`${imagePosition === "right" ? s.selected : ""}`}
+          onClick={() => {
+            setImagePosition("right")
+          }}
+        >
+          Right
+        </button>
       </div>
 
       <div className={s.buttons}>
